@@ -1,0 +1,14 @@
+.mlbWrapper{
+    display: flex;
+    flex-direction: row;
+}
+
+.teamWrapper{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.teamItem{
+
+}

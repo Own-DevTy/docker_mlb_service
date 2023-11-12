@@ -1,0 +1,42 @@
+.header {
+    height: 7vh;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    pointer-events: none;
+}
+
+.flexItem {
+    display: flex;
+    pointer-events: auto;
+
+    margin: 1rem;
+}
+
+.searchBar{
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    text-align: left;
+}
+
+.searchWrapper{
+    position: absolute;
+    top: calc(100% + 10px);
+    width: 100%;
+    max-height: 345px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.searchResultWrapper{
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+.searchItem{
+    display: flex;
+}
