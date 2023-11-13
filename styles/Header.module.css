@@ -32,16 +32,16 @@
 }
 
 .searchBar > *{
-    margin: 1rem;
+    margin: 0.2rem;
 }
 
 .searchWrapper{
     position: absolute;
-    top: calc(100% - 25px);
+    top: calc(100%);
 
     border-radius: 1rem;
 
-    left: 0;
+    left: -5px;
     background-color: #45474B;
 
     width: 100%;

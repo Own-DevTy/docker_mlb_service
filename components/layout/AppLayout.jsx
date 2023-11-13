@@ -9,6 +9,7 @@ const AppLayout = ({children}) => {
                 <Header className={styles.service}/>
             </div>
             <div className={styles.service}>
+                <br/>
                 {children}
             </div>
         </Fragment>

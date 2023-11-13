@@ -1,6 +1,8 @@
 import {Fragment, useEffect, useRef, useState} from "react";
 import Link from "next/link";
 import styles from "@/styles/Header.module.css"
+import {TbSearch} from "react-icons/tb"
+import {MdDensityMedium} from "react-icons/md"
 
 export default function SearchBar({props}) {
     const text = useRef();
@@ -69,7 +71,11 @@ export default function SearchBar({props}) {
             <input type={"text"} ref={text}
                    onChange={(e) => setKeyword(e.target.value)}
                    onFocus={onFocus}/>
-            <Link href={"/search/" + keyword}>검색</Link>
+            <Link href={"/search/" + keyword}>
+                <TbSearch color={'white'} fontSize={'1.5rem'}/>
+            </Link>
+            &nbsp;&nbsp;
+            <MdDensityMedium color={'white'} fontSize={'1.5rem'}/>
             <div className={styles.searchWrapper} ref={wrapper}>
                 {focus &&
                     <div className={styles.searchResultWrapper}>
