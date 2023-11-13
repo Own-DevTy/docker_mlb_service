@@ -86,7 +86,7 @@ export default function SearchBar({props}) {
                                     }
                                     {search.searchData?.hitting?.map(({name, id}) => (
                                             <Link href={"/" + id} key={id} className={styles.searchItem}>
-                                                <div>{name}</div>
+                                                <small>{name}</small>
                                             </Link>
                                         )
                                     )}
@@ -95,7 +95,7 @@ export default function SearchBar({props}) {
                                     }
                                     {search.searchData?.pitching?.map(({name, id}) => (
                                             <Link href={"/" + id} key={id} className={styles.searchItem}>
-                                                <div>{name}</div>
+                                                <small>{name}</small>
                                             </Link>
                                         )
                                     )}
@@ -104,7 +104,7 @@ export default function SearchBar({props}) {
                                     }
                                     {search.searchData?.team?.map(({name, id}) => (
                                             <Link href={"/" + id} key={id} className={styles.searchItem}>
-                                                <div>{name}</div>
+                                                <small>{name}</small>
                                             </Link>
                                         )
                                     )}
