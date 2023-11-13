@@ -7,20 +7,20 @@ export default function SearchBar({props}) {
     const wrapper = useRef();
 
     const initialSearch = {
-        searchKeyword: "",
         searchData: {hitting: [], pitching: [], team: []},
-        searchFocus: false,
     };
 
+    const [keyword, setKeyword] = useState("");
+    const [focus, setFocus] = useState(false);
     const [search, setSearch] = useState(initialSearch);
     const [historyList, setHistory] = useState([]);
 
     useEffect(() => {
         async function fetchData() {
-            const res = await fetch(`http://127.0.0.1:8000/api/v1/search/${search.searchKeyword}`);
+            const res = await fetch(`http://127.0.0.1:8000/api/v1/search/${keyword}`);
             const data = await res.json();
             setSearch({
-                ...search, searchData: {
+                searchData: {
                     hitting: data.hitting,
                     pitching: data.pitching,
                     team: data.team
@@ -28,9 +28,9 @@ export default function SearchBar({props}) {
             });
         }
 
-        if (search.searchKeyword.toString().trim() === "") {
+        if (keyword.toString().trim() === "") {
             setSearch({
-                ...search, searchData: {
+                searchData: {
                     hitting: [],
                     pitching: [],
                     team: []
@@ -39,20 +39,23 @@ export default function SearchBar({props}) {
         } else {
             fetchData();
         }
-    }, [search.searchKeyword]);
+    }, [keyword]);
 
     const onFocus = () => {
-        setSearch({...search, searchFocus: true});
+        setFocus(true);
     }
 
     const clickText = () => {
-        if (document.activeElement !== text.current) {
-            setSearch({...search, searchFocus: false})
+        if (document.activeElement !== text.current && document.activeElement !== wrapper.current) {
+            setFocus(false);
         }
     }
 
     useEffect(() => {
         document.addEventListener("click", clickText);
+        return () => {
+            document.removeEventListener("click", clickText);
+        }
     });
 
     const searchRes = () => {
@@ -64,11 +67,11 @@ export default function SearchBar({props}) {
     return (
         <div className={styles.searchBar}>
             <input type={"text"} ref={text}
-                   onChange={(e) => setSearch({...search, searchKeyword: e.target.value.trim()})}
+                   onChange={(e) => setKeyword(e.target.value)}
                    onFocus={onFocus}/>
-            <Link href={"/search/" + search.searchKeyword}>Search</Link>
-            <div className={styles.searchWrapper}>
-                {search.searchFocus &&
+            <Link href={"/search/" + keyword}>검색</Link>
+            <div className={styles.searchWrapper} ref={wrapper}>
+                {focus &&
                     <div className={styles.searchResultWrapper}>
                         {searchRes() ?
                             (
@@ -78,21 +81,27 @@ export default function SearchBar({props}) {
                             ) :
                             (
                                 <Fragment>
-                                    <div>타자</div>
+                                    { search.searchData?.hitting?.length !== 0 &&
+                                        ( <div>타자</div>)
+                                    }
                                     {search.searchData?.hitting?.map(({name, id}) => (
                                             <Link href={"/" + id} key={id} className={styles.searchItem}>
                                                 <div>{name}</div>
                                             </Link>
                                         )
                                     )}
-                                    <div>투수</div>
+                                    { search.searchData?.pitching?.length !== 0 &&
+                                        ( <div>투수</div>)
+                                    }
                                     {search.searchData?.pitching?.map(({name, id}) => (
                                             <Link href={"/" + id} key={id} className={styles.searchItem}>
                                                 <div>{name}</div>
                                             </Link>
                                         )
                                     )}
-                                    <div>팀</div>
+                                    { search.searchData?.team?.length !== 0 &&
+                                        ( <div>팀</div>)
+                                    }
                                     {search.searchData?.team?.map(({name, id}) => (
                                             <Link href={"/" + id} key={id} className={styles.searchItem}>
                                                 <div>{name}</div>

@@ -13,25 +13,31 @@ export default function Home({AL, NL}) {
 
     return (
         <div className={styles.mlbWrapper}>
-            <div className={styles.teamWrapper}>
-                {AL && AL.teams.map(({name, id}) => (
-                    <div key={id} className={styles.teamItem}>
-                        <Link href={"/"}>
-                            <Image src={`https://www.mlbstatic.com/team-logos/team-cap-on-light/${id}.svg`}
-                                 alt={"404"} height={100} width={100}/>
-                        </Link>
-                    </div>
-                ))}
+            <div className={styles.leagueWrapper}>
+                <div style={{fontSize: "xx-large"}}>American League</div>
+                <div className={styles.teamWrapper}>
+                    {AL && AL.teams.map(({name, id}) => (
+                        <div key={id} className={styles.teamItem}>
+                            <Link href={"/"}>
+                                <Image src={`https://www.mlbstatic.com/team-logos/team-cap-on-light/${id}.svg`}
+                                       alt={"404"} height={150} width={150}/>
+                            </Link>
+                        </div>
+                    ))}
+                </div>
             </div>
-            <div className={styles.teamWrapper}>
-                {NL && NL.teams.map(({name, id}) => (
-                    <div key={id} className={styles.teamItem}>
-                        <Link href={"/"}>
-                            <Image src={`https://www.mlbstatic.com/team-logos/team-cap-on-light/${id}.svg`}
-                                   alt={"404"} height={100} width={100}/>
-                        </Link>
-                    </div>
-                ))}
+            <div className={styles.leagueWrapper}>
+                <div style={{fontSize: "xx-large"}}>National League</div>
+                <div className={styles.teamWrapper}>
+                    {NL && NL.teams.map(({name, id}) => (
+                        <div key={id} className={styles.teamItem}>
+                            <Link href={"/"}>
+                                <Image src={`https://www.mlbstatic.com/team-logos/team-cap-on-light/${id}.svg`}
+                                       alt={"404"} height={150} width={150}/>
+                            </Link>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     )

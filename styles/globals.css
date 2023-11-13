@@ -1,13 +1,6 @@
 * {
   box-sizing: inherit;
   justify-content: center;
-
-}
-
-@layer base {
-  #__next {
-    display: contents;
-  }
 }
 
 html,

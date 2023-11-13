@@ -3,16 +3,18 @@ import styles from "@/styles/Header.module.css"
 import Link from "next/link";
 import SearchBar from "./SearchBar";
 
-const Header = () => {
+const Header = ({className}) => {
     return (
-      <div className={styles.header}>
-          <div className={styles.flexItem}>
-              <Link href={'/'}>VMS</Link>
-          </div>
-          <div className={styles.flexItem}>
-              <SearchBar />
-          </div>
-      </div>
+        <div className={className}>
+            <div className={styles.header}>
+                <div className={styles.flexItem}>
+                    <Link href={'/'} style={{color: "#FFFFFF", "font-size": "xx-large"}}>VMS</Link>
+                </div>
+                <div className={styles.flexItem}>
+                    <SearchBar/>
+                </div>
+            </div>
+        </div>
     );
 }
 

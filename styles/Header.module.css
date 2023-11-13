@@ -1,11 +1,19 @@
 .header {
-    height: 7vh;
+    height: 5rem;
+    left: auto;
+    top: auto;
+    position: relative;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
 
     pointer-events: none;
+
+    padding: 1rem;
+
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .flexItem {
@@ -23,6 +31,10 @@
     text-align: left;
 }
 
+.searchBar > *{
+    margin: 1rem;
+}
+
 .searchWrapper{
     position: absolute;
     top: calc(100% + 10px);
@@ -33,10 +45,12 @@
 }
 
 .searchResultWrapper{
+
     overflow-x: auto;
     overflow-y: auto;
 }
 
 .searchItem{
     display: flex;
+    justify-items: left;
 }

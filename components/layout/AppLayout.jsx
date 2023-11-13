@@ -4,10 +4,14 @@ import styles from "@/styles/AppLayout.module.css"
 
 const AppLayout = ({children}) => {
     return (
-        <div className={styles.service}>
-            <Header/>
-            {children}
-        </div>
+        <Fragment>
+            <div className={styles.header}>
+                <Header className={styles.service}/>
+            </div>
+            <div className={styles.service}>
+                {children}
+            </div>
+        </Fragment>
     )
 }
 
