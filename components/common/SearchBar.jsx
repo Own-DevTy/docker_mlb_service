@@ -3,6 +3,7 @@ import Link from "next/link";
 import styles from "@/styles/Header.module.css"
 import {TbSearch} from "react-icons/tb"
 import {MdDensityMedium} from "react-icons/md"
+import Sidebar from "@/components/common/Sidebar";
 
 export default function SearchBar({props}) {
     const text = useRef();
@@ -55,6 +56,9 @@ export default function SearchBar({props}) {
 
     useEffect(() => {
         document.addEventListener("click", clickText);
+        document.addEventListener("click", ()=>{
+
+        })
         return () => {
             document.removeEventListener("click", clickText);
         }
@@ -74,8 +78,6 @@ export default function SearchBar({props}) {
             <Link href={"/search/" + keyword}>
                 <TbSearch color={'white'} fontSize={'1.5rem'}/>
             </Link>
-            &nbsp;&nbsp;
-            <MdDensityMedium color={'white'} fontSize={'1.5rem'}/>
             <div className={styles.searchWrapper} ref={wrapper}>
                 {focus &&
                     <div className={styles.searchResultWrapper}>
@@ -87,8 +89,8 @@ export default function SearchBar({props}) {
                             ) :
                             (
                                 <Fragment>
-                                    { search.searchData?.hitting?.length !== 0 &&
-                                        ( <div>타자</div>)
+                                    {search.searchData?.hitting?.length !== 0 &&
+                                        (<div>타자</div>)
                                     }
                                     {search.searchData?.hitting?.map(({name, id}) => (
                                             <Link href={"/" + id} key={id} className={styles.searchItem}>
@@ -96,8 +98,8 @@ export default function SearchBar({props}) {
                                             </Link>
                                         )
                                     )}
-                                    { search.searchData?.pitching?.length !== 0 &&
-                                        ( <div>투수</div>)
+                                    {search.searchData?.pitching?.length !== 0 &&
+                                        (<div>투수</div>)
                                     }
                                     {search.searchData?.pitching?.map(({name, id}) => (
                                             <Link href={"/" + id} key={id} className={styles.searchItem}>
@@ -105,8 +107,8 @@ export default function SearchBar({props}) {
                                             </Link>
                                         )
                                     )}
-                                    { search.searchData?.team?.length !== 0 &&
-                                        ( <div>팀</div>)
+                                    {search.searchData?.team?.length !== 0 &&
+                                        (<div>팀</div>)
                                     }
                                     {search.searchData?.team?.map(({name, id}) => (
                                             <Link href={"/" + id} key={id} className={styles.searchItem}>

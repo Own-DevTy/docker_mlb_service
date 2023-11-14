@@ -3,12 +3,13 @@ import AppLayout from "@/components/layout/AppLayout";
 import {Fragment} from "react";
 
 import {Archivo_Black} from "next/font/google"
+import {CookiesProvider} from "react-cookie";
 
 const ArchivoBlack = Archivo_Black({weight: '400', subsets: ['latin']})
 
 export default function App({Component, pageProps}) {
     return (
-        <Fragment>
+        <CookiesProvider>
             <style jsx global>{`
               html {
                 font-family: ${ArchivoBlack.style.fontFamily};
@@ -17,6 +18,6 @@ export default function App({Component, pageProps}) {
             <AppLayout>
                 <Component {...pageProps}/>
             </AppLayout>
-        </Fragment>
+        </CookiesProvider>
     )
 }

@@ -20,6 +20,7 @@
     display: flex;
     pointer-events: auto;
 
+    align-items: center;
     margin: 1rem;
 }
 
