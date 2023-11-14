@@ -1,5 +1,6 @@
 import {Fragment} from "react";
 import styles from "@/styles/compare.module.css"
+import RChart from "@/components/chart/chart";
 
 
     const render =()=>{
@@ -34,6 +35,7 @@ import styles from "@/styles/compare.module.css"
                         <div className={styles.center_top}>MLB 로고 삽입                        </div>
                         <br/><br/>
                         <div className={styles.center_bottom}>
+                            {RChart()}
                             <b>차트 들어갈예정</b>
                            <br/><br/><br/><br/><br/><br/>
                       </div>
