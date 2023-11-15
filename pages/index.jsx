@@ -1,7 +1,7 @@
 import {Fragment} from "react";
 import Link from "next/link";
 import Image from "next/image"
-import styles from "@/styles/Home.module.css"
+import styles from "@/styles/pages/Home.module.css"
 
 /**
  * @param AL
@@ -31,7 +31,7 @@ export default function Home({AL, NL}) {
                 <div className={styles.teamWrapper}>
                     {NL && NL.teams.map(({name, id}) => (
                         <div key={id} className={styles.teamItem}>
-                            <Link href={"/"}>
+                            <Link href={`/search/${id}`}>
                                 <Image src={`https://www.mlbstatic.com/team-logos/team-cap-on-light/${id}.svg`}
                                        alt={"404"} height={150} width={150}/>
                             </Link>
