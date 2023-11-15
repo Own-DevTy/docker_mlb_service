@@ -8,6 +8,11 @@ from schemas.player import PitchingCreate, PitchingUpdate
 
 
 class CRUDPitching(CRUDBase[Pitching, PitchingCreate, PitchingUpdate]):
+    def get_multi_by_team_id(
+        self, db: Session, *, team_id: int, skip: int = 0, limit: int = 10
+    ) -> List[Pitching]:
+        return db.query(self.model).filter(self.model.team_id == team_id).offset(skip).limit(limit).all()
+
     def create(self, db: Session, *, obj_in: PitchingCreate) -> Pitching:
         db_obj = Pitching(
             id=obj_in.id,

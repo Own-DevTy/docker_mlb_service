@@ -8,6 +8,11 @@ from schemas.player import HittingCreate, HittingUpdate
 
 
 class CRUDHitting(CRUDBase[Hitting, HittingCreate, HittingUpdate]):
+    def get_multi_by_team_id(
+        self, db: Session, *, team_id: int, skip: int = 0, limit: int = 10
+    ) -> List[Hitting]:
+        return db.query(self.model).filter(self.model.team_id == team_id).offset(skip).limit(limit).all()
+
     def create(self, db: Session, *, obj_in: HittingCreate) -> Hitting:
         db_obj = Hitting(
             id=obj_in.id,
