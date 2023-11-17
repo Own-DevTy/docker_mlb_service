@@ -1,51 +1,57 @@
 import {Body, Header, HeaderCell, HeaderRow, Row, Table} from "@table-library/react-table-library/table";
 import {usePagination} from "@table-library/react-table-library/pagination";
 import {Fragment} from "react";
+import * as React from "react";
 
 
-
-const pagination = usePagination(
-    data,
+const TableComponent = () => {
+  const tableData = [
     {
-        state: {
-            page: 0,
-            size: LIMIT,
-        },
-        onChange: onPaginationChange(action, state),
+      id: 1,
+      name: 'Task 1',
+      deadline: new Date(2023, 10, 15),
+      type: 'Type A',
+      isComplete: true,
+      tasks: ['Subtask 1', 'Subtask 2'],
     },
-    {
-        isServer: false,
-    }
-);
+  ];
 
-function onPaginationChange(action, state) {
-    doGet({
-        offset: state.page * state.size,
-        limit: state.size,
-    });
-}
+  return (
+    <Table data={tableData}>
+  <Header>
+    <HeaderRow>
+      <HeaderCell>Task</HeaderCell>
+      <HeaderCell>Deadline</HeaderCell>
+      <HeaderCell>Type</HeaderCell>
+      <HeaderCell>Complete</HeaderCell>
+      <HeaderCell>Tasks</HeaderCell>
+    </HeaderRow>
+  </Header>
+  <Body>
+    {tableData.map((item) => (
+      <Row key={item.id} item={item}>
+        <HeaderCell>{item.name}</HeaderCell>
+        <HeaderCell>
+          {item.deadline.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+          })}
+        </HeaderCell>
+        <HeaderCell>{item.type}</HeaderCell>
+        <HeaderCell>{item.isComplete.toString()}</HeaderCell>
+        <HeaderCell>
+          <ul>
+            {item.tasks.map((task, index) => (
+              <li key={index}>{task}</li>
+            ))}
+          </ul>
+        </HeaderCell>
+      </Row>
+    ))}
+  </Body>
+</Table>
+  );
+};
 
-export default function PlayerTable({player_json}) {
-    return (
-        <Table data={player_json} pagination={pagination}>
-            {(tableList) => (
-                <Fragment>
-                    <Header>
-                        <HeaderRow>
-                            <HeaderCell>사진</HeaderCell>
-                            <HeaderCell>이름</HeaderCell>
-                            <HeaderCell>나이</HeaderCell>
-                            <HeaderCell>포지션</HeaderCell>
-                        </HeaderRow>
-                    </Header>
-
-                    <Body>
-                        {tableList.map((id, name, age)=>(
-                            <Row item={}
-                        ))}
-                    </Body>
-                </Fragment>
-            )}
-        </Table>
-    );
-}
+export default TableComponent;
