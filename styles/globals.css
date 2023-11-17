@@ -6,6 +6,7 @@
 html,
 body,
 #__next {
+  display: block;
   height: 100%;
 }
 
