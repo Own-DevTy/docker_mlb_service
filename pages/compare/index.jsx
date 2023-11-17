@@ -14,7 +14,7 @@ function App() {
         
 
         return (
-                <div class ={styles.body}>
+                <div className ={styles.body}>
                     <div className={styles.left}>   
                         <div>    
                         <div className={styles.Circle_left}>
