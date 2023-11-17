@@ -57,9 +57,15 @@ function App() {
                         <div className={styles.center_top}>             MLB 로고 삽입               </div>
                         <br/><br/>
                         <div className={styles.center_bottom}>
-                            {RChart()}
-                            
-                           
+                            {Chart(
+                                "Name1", 1, 2, 3, 4, 5,
+                                "Name2", 3, 3, 2, 5, 6, true
+                            )}
+                            {Chart(
+                                "C", 1, 2, 3, 4, 5,
+                                "D", 6, 3, 2, 3, 6, false
+                            )}
+                           <br/><br/><br/><br/><br/><br/>
                       </div>
                     </div>
 
