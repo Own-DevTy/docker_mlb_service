@@ -13,16 +13,6 @@ export default function SearchBar({props}) {
         searchData: {hitting: [], pitching: [], team: []},
     };
 
-    const initial_state = {
-        left: 'None',
-        right: 'None'
-    }
-
-    const [isSelected, setSelected] = useState(initial_state);
-
-    isSelected.left
-    setSelected({...isSelected, left: 'american league'})
-
     const [keyword, setKeyword] = useState("");
     const [focus, setFocus] = useState(false);
     const [search, setSearch] = useState(initialSearch);
