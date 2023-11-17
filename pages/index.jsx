@@ -18,7 +18,7 @@ export default function Home({AL, NL}) {
                 <div className={styles.teamWrapper}>
                     {AL && AL.teams.map(({name, id}) => (
                         <div key={id} className={styles.teamItem}>
-                            <Link href={"/"}>
+                            <Link href={`/search/${id}`}>
                                 <Image src={`https://www.mlbstatic.com/team-logos/team-cap-on-light/${id}.svg`}
                                        alt={"404"} height={150} width={150}/>
                             </Link>
@@ -49,5 +49,5 @@ export async function getStaticProps() {
 
     const AL = await res_AL.json();
     const NL = await res_NL.json();
-    return {props: {AL, NL}};
+    return {props: {AL, NL}, revalidate: 1};
 }

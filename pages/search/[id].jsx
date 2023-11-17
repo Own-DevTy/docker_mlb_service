@@ -23,7 +23,7 @@ export default function Search({id, hitting_json, pitching_json}) {
     const [position, selectPosition] = useState(true)
     return (
         <div className={styles.searchWrapper}>
-            <Image className={styles.teamLogo} width={150} height={150} alt={"404"}
+            <Image className={styles.teamLogo} height={150} width={100} alt={"404"}
                    src={`https://www.mlbstatic.com/team-logos/team-cap-on-light/${id}.svg`}/>
             <div className={styles.container}>
                 <div className={styles.selectorWrapper}>

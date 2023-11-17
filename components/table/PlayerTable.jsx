@@ -1,6 +1,8 @@
-import {Header, HeaderCell, HeaderRow, Table} from "@table-library/react-table-library/table";
+import {Body, Header, HeaderCell, HeaderRow, Row, Table} from "@table-library/react-table-library/table";
 import {usePagination} from "@table-library/react-table-library/pagination";
 import {Fragment} from "react";
+
+
 
 const pagination = usePagination(
     data,
@@ -16,7 +18,7 @@ const pagination = usePagination(
     }
 );
 
-function onPaginationChange(action, state){
+function onPaginationChange(action, state) {
     doGet({
         offset: state.page * state.size,
         limit: state.size,
@@ -33,8 +35,15 @@ export default function PlayerTable({player_json}) {
                             <HeaderCell>사진</HeaderCell>
                             <HeaderCell>이름</HeaderCell>
                             <HeaderCell>나이</HeaderCell>
+                            <HeaderCell>포지션</HeaderCell>
                         </HeaderRow>
                     </Header>
+
+                    <Body>
+                        {tableList.map((id, name, age)=>(
+                            <Row item={}
+                        ))}
+                    </Body>
                 </Fragment>
             )}
         </Table>
