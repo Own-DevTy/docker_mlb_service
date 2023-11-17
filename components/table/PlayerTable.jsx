@@ -2,9 +2,7 @@ import {Body, Header, HeaderCell, HeaderRow, Row, Table} from "@table-library/re
 import {usePagination} from "@table-library/react-table-library/pagination";
 import {Fragment} from "react";
 import * as React from "react";
-import styled from 'styled-components';
-
-
+import styled from 'styled-components'; 
 const CustomHeaderCell = styled(HeaderCell)`
   color: ${props => props.isHigher ? 'red' : 'black'};
 `;
