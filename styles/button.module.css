@@ -1,20 +1,29 @@
 /*구글 폰트*/
-@import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
+
+
 
 /* 글로벌 */
-body{
-	display: flex;	
+.main_frame{
+	display: flex;
 	justify-content: center;
 	width: 100%;
 	height: 100%;
 	background-color: white;
-	font-family: 'Hammersmith One', sans-serif;
+	font-family: 'Archivo Black', sans-serif;
 	letter-spacing: 2px /*글자 자간*/
 }
 
-select{
+.left_select{
 	text-align: center;
-	font-family: 'Hammersmith One', sans-serif;
+	font-family: 'Archivo Black', sans-serif;
+	font-size: large;
+	margin: 5% 5% 10% 5%;
+}
+
+.right_select{
+	text-align: center;
+	font-family: 'Archivo Black', sans-serif;
 	font-size: large;
 	margin: 5% 5% 10% 5%;
 }
@@ -23,66 +32,62 @@ select{
     display: flex;
     flex-direction: column;
 	text-align: center;
-    width: 35%; 
 	height: 100%;
 	box-sizing: border-box;
-    padding:10px;
-	margin: 10px 10px 10px 10px;
+	margin: 5px 5px 5px 5px;
 }
 
-.center{ /*내가 건드는 부분이 아님 */
-	border:3px solid black;
+.center{ /* 전체 크기의 틀은 유지 해야 함 */
+	border:5px solid black;
 	border-radius: 20px;
     display: flex;
     flex-direction: column;
-	text-align: center;
-    width: 30%; 
+	text-align: center; 
+	width: 28%;
 	height: 100%;
 	box-sizing: border-box;
-    padding:10px;
-	margin: 10px 10px 10px 10px;
+	margin: 8px 8px 8px 8px;
 }
 
 .right{
+    display: flex;
+    flex-direction: column;
 	text-align: center;
-    width: 35%; 
-	height: 10%;
+	height: 100%;
 	box-sizing: border-box;
-    padding:10px;
-	margin: 10px 10px 10px 10px;
+	margin: 5px 5px 5px 5px;
 }
 
 /* 세부사항 */
 /* 왼쪽 */
 .left_league{
-	border: 3px solid rgb(0, 0, 0);
+	border: 5px solid rgb(0, 0, 0);
 	background-color: rgb(14, 51, 101);
 	border-radius: 20px;
 	width: 100%; 
-	height: 100%;
+	height: 50%;
 }
 
 .left_plist{
-	border: 3px solid rgb(0, 0, 0);
+	border: 5px solid rgb(0, 0, 0);
 	background-color: rgb(223, 53, 58);
 	border-radius: 20px;
 	width: 100%; 
 	height: 100%;
 	margin: 20px 0px 0px 0px;
-	justify-content: center
 }
 
 /* 오른쪽 */
 .right_league{
-	border: 3px solid rgb(0, 0, 0);
+	border: 5px solid rgb(0, 0, 0);
 	background-color: rgb(14, 51, 101);
 	border-radius: 20px;
 	width: 100%; 
-	height: 100%;
+	height: 50%;
 }
 
 .right_plist{
-	border: 3px solid rgb(0, 0, 0);
+	border: 5px solid rgb(0, 0, 0);
 	background-color: rgb(223, 53, 58);
 	border-radius: 20px;
 	width: 100%; 
@@ -96,25 +101,31 @@ select{
 	width: 50px;
     height: 50px; 
     border-radius: 30%;
-	border: 5px solid rgb(255, 255, 255);
-	margin: 0px 5px 0px 0px;
+	border: 2px solid rgb(255, 255, 255);
+	margin: 0px 5px 0px 3px;
+	align-items: center;
 }
 /* 체크 박스 CSS */
 .check_box {
-	text-align: left; 
-	padding: 10px;
-	font-size: x-large;
+	text-align: left;
+	padding: 5px;
+	font-size: 100%;
 	line-height: 50px;
+	letter-spacing: 0.8px /*글자 자간*/
   }
   
 .check_box input[type="checkbox"]{
-	height: 25px;
-	width: 25px;
+	height: 20px;
+	width: 20px;
 }
 
 /* 글씨 css */
 .text_choose{
 	color: white;
+}
+
+.text_list{
+	font-size: xx-large;
 }
 
 /* 선수 목록 버튼 */
@@ -126,7 +137,7 @@ select{
 	border: none;
     border-radius: 15px;
 	width: 95%;
-	font-family: 'Hammersmith One', sans-serif;
+	font-family: 'Archivo Black', sans-serif;
 	font-size: x-large;
 	transition: transform ease-in-out .2s;
 }
@@ -143,7 +154,7 @@ select{
 	border: none;
     border-radius: 15px;
 	width: 95%;
-	font-family: 'Hammersmith One', sans-serif;
+	font-family: 'Archivo Black', sans-serif;
 	font-size: x-large;
 	transition: transform ease-in-out .2s;
 }
@@ -162,6 +173,7 @@ select{
 	height : 60px;
 	margin: 0px 20px 0px 5px;
 }
+
 /* 메인 버튼 */
 .Button1 {
 	box-shadow:inset 0px 1px 0px 0px #54a3f7;
@@ -209,5 +221,3 @@ select{
 	position:relative;
 	top:1px;
 }
-
-
