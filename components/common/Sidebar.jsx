@@ -1,4 +1,4 @@
-import styles from "@/styles/Sidebar.module.css"
+import styles from "@/styles/components/common/Sidebar.module.css"
 import {AnimatePresence, motion} from "framer-motion";
 import {MdDensityMedium} from "react-icons/md";
 import {Fragment, useState} from "react";

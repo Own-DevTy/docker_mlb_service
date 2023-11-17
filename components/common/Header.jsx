@@ -1,5 +1,5 @@
 import {Fragment, useState} from "react";
-import styles from "@/styles/Header.module.css"
+import styles from "@/styles/components/common/Header.module.css"
 import Link from "next/link";
 import SearchBar from "./SearchBar";
 import Sidebar from "@/components/common/Sidebar";
