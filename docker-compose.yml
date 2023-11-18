@@ -12,6 +12,7 @@ services:
       dockerfile: front.Dockerfile
     ports:
       - 3000:3000
+    entrypoint: ./wait-for-it.sh back:8000
   
   back:
     depends_on:
