@@ -1,0 +1,20 @@
+.mlbWrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.leagueWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.teamWrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.teamItem {
+    padding: 1rem;
+}
