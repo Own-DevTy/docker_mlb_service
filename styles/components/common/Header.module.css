@@ -24,7 +24,7 @@
     margin: 1rem;
 }
 
-.searchBar{
+.searchBar {
     display: flex;
     align-items: center;
     position: relative;
@@ -32,11 +32,11 @@
     text-align: left;
 }
 
-.searchBar > *{
+.searchBar > * {
     margin: 0.2rem;
 }
 
-.searchWrapper{
+.searchWrapper {
     position: absolute;
     top: calc(100%);
 
@@ -51,7 +51,7 @@
     overflow-y: hidden;
 }
 
-.searchResultWrapper{
+.searchResultWrapper {
     padding: 0.5rem;
 
     color: #FFFFFF;
@@ -60,7 +60,7 @@
     overflow-y: auto;
 }
 
-.searchItem{
+.searchItem {
     display: flex;
     justify-items: left;
 }

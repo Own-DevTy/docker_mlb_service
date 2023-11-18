@@ -16,7 +16,7 @@ const spring = {
  * @returns {JSX.Element}
  * @constructor
  */
-export default function SelectButton({position, selectPosition}){
+export default function SelectButton({position, selectPosition}) {
     return (
         <div className={styles.selector} data-ison={position}
              onClick={() => selectPosition(!position)}>
