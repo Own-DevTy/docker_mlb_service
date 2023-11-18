@@ -1,6 +1,4 @@
-import json
-
-from typing import Any, List, Optional
+from typing import Any
 
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
@@ -39,12 +37,12 @@ async def search_team_like_name(keyword: str, limit=5, db: Session = Depends(dep
 
 
 @router.get('/hitting/{team_id}', response_model=schemas.base.SearchHitting)
-async def search_hitting_by_team_id(team_id: int, skip=0, limit=5, db: Session = Depends(deps.get_db)):
-    hitting = crud.hitting.get_multi_by_team_id(db=db, team_id=team_id, skip=skip, limit=limit)
+async def search_hitting_by_team_id(team_id: int, db: Session = Depends(deps.get_db)):
+    hitting = crud.hitting.get_multi_by_team_id(db=db, team_id=team_id)
     return {"hitting": hitting}
 
 
 @router.get('/pitching/{team_id}')
-async def search_pitching_by_team_id(team_id: int, skip=0, limit=5, db: Session = Depends(deps.get_db)):
-    pitching = crud.pitching.get_multi_by_team_id(db=db, team_id=team_id, skip=skip, limit=limit)
+async def search_pitching_by_team_id(team_id: int, db: Session = Depends(deps.get_db)):
+    pitching = crud.pitching.get_multi_by_team_id(db=db, team_id=team_id)
     return {"pitching": pitching}

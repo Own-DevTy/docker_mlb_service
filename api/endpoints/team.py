@@ -1,13 +1,11 @@
-import json
-from typing import Any, List
+from typing import Any
 
-from fastapi import APIRouter, Body, Depends, HTTPException
-
+from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
+import crud
+import schemas
 from api import deps
-import models
-import schemas, crud
 
 router = APIRouter()
 

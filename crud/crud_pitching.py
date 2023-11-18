@@ -1,4 +1,4 @@
-from typing import Any, Dict, Optional, Union, List
+from typing import Any, Dict, Union, List
 
 from sqlalchemy.orm import Session
 
@@ -9,9 +9,9 @@ from schemas.player import PitchingCreate, PitchingUpdate
 
 class CRUDPitching(CRUDBase[Pitching, PitchingCreate, PitchingUpdate]):
     def get_multi_by_team_id(
-        self, db: Session, *, team_id: int, skip: int = 0, limit: int = 10
+            self, db: Session, *, team_id: int
     ) -> List[Pitching]:
-        return db.query(self.model).filter(self.model.team_id == team_id).offset(skip).limit(limit).all()
+        return db.query(self.model).filter(self.model.team_id == team_id).all()
 
     def create(self, db: Session, *, obj_in: PitchingCreate) -> Pitching:
         db_obj = Pitching(
@@ -20,7 +20,15 @@ class CRUDPitching(CRUDBase[Pitching, PitchingCreate, PitchingUpdate]):
             first_name=obj_in.first_name,
             last_name=obj_in.last_name,
             link=obj_in.link,
-            team_id=obj_in.team_id
+            age=obj_in.age,
+            height=obj_in.height,
+            weight=obj_in.weight,
+            team_id=obj_in.team_id,
+            strikeOuts=obj_in.strikeOuts,
+            era=obj_in.era,
+            baseOnBalls=obj_in.baseOnBalls,
+            whip=obj_in.whip,
+            strikeoutsPer9Inn=obj_in.strikeoutsPer9Inn,
         )
         db.add(db_obj)
         db.commit()
