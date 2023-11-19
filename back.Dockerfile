@@ -1,7 +1,7 @@
 FROM tiangolo/uvicorn-gunicorn:python3.9-slim
 
-COPY ./back/requirements.txt /tmp/requirements
+COPY ./back/app/requirements.txt /tmp/requirements
 RUN pip install --no-cache-dir --upgrade -r /tmp/requirements.txt
 
-COPY ./back /app
+COPY ./app/back /app/app
 ENV PYTHONPATH=/app
