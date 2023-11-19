@@ -1,7 +1,7 @@
 import {Fragment} from "react";
-import Link from "next/link";
+import Link from "@/pages/compare";
 import Image from "next/image";
-import styles from "@/styles/Button.module.css"
+import styles from "@/styles/button.module.css"
 
 
 
@@ -33,12 +33,25 @@ const render =()=>{
                     </div>
                 </div>
             </div>
-
+    
             <div className={styles.center}>
-                <h2><center>▶▶player stat◀◀</center></h2>
-                <a href="#;" className={styles.Button1}>Compare</a>
-                <a href="#;" className={styles.Button2}>More</a>
-            </div>
+                <h4><center>▶▶player stat◀◀</center></h4>
+                   <div>
+                        <a href="compare">
+                            <button className={styles.Button1}>
+                                <b> Compare </b>
+                            </button>
+                        </a> 
+                    </div>
+                    <div>
+                        <a href="compare">
+                            <button className={styles.Button2}>
+                                <b>More</b>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            
 
             <div className={styles.right}>
                 <div className={styles.right_league}>
@@ -71,3 +84,4 @@ const render =()=>{
 }
 
 export default render;
+
