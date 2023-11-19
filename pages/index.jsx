@@ -44,8 +44,8 @@ export default function Home({AL, NL}) {
 }
 
 export async function getStaticProps() {
-    const res_AL = await fetch("http://127.0.0.1:8000/api/v1/team/AL");
-    const res_NL = await fetch("http://127.0.0.1:8000/api/v1/team/NL");
+    const res_AL = await fetch( `${process.env.api}/team/AL`);
+    const res_NL = await fetch( `${process.env.api}/team/NL`);
 
     const AL = await res_AL.json();
     const NL = await res_NL.json();

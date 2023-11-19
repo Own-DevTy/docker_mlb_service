@@ -1,0 +1,27 @@
+.selector {
+    width: 15rem;
+    height: 3rem;
+    background-color: #45474B;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 50px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.selector[data-isOn="false"] {
+    justify-content: flex-end;
+}
+
+.handle {
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    width: 7.5rem;
+    height: 2rem;
+
+    background-color: white;
+    border-radius: 40px;
+}
