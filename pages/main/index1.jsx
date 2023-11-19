@@ -12,6 +12,7 @@ export default function House(){
 
     useEffect(()=>{console.log(l_selectedValue)},[l_selectedValue]); //console.log 추후 삭제
     useEffect(()=>{console.log(r_selectedValue)},[r_selectedValue]);
+    
     //선수 목록 선택 관리(1~5)
     const [l_isChecked1, l_setIsChecked1] = useState(false); const [l_isChecked2, l_setIsChecked2] = useState(false);
     const [l_isChecked3, l_setIsChecked3] = useState(false); const [l_isChecked4, l_setIsChecked4] = useState(false); const [l_isChecked5, l_setIsChecked5] = useState(false);
@@ -84,7 +85,7 @@ export default function House(){
             </div>
 
             <div className={styles.center}>
-                <h2>현구가 여기에 코드 넣으면 됨</h2>
+                <h2></h2>
             </div>
 
             <div className={styles.right}>
