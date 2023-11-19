@@ -12,11 +12,11 @@ else:
 
 
 class Setting:
-    DB_HOST: str = os.environ.get('MYSQL_HOST')
-    DB_PORT: int = os.environ.get('MYSQL_PORT')
-    DB_USER: str = os.environ.get('MYSQL_USER')
-    DB_PASSWORD: str = os.environ.get('MYSQL_PASSWORD')
-    DB_DATABASE: str = os.environ.get('MYSQL_DATABASE')
+    DB_HOST: str = os.environ.get('DB_HOST')
+    DB_PORT: int = os.environ.get('DB_PORT')
+    DB_USER: str = os.environ.get('DB_USER')
+    DB_PASSWORD: str = os.environ.get('DB_PASSWORD')
+    DB_DATABASE: str = os.environ.get('DB_DATABASE')
 
     DB_URL = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_DATABASE}"
 
