@@ -2,7 +2,7 @@ version: "3.8"
 services:
   front:
     depends_on:
-      - .env
+      - back
     container_name: front
     command: npm run dev
     build:
