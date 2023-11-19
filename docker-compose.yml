@@ -20,7 +20,6 @@ services:
     env_file:
       - .env
     container_name: back
-    command: 
     build:
       context: ./
       dockerfile: back.Dockerfile
