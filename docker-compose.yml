@@ -1,0 +1,38 @@
+version: "3.8"
+services:
+  front:
+    depends_on:
+      - .env
+    container_name: front
+    command: npm run dev
+    build:
+      context: ./
+      dockerfile: front.Dockerfile
+    ports:
+      - 3000:3000
+    entrypoint: ./wait-for-it.sh back:8000
+    
+  back:
+    depends_on:
+      - db
+    env_file:
+      - .env
+    container_name: back
+    build:
+      context: ./
+      dockerfile: back.Dockerfile
+    ports:
+      - 8000:8000
+
+  db:
+    image: mysql
+    env_file:
+      - .env
+    restart: always
+    container_name: db
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    ports:
+      - 3306:3306
+    
