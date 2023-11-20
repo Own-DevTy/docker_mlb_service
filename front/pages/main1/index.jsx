@@ -1,5 +1,5 @@
 import {Fragment} from "react";
-import Link from "next/link";
+import Link from "@/pages/compare";
 import Image from "next/image";
 import styles from "@/styles/button.module.css"
 
@@ -34,11 +34,9 @@ const render = () => {
                     </div>
                 </div>
             </div>
-
+    
             <div className={styles.center}>
-                <h2>
-                    <center>▶▶player stat◀◀</center>
-                </h2>
+                <h2><center>▶▶player stat◀◀</center></h2>
                 <a href="#;" className={styles.Button1}>Compare</a>
                 <a href="#;" className={styles.Button2}>More</a>
             </div>
@@ -76,3 +74,4 @@ const render = () => {
 }
 
 export default render;
+

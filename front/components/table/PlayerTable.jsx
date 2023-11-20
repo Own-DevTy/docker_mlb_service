@@ -2,33 +2,32 @@ import {Body, Header, HeaderCell, HeaderRow, Row, Table} from "@table-library/re
 import {usePagination} from "@table-library/react-table-library/pagination";
 import {Fragment} from "react";
 import * as React from "react";
-import styled from 'styled-components';
-
+import styled from 'styled-components'; 
 const CustomHeaderCell = styled(HeaderCell)`
-  color: ${props => props.isHigher ? 'red' : 'black'};
+  color: ${props => props.isHigher ? 'green' : 'black'};
 `;
 
 const TableComponent = () => {
-    const tableData = {
-        nodes: [
-            {
-                id: 1,
-                stats_1: "1",
-                stats_2: "3",
-                stats_3: "11",
-                stats_4: "21",
-                stats_5: "14",
-            },
-            {
-                id: 2,
-                stats_1: "10",
-                stats_2: "30",
-                stats_3: "110",
-                stats_4: "210",
-                stats_5: "140",
-            },
-        ]
-    };
+  const tableData = {
+    nodes: [
+      {
+        id: 1,
+        stats_1 : "1",
+        stats_2 : "3",
+        stats_3 : "11",
+        stats_4 : "21",
+        stats_5 : "14",
+      },
+      {
+        id: 2,          
+        stats_1 : "10",
+        stats_2 : "30",
+        stats_3 : "110",
+        stats_4 : "210",
+        stats_5 : "140",
+      },
+    ]
+  };
 
     const isHigher = (first, second) => parseFloat(first) > parseFloat(second);
 

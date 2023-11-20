@@ -39,14 +39,14 @@
 
 .center{ /* 전체 크기의 틀은 유지 해야 함 */
 	border:5px solid black;
-	border-radius: 20px;
+	border-radius: 10px;
     display: flex;
     flex-direction: column;
 	text-align: center; 
-	width: 28%;
-	height: 100%;
+	width: 25%;
+	height: 35%;
 	box-sizing: border-box;
-	margin: 8px 8px 8px 8px;
+	margin: 390px 10px 10px 10px;
 }
 
 .right{
@@ -185,7 +185,7 @@
 	cursor:pointer;
 	color:#ffffff;
 	font-size:17px;
-	padding:14px 15px;
+	padding:13px 15px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #154682;
 }
@@ -209,7 +209,7 @@
 	color:#ffffff;
 	font-size:17px;
 	font-weight:bold;
-	padding:14px 15px;
+	padding:10px 30px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #b23e35;
 }
