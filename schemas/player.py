@@ -60,6 +60,22 @@ class PitchingCreate(PlayerBase):
     strikeoutsPer9Inn: str
 
 
+class HittingStat(BaseModelEx):
+    avg: str
+    obp: str
+    slg: str
+    ops: str
+    homeRuns: int
+
+
+class PitchingStat(BaseModelEx):
+    strikeOuts: int
+    era: str
+    baseOnBalls: int
+    whip: str
+    strikeoutsPer9Inn: str
+
+
 # Properties to receive via API on update
 class HittingUpdate(PlayerBase):
     pass
