@@ -24,13 +24,13 @@ async def search_hitting_like_name(keyword: str, limit=5, db: Session = Depends(
     return {"hitting": hitting}
 
 
-@router.get("/{keyword}/pitching", response_model=schemas.base.SearchHitting)
+@router.get("/{keyword}/pitching", response_model=schemas.base.SearchPitching)
 async def search_pitching_like_name(keyword: str, limit=5, db: Session = Depends(deps.get_db)) -> Any:
     pitching = crud.hitting.get_id_and_name_by_like_name(db=db, limit=limit, like=keyword)
     return {"pitching": pitching}
 
 
-@router.get("/{keyword}/team", response_model=schemas.base.SearchHitting)
+@router.get("/{keyword}/team", response_model=schemas.base.SearchTeam)
 async def search_team_like_name(keyword: str, limit=5, db: Session = Depends(deps.get_db)) -> Any:
     team = crud.team.get_id_and_name_by_like_name(db=db, limit=limit, like=keyword)
     return {"team": team}
@@ -42,7 +42,7 @@ async def search_hitting_by_team_id(team_id: int, db: Session = Depends(deps.get
     return {"hitting": hitting}
 
 
-@router.get('/pitching/{team_id}')
+@router.get('/pitching/{team_id}', response_model=schemas.base.SearchPitching)
 async def search_pitching_by_team_id(team_id: int, db: Session = Depends(deps.get_db)):
     pitching = crud.pitching.get_multi_by_team_id(db=db, team_id=team_id)
     return {"pitching": pitching}

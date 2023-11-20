@@ -13,6 +13,15 @@ class CRUDPitching(CRUDBase[Pitching, PitchingCreate, PitchingUpdate]):
     ) -> List[Pitching]:
         return db.query(self.model).filter(self.model.team_id == team_id).all()
 
+    def get_stat_pitching_by_id(
+        self, db: Session, *, id: int
+    ) -> Pitching:
+        return db.query(self.model.strikeOuts,
+                        self.model.era,
+                        self.model.baseOnBalls,
+                        self.model.whip,
+                        self.model.strikeoutsPer9Inn).filter(self.model.id == id).first()
+
     def create(self, db: Session, *, obj_in: PitchingCreate) -> Pitching:
         db_obj = Pitching(
             id=obj_in.id,

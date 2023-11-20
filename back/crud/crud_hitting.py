@@ -13,6 +13,15 @@ class CRUDHitting(CRUDBase[Hitting, HittingCreate, HittingUpdate]):
     ) -> List[Hitting]:
         return db.query(self.model).filter(self.model.team_id == team_id).all()
 
+    def get_stat_hitting_by_id(
+        self, db: Session, *, id: int
+    ) -> Hitting:
+        return db.query(self.model.avg,
+                        self.model.obp,
+                        self.model.slg,
+                        self.model.ops,
+                        self.model.homeRuns).filter(self.model.id == id).first()
+
     def create(self, db: Session, *, obj_in: HittingCreate) -> Hitting:
         db_obj = Hitting(
             id=obj_in.id,
