@@ -1,7 +1,7 @@
 import {Fragment} from "react";
 import {useState} from "react";
 import styles from "@/styles/compare.module.css"
-import RChart from "@/components/chart/chart";
+import Chart from "@/components/chart/chart";
 import TableComponent from "@/components/table/PlayerTable";
 
 function App() {
@@ -12,7 +12,6 @@ function App() {
 
     const render =()=>{
         
-
         return (
                 <div className ={styles.body}>
                     <div className={styles.left}>   
@@ -37,7 +36,7 @@ function App() {
                         {showGraphL && (
                             <div>
                                 <div className ={styles.chart_background}>
-                                <p> Left 개인차트 들어갈 예정 {RChart()}</p>
+                                <p> {Chart(true, "이름", 5, 4, 3, 2, 1)}</p>
                                 </div>
                             </div>
                         )}
@@ -58,12 +57,9 @@ function App() {
                         <br/><br/>
                         <div className={styles.center_bottom}>
                             {Chart(
+                                true,
                                 "Name1", 1, 2, 3, 4, 5,
-                                "Name2", 3, 3, 2, 5, 6, true
-                            )}
-                            {Chart(
-                                "C", 1, 2, 3, 4, 5,
-                                "D", 6, 3, 2, 3, 6, false
+                                "Name2", 3, 3, 2, 5, 6
                             )}
                            <br/><br/><br/><br/><br/><br/>
                       </div>
@@ -89,7 +85,8 @@ function App() {
                         </div>
                         {showGraphR && (
                             <div>
-                                <p> Right 개인차트 들어갈 예정 {RChart()}</p>
+                                <p>{Chart(false, null, null, null, null, null, null,
+                                    "name2", 1, 5, 7, 3, 2)}</p>
                             </div>
                         )}
                         {showTextR && (
