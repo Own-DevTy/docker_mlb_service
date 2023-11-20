@@ -3,8 +3,10 @@ import {usePagination} from "@table-library/react-table-library/pagination";
 import {Fragment} from "react";
 import * as React from "react";
 import styled from 'styled-components'; 
+
+
 const CustomHeaderCell = styled(HeaderCell)`
-  color: ${props => props.isHigher ? 'red' : 'black'};
+  color: ${props => props.isHigher ? 'green' : 'black'};
 `;
 
 const TableComponent = () => {
@@ -12,6 +14,9 @@ const TableComponent = () => {
     nodes: [
       {
         id: 1,
+        age : "21",
+        height : "170",
+        weight : "70" ,
         stats_1 : "1",
         stats_2 : "3",
         stats_3 : "11",
@@ -19,7 +24,10 @@ const TableComponent = () => {
         stats_5 : "14",
       },
       {
-        id: 2,          
+        id: 2,         
+        age : "22",
+        height : "178",
+        weight : "72" , 
         stats_1 : "10",
         stats_2 : "30",
         stats_3 : "110",
