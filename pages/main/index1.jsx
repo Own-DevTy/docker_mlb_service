@@ -13,7 +13,7 @@ export default function House() {
     const r_handleSelectChange = (event) => {
         r_setSelectedValue(event.target.value);
     };
-    
+
     useEffect(()=>{console.log(l_selectedValue)},[l_selectedValue]); //console.log 추후 삭제
     useEffect(()=>{console.log(r_selectedValue)},[r_selectedValue]);
 
@@ -137,14 +137,4 @@ export default function House() {
             </div>
         </div>
     );
-}
-
-//추후 백에서 데이터 fetch
-export async function getStaticProps() {
-    const res_AL = await fetch("http://127.0.0.1:8000/api/v1/team/AL");
-    const res_NL = await fetch("http://127.0.0.1:8000/api/v1/team/NL");
-
-    const AL = await res_AL.json();
-    const NL = await res_NL.json();
-    return {props: {AL, NL}};
 }
