@@ -1,18 +1,15 @@
 import {Fragment, useEffect, useState} from "react";
 import Link from "@/pages/compare";
 import Image from "next/image";
-import styles from "@/styles/button.module.css"
+import styles from "@/styles/total.module.css"
+
 
 export default function House() {
     //리그 선택 관리
     const [l_selectedValue, l_setSelectedValue] = useState('none');
     const [r_selectedValue, r_setSelectedValue] = useState('none');
-    const l_handleSelectChange = (event) => {
-        l_setSelectedValue(event.target.value);
-    };
-    const r_handleSelectChange = (event) => {
-        r_setSelectedValue(event.target.value);
-    };
+    const l_handleSelectChange = (event) => {l_setSelectedValue(event.target.value);};
+    const r_handleSelectChange = (event) => {r_setSelectedValue(event.target.value);};
     
     useEffect(()=>{console.log(l_selectedValue)},[l_selectedValue]); //console.log 추후 삭제
     useEffect(()=>{console.log(r_selectedValue)},[r_selectedValue]);
