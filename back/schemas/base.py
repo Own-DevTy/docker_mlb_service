@@ -15,12 +15,34 @@ class BaseOut(BaseModelEx):
         from_attributes = True
 
 
+class SearchHittingData(BaseOut):
+    age: int
+    height: float
+    weight: float
+    avg: str
+    obp: str
+    slg: str
+    ops: str
+    homeRuns: int
+
+
+class SearchPitchingData(BaseOut):
+    age: int
+    height: float
+    weight: float
+    strikeOuts: int
+    era: str
+    baseOnBalls: int
+    whip: str
+    strikeoutsPer9Inn: str
+
+
 class SearchHitting(BaseModelEx):
-    hitting: List[BaseOut]
+    hitting: List[SearchHittingData]
 
 
 class SearchPitching(BaseModelEx):
-    pitching: List[BaseOut]
+    pitching: List[SearchPitchingData]
 
 
 class SearchTeam(BaseModelEx):
