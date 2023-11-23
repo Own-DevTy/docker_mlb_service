@@ -10,9 +10,10 @@ from api import deps
 router = APIRouter()
 
 
-@router.get("/{id}/hitting")
+@router.get("/{id}/hitting", response_model=schemas.player.HittingStat)
 async def get_stat_hitting_by_id(id: int, db: Session = Depends(deps.get_db)) -> Any:
-    return {crud.hitting.get_stat_hitting_by_id(db=db, id=id)}
+    hitting = crud.hitting.get_stat_hitting_by_id(db=db, id=id)
+    return hitting
 
 
 @router.get("/{id}/pitching", response_model=schemas.player.PitchingStat)
