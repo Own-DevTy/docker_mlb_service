@@ -24,17 +24,17 @@ const Component = () => {
   const fetchData = React.useCallback(async () => {
     try {
       const response = await fetch(
-        `http://127.0.0.1:8000/api/v1/search/hitting/108`
+        `http://127.0.0.1:8000/api/v1/team/AL`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch data");
       }
       const result = await response.json();
       setData({
-        nodes: result.hitting,
+        nodes: result.teams,
         pageInfo: {
-          total: result.hitting.length,
-          totalPages: Math.ceil(result.hitting.length / LIMIT),
+          total: result.teams.length,
+          totalPages: Math.ceil(result.teams.length / LIMIT),
         },
       });
     } catch (error) {
@@ -76,34 +76,18 @@ const Component = () => {
           <>
             <Header>
               <HeaderRow>
-                <HeaderCell>아이디 </HeaderCell>
-                <HeaderCell>name</HeaderCell>
-                <HeaderCell>nai</HeaderCell>
-                <HeaderCell>key </HeaderCell>
-                <HeaderCell>mommuge</HeaderCell>
-                <HeaderCell></HeaderCell>
-                <HeaderCell>obp</HeaderCell>
-                <HeaderCell>slg</HeaderCell>
-                <HeaderCell>ops</HeaderCell>
-                <HeaderCell> homeRuns</HeaderCell>
-
+                {Object.keys(tableList[0] || {}).map((key) => (
+                  <HeaderCell key={key}>{key}</HeaderCell>
+                ))}
               </HeaderRow>
             </Header>
 
             <Body>
-              {tableList.map((item) => (
-                <Row item={item} key={item.id}>
-                  <Cell>{item.id}</Cell>
-                  <Cell>{item.name}</Cell>
-                  <Cell>{item.age}</Cell>
-                  <Cell>{item.height}</Cell>
-                  <Cell>{item.weight}</Cell>
-                  <Cell>{item.avg}</Cell>
-                  <Cell>{item.obp}</Cell>
-                  <Cell>{item.slg}</Cell>
-                  <Cell>{item.ops}</Cell>
-                  <Cell>{item.homeRuns}</Cell>
-                  
+              {tableList.map((item, index) => (
+                <Row key={index}>
+                  {Object.keys(item).map((key) => (
+                    <Cell key={key}>{item[key]}</Cell>
+                  ))}
                 </Row>
               ))}
             </Body>
