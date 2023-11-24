@@ -38,9 +38,9 @@ function App() {
                         </div>
                         {showGraphL && (
                             <div>
-        
-                                <p> Left 개인차트 들어갈 예정입니다 {Chart()}</p>
-                       
+                                <div className ={styles.chart_background}>
+                                <p> {Chart(true, "이름", 5, 4, 3, 2, 1)}</p>
+                                </div>
                             </div>
                         )}
                         {showTextL && (
@@ -57,8 +57,16 @@ function App() {
                         <div className={styles.center_top}>             MLB 로고 삽입               </div>
                         <br/><br/>
                         <div className={styles.center_bottom}>
-                            {Chart()}
+                            {Chart(
+                                "Name1", 1, 2, 3, 4, 5,
+                                "Name2", 3, 3, 2, 5, 6, true
+                            )}
+                            {Chart(
+                                "C", 1, 2, 3, 4, 5,
+                                "D", 6, 3, 2, 3, 6, false
+                            )}
                             <TableComponent/>
+                           <br/><br/><br/><br/><br/><br/>
                       </div>
                     </div>
 
@@ -82,7 +90,8 @@ function App() {
                         </div>
                         {showGraphR && (
                             <div>
-                                <p> Right 개인차트 들어갈 예정 {Chart()}</p>
+                                <p>{Chart(false, null, null, null, null, null, null,
+                                    "name2", 1, 5, 7, 3, 2)}</p>
                             </div>
                         )}
                         {showTextR && (

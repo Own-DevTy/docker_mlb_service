@@ -54,16 +54,19 @@ export function setlabels(bool) {
 }
 
 /**
- * 선수 A, B의 이름과 스탯을 입력받아 차트를 생성
- * @param {string} name1 Player A
- * @param {string} name2 Player B
- * @returns React.JSX.Element PlayerB의 비교 차트 생성
- */
+* 선수 A, B의 이름과 스탯을 입력받아 차트를 생성
+* @param {string} name1 Player A
+* @param {string} name2 Player B
+* @returns PlayerA와 PlayerB의 비교 차트 생성
+* @param {bool} labelbool true일 경우 타자의 라벨값
+* false일 경우 투수의 라벨값
+*/
 export default function Chart(
+    labelbool,
     nameA, x_data1, x_data2, x_data3, x_data4, x_data5,
     nameB, y_data1, y_data2, y_data3, y_data4, y_data5,
-    labelbool
 ) {
+    // 두 명 스탯 비교 그래프
     const data = {
         labels: setlabels(labelbool),
         datasets: [
@@ -80,7 +83,6 @@ export default function Chart(
                 borderColor: 'rgba(223, 53, 18, 0.4)',
                 borderWidth: 2,
                 pointBorderColor: 'rgba(223, 53, 18, 0.5)',
-
             },
             {
                 label: nameB,
@@ -98,15 +100,81 @@ export default function Chart(
             }
         ],
     };
-    const handleResize = () => {
-    }
-    return (
-        <Radar
-            title="Radar Chart"
+
+    // PlayerA 개인 차트
+    const data2 = {
+        labels: setlabels(labelbool),
+        datasets: [
+            {
+                label: nameA,
+                data: [
+                    x_data1,
+                    x_data2,
+                    x_data3,
+                    x_data4,
+                    x_data5
+                ],
+                backgroundColor: 'rgba(223, 53, 58, 0.3)',
+                borderColor: 'rgba(223, 53, 18, 0.4)',
+                borderWidth: 2,
+                pointBorderColor: 'rgba(223, 53, 18, 0.5)',
+            }
+        ],
+    };
+
+    // PlayerB 개인 차트
+    const data3 = {
+        labels: setlabels(labelbool),
+        datasets: [
+            {
+                label: nameB,
+                data: [
+                    y_data1,
+                    y_data2,
+                    y_data3,
+                    y_data4,
+                    y_data5
+                ],
+                backgroundColor: 'rgba(14, 51, 101, 0.3)',
+                borderColor: 'rgba(14, 51, 101, 0.4)',
+                borderWidth: 2,
+                pointBorderColor: 'rgba(14, 51, 101, 0.5)',
+            }
+        ],
+    };
+
+    if(nameA!=null && nameB!=null) {
+        return (
+            <Radar
+            title= "Radar Chart"
             description="Stats"
             data={data}
             option={option}
             height={"100%"}
-            width={"100%"}/>
-    )
+            weight={"100%"}
+            />
+        )
+    } else if (nameA!=null) {
+        return (
+            <Radar
+            title= "Radar Chart"
+            description="Stats"
+            data={data2}
+            option={option}
+            height={"100%"}
+            weight={"100%"}
+            />
+        )
+    } else {
+        return (
+            <Radar
+            title= "Radar Chart"
+            description="Stats"
+            data={data3}
+            option={option}
+            height={"100%"}
+            weight={"100%"}
+            />
+        )
+    }
 }
