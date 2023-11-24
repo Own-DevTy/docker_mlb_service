@@ -2,7 +2,9 @@ import {Fragment} from "react";
 import {useState} from "react";
 import styles from "@/styles/compare.module.css"
 import Chart from "@/components/chart/chart";
-import TableComponent from "@/components/table/PlayerTable";
+import TableComponent from "@/components/table/CompareTable";
+import TablePlayer1 from "@/components/table/Player1Table";
+import TablePlayer2 from "@/components/table/Player2Table";
 
 function App() {
     const [showGraphL,setShowGraphL]= useState(false);
@@ -12,6 +14,7 @@ function App() {
 
     const render =()=>{
         
+
         return (
                 <div className ={styles.body}>
                     <div className={styles.left}>   
@@ -43,13 +46,11 @@ function App() {
                         {showTextL && (
                             <div>
                                 <p>Left 스탯정보를 텍스트롤 표현합니다.</p>
-                                <TableComponent />
+                               <TablePlayer1/>
                             </div>
                         )}
 
                         </div>
-                        
-
                     </div>
 
                     <div className={styles.center}>
@@ -57,10 +58,14 @@ function App() {
                         <br/><br/>
                         <div className={styles.center_bottom}>
                             {Chart(
-                                true,
                                 "Name1", 1, 2, 3, 4, 5,
-                                "Name2", 3, 3, 2, 5, 6
+                                "Name2", 3, 3, 2, 5, 6, true
                             )}
+                            {Chart(
+                                "C", 1, 2, 3, 4, 5,
+                                "D", 6, 3, 2, 3, 6, false
+                            )}
+                            <TableComponent/>
                            <br/><br/><br/><br/><br/><br/>
                       </div>
                     </div>
@@ -92,11 +97,13 @@ function App() {
                         {showTextR && (
                             <div>
                                 <p>Right 스탯정보를 텍스트롤 표현합니다.</p>
+                                <TablePlayer2/>
                             </div>
                         )}
                         </div>
                         <br/><br/><br/><br/><br/>
                     </div>
+                    
                 </div>
         );
     }

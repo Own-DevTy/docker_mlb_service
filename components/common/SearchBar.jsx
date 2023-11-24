@@ -56,7 +56,7 @@ export default function SearchBar({props}) {
 
     useEffect(() => {
         document.addEventListener("click", clickText);
-        document.addEventListener("click", ()=>{
+        document.addEventListener("click", () => {
 
         })
         return () => {

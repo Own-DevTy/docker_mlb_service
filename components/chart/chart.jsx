@@ -1,27 +1,27 @@
 import React from 'react';
 import {
-  Chart as ChartJS,
-  RadialLinearScale,
-  PointElement,
-  LineElement,
-  CategoryScale,
-  Filler,
-  Tooltip,
-  Legend,
-  Title,
+    Chart as ChartJS,
+    RadialLinearScale,
+    PointElement,
+    LineElement,
+    CategoryScale,
+    Filler,
+    Tooltip,
+    Legend,
+    Title,
 } from 'chart.js';
-import { Radar } from 'react-chartjs-2';
+import {Radar} from 'react-chartjs-2';
 // import { setLabels } from 'react-chartjs-2';
 
 ChartJS.register(
-  RadialLinearScale,
-  PointElement,
-  LineElement,
-  CategoryScale,
-  Filler,
-  Tooltip,
-  Legend,
-  Title
+    RadialLinearScale,
+    PointElement,
+    LineElement,
+    CategoryScale,
+    Filler,
+    Tooltip,
+    Legend,
+    Title
 );
 
 // 차트의 옵션값
@@ -40,14 +40,14 @@ export function setlabels(bool) {
     // 타율, 출루율, 장타율, 출루율+장타율, 홈런
     const labels1 = [
         '타율', '출루율', '장타율',
-        ['출루율','+장타율'], '홈런'
+        ['출루율', '+장타율'], '홈런'
     ];
 
     // 삼진 아웃 수, 평균 자책점, 볼넷 수, 출루허용률,
     // 0이닝당 평균 삼진 수
     const labels2 = [
-        ['삼진','아웃 수'], ['평균','자책점'], ['볼넷',' 수'],
-        ['출루','허용률'], 'K/9'
+        ['삼진', '아웃 수'], ['평균', '자책점'], ['볼넷', ' 수'],
+        ['출루', '허용률'], 'K/9'
     ];
     // true일 경우 labels1 아닐 경우 labels2
     return bool ? labels1 : labels2;
