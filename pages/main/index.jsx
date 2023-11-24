@@ -1,18 +1,15 @@
 import {Fragment, useEffect, useState} from "react";
-import Link from "next/link";
+import Link from "@/pages/compare";
 import Image from "next/image";
 import styles from "@/styles/total.module.css"
+
 
 export default function House() {
     //리그 선택 관리
     const [l_selectedValue, l_setSelectedValue] = useState('none');
     const [r_selectedValue, r_setSelectedValue] = useState('none');
-    const l_handleSelectChange = (event) => {
-        l_setSelectedValue(event.target.value);
-    };
-    const r_handleSelectChange = (event) => {
-        r_setSelectedValue(event.target.value);
-    };
+    const l_handleSelectChange = (event) => {l_setSelectedValue(event.target.value);};
+    const r_handleSelectChange = (event) => {r_setSelectedValue(event.target.value);};
     
     useEffect(()=>{console.log(l_selectedValue)},[l_selectedValue]); //console.log 추후 삭제
     useEffect(()=>{console.log(r_selectedValue)},[r_selectedValue]);
@@ -103,8 +100,16 @@ export default function House() {
             </div>
 
             <div className={styles.center}>
-                <h2></h2>
-            </div>
+                    <h4><center>▶▶player stat◀◀</center></h4>
+                        <div>
+                            <a href="./compare">
+                                <button className={styles.Button1}>Compare</button> </a>
+                        <div>
+                            <a href="./compare;">
+                                <button className={styles.Button2}>More</button> </a>
+                        </div>
+                    </div>    
+                </div>
 
             <div className={styles.right}>
                 <div className={styles.right_league}>
@@ -137,14 +142,4 @@ export default function House() {
             </div>
         </div>
     );
-}
-
-//추후 백에서 데이터 fetch
-export async function getStaticProps() {
-    const res_AL = await fetch("http://127.0.0.1:8000/api/v1/team/AL");
-    const res_NL = await fetch("http://127.0.0.1:8000/api/v1/team/NL");
-
-    const AL = await res_AL.json();
-    const NL = await res_NL.json();
-    return {props: {AL, NL}};
 }

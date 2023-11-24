@@ -11,7 +11,7 @@ const TableComponent = () => {
   const tableData = {
     nodes: [
       {
-        id: 1,
+        id: 1,              //임의의 값
         stats_1: "12",
         stats_2: "3",
         stats_3: "11",
@@ -19,7 +19,7 @@ const TableComponent = () => {
         stats_5: "14",
       },
       {
-        id: 2,
+        id: 2,              //임의의 값
         stats_1: "10",
         stats_2: "30",
         stats_3: "33",
@@ -53,13 +53,10 @@ const TableComponent = () => {
                   return (
                     <CustomHeaderCell
                       key={index}
-                      isHigher={isHigherStat}
-                    >
+                      isHigher={isHigherStat}>
                       {currentStat}
                     </CustomHeaderCell>
-                  );
-                })}
-              </Row>
+                  );})}</Row>
             ))}
           </Body>
         </Fragment>
