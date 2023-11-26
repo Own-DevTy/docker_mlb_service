@@ -2,9 +2,8 @@ import {Fragment} from "react";
 import {useState} from "react";
 import styles from "@/styles/compare.module.css"
 import EEEE from "@/pages/newcompare";
+import PlayerComponent from "@/components/table/fetchData/";
 
-
-import PlayerComponent from "@/pages/test/index";
 function App() {
     const render =()=>{
         
