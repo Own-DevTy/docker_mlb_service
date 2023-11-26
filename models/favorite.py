@@ -13,4 +13,4 @@ class Favorite(UserBase):
     player_id = Column(Integer)
     player_position = Column(Boolean())
     user_id = Column(Integer, ForeignKey("user.id"))
-    user = relationship("User", back_populates="id")
+    user = relationship("User", back_populates="favorite")

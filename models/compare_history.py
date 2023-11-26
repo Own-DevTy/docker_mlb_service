@@ -14,4 +14,4 @@ class CompareHistory(UserBase):
     player_sec = Column(Integer)
     player_position = Column(Boolean())
     user_id = Column(Integer, ForeignKey("user.id"))
-    user = relationship("User", back_populates="id")
+    user = relationship("User", back_populates="compare_history")
