@@ -1,8 +1,9 @@
 from fastapi import APIRouter
 
-from api.endpoints import user, search, team, player, favorite, compare_history
+from api.endpoints import user, search, team, player, favorite, compare_history, login
 
 api_router = APIRouter()
+api_router.include_router(login.router, prefix="/login", tags=["login"])
 api_router.include_router(user.router, prefix="/user", tags=["user"])
 api_router.include_router(compare_history.router, prefix="/compare_history", tags=["compareHistory"])
 api_router.include_router(favorite.router, prefix="/favorite", tags=["favorite"])
