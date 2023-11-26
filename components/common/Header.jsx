@@ -3,10 +3,12 @@ import styles from "@/styles/components/common/Header.module.css"
 import Link from "next/link";
 import SearchBar from "./SearchBar";
 import Sidebar from "@/components/common/Sidebar";
+import {FaRegUserCircle} from "react-icons/fa";
+import {SlLogin} from "react-icons/sl";
+import {useSession} from "next-auth/react";
 
 const Header = ({className}) => {
     const [isOpen, setOpen] = useState(false);
-
     return (
         <div className={className}>
             <div className={styles.header}>
@@ -16,6 +18,9 @@ const Header = ({className}) => {
                 <div className={styles.flexItem}>
                     <SearchBar/>
                     <Sidebar/>
+                    {}
+                    <SlLogin color={'white'} fontSize={'1.5rem'} cursor={'pointer'} />
+                    <FaRegUserCircle color={'white'} fontSize={'1.5rem'} cursor={'pointer'} />
                 </div>
             </div>
         </div>
