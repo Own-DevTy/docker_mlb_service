@@ -1,25 +1,71 @@
 import { useState } from "react";
 import styled from "styled-components";
+import styles from "@/styles/newCompare.module.css";
 import { motion, AnimatePresence } from "framer-motion";
 
 const items = [
   {
     id: "1",
     title: "Gunnar Henderson",
-    subtitle: "여기에 Gunnar Henderson의 정보",
+    subtitle:             
+  <div className={styles.h5_box}>
+    <div className={styles.up_box}>
+      <div className={styles.player_info}>
+        <p>별명 : 없음</p>
+        <p>출생 : 6/29/2001 in Montgomery, AL</p>
+        <p>데뷔 : 8/31/2022</p>
+      </div>
+        <div className={styles.player_table}>
+          <p>여기에는 선수의 스탯 테이블</p>
+        </div> 
+     </div>
+          <div className={styles.player_graph}>
+            <p>여기에는 선수의 스탯 그래프</p>
+          </div>
+    </div>,
     img: "https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:67:current.png/w_213,q_auto:best/v1/people/683002/headshot/67/current",
   },
   {
     id: "2",
-    title: "이름1",
-    subtitle: "정보 입력 란",
-    img: "https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:67:current.png/w_213,q_auto:best/v1/people/683002/headshot/67/current",
+    title: "Shohei Ohtani",
+    subtitle:
+    <div className={styles.h5_box}>
+    <div className={styles.up_box}>
+      <div className={styles.player_info}>
+        <p>별명 : Showtime</p>
+        <p>출생 : 7/05/1994 in Oshu, Japan</p>
+        <p>데뷔 : 3/29/2018</p>
+      </div>
+        <div className={styles.player_table}>
+          <p>여기에는 선수의 스탯 테이블</p>
+        </div> 
+     </div>
+          <div className={styles.player_graph}>
+            <p>여기에는 선수의 스탯 그래프</p>
+          </div>
+    </div>,
+    img: "https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:67:current.png/w_213,q_auto:best/v1/people/660271/headshot/67/current",
   },
   { 
     id: "3",
-    title: "이름2",
-    subtitle: "정보 입력 란",
-    img: "https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:67:current.png/w_213,q_auto:best/v1/people/683002/headshot/67/current",
+    title: "Corey Seager",
+    subtitle:
+    <div className={styles.h5_box}>
+    <div className={styles.up_box}>
+      <div className={styles.player_info}>
+        <p>별명 : Seags</p>
+        <p>출생 : 4/27/1994 in Charlotte, NC</p>
+        <p>데뷔 : 9/03/2015</p>
+      </div>
+        <div className={styles.player_table}>
+          <p>여기에는 선수의 스탯 테이블</p>
+        </div> 
+     </div>
+          <div className={styles.player_graph}>
+            <p>여기에는 선수의 스탯 그래프</p>
+          </div>
+    </div>,
+    img: "https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:67:current.png/w_213,q_auto:best/v1/people/608369/headshot/67/current",
   },
 ];
 
@@ -98,7 +144,7 @@ const ItemWrap = styled(motion.li)`
   align-items: center;
   justify-content: space-between;
   border-top: 2px solid #eee;
-  border-bottom: 1px solid #eee;
+  border-bottom: 2px solid #eee;
   margin-top: -1px;
   background: white;
   overflow: hidden;
@@ -145,10 +191,6 @@ const SubWrap = styled(motion.div)`
     font-weight: 500;
     line-height: 500%;
     text-align: left;
-  }
-
-  :last-child {
-    border-radius: 0 0 20px 20px;
   }
 `;
 

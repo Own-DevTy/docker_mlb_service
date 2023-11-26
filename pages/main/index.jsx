@@ -1,6 +1,5 @@
 import {useEffect, useState} from "react";
 import styles from "@/styles/total.module.css";
-import Table from "@/components/table/fetchTable";
 
 export default function House() {
     //리그 선택 관리
