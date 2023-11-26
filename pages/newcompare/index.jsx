@@ -133,8 +133,8 @@ const Container = styled(motion.div)`
   text-align: center;
 
   ul {
-    height: 120%;
-    width: 120%;
+    height: 100%;
+    width: 100%;
     background: #fff;
     margin: 0 auto;
   }
