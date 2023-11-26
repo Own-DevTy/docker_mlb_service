@@ -1,7 +1,7 @@
 import {Fragment} from "react";
 import {useState} from "react";
 import styles from "@/styles/compare.module.css"
-import EEEE from "@/pages/newcompare";
+import Plist from "@/pages/newcompare";
 import PlayerComponent from "@/components/table/fetchData/";
 
 function App() {
@@ -36,8 +36,7 @@ function App() {
 
 
             <div className={styles.right}>
-              <EEEE/>
-              <br /><br /><br /><br /><br />
+              <Plist/>
             </div>
           </div>
         );

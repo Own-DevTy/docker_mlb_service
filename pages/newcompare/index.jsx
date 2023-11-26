@@ -3,6 +3,9 @@ import styled from "styled-components";
 import styles from "@/styles/newCompare.module.css";
 import { motion, AnimatePresence } from "framer-motion";
 
+//추후 삭제 import
+import Pstats from "@/components/table/Player2Table";
+
 const items = [
   {
     id: "1",
@@ -16,7 +19,7 @@ const items = [
         <p>데뷔 : 8/31/2022</p>
       </div>
         <div className={styles.player_table}>
-          <p>여기에는 선수의 스탯 테이블</p>
+        <Pstats/>
         </div> 
      </div>
           <div className={styles.player_graph}>
@@ -126,8 +129,7 @@ const Item = ({ item }) => {
 
 //선수 목록 뜨는 칸
 const Container = styled(motion.div)`
-  margin: 200px auto 0 auto;
-  width: 50%;
+  width: 100%;
   text-align: center;
 
   ul {
@@ -144,7 +146,7 @@ const ItemWrap = styled(motion.li)`
   align-items: center;
   justify-content: space-between;
   border-top: 2px solid #eee;
-  border-bottom: 2px solid #eee;
+  border-bottom: 1.5px solid #eee;
   margin-top: -1px;
   background: white;
   overflow: hidden;
