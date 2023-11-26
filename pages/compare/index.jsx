@@ -1,14 +1,11 @@
 import {Fragment} from "react";
 import {useState} from "react";
 import styles from "@/styles/compare.module.css"
-
 import EEEE from "@/pages/newcompare";
+import PlayerComponent from "@/components/table/fetchData/";
 
-
-import PlayerComponent from "@/pages/test/index";
 function App() {
     const render =()=>{
-        
 
         return (
             <div className={styles.body}>
@@ -24,10 +21,10 @@ function App() {
                           <PlayerComponent/>
                         </div>
                 </div>
-                
+
               </div>
               <div className={styles.left_body}>
-              
+
               <div className={styles.left_stats2}>
                 stats 2
               </div>
@@ -39,7 +36,7 @@ function App() {
 
 
             <div className={styles.right}>
-              
+              <EEEE/>
               <br /><br /><br /><br /><br />
             </div>
           </div>
