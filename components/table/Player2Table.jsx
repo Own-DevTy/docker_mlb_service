@@ -2,7 +2,8 @@ import {Body, Header, HeaderCell, HeaderRow, Row, Table} from "@table-library/re
 import {usePagination} from "@table-library/react-table-library/pagination";
 import {Fragment} from "react";
 import * as React from "react";
-
+//데모버전 css때문에 임의 추가(동준)
+import styled from "styled-components";
 
 const Player2Table = () => {
   const tableData = {

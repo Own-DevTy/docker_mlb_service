@@ -1,8 +1,5 @@
-import {Fragment, useEffect, useState} from "react";
-import Link from "@/pages/compare";
-import Image from "next/image";
-import styles from "@/styles/total.module.css"
-
+import {useEffect, useState} from "react";
+import styles from "@/styles/total.module.css";
 
 export default function House() {
     //리그 선택 관리
