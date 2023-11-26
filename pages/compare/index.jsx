@@ -1,7 +1,6 @@
 import {Fragment} from "react";
 import {useState} from "react";
 import styles from "@/styles/compare.module.css"
-
 import EEEE from "@/pages/newcompare";
 
 
@@ -39,7 +38,7 @@ function App() {
 
 
             <div className={styles.right}>
-              
+              <EEEE/>
               <br /><br /><br /><br /><br />
             </div>
           </div>
