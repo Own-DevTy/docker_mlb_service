@@ -5,7 +5,6 @@ import SearchBar from "./SearchBar";
 import Sidebar from "@/components/common/Sidebar";
 import {FaRegUserCircle} from "react-icons/fa";
 import {SlLogin} from "react-icons/sl";
-import {useSession} from "next-auth/react";
 
 const Header = ({className}) => {
     const [isOpen, setOpen] = useState(false);
