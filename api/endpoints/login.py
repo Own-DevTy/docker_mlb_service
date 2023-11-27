@@ -15,7 +15,7 @@ from models.favorite import Favorite
 router = APIRouter()
 
 
-@router.post("/")
+@router.post("")
 def login_access(db: Session = Depends(deps.get_db),
                  form_data: OAuth2PasswordRequestForm = Depends()) -> Any:
     user = crud.user.authenticate(db,
