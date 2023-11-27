@@ -38,7 +38,7 @@ function App() {
             <div className={styles.right}>
                 <Plist/>
             </div>
-        </div>
+        </div>  
         );
     }
     return render();
