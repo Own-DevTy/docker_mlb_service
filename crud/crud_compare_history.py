@@ -30,7 +30,7 @@ class CRUDCompareHistory(CRUDBase[CompareHistory, CompareHistoryCreate, CompareH
             .all()
         )
 
-    def validate_create_favorite(self, db: Session, *, user_id: int, player_fir: int, player_sec: int) -> bool:
+    def validate_create_history(self, db: Session, *, user_id: int, player_fir: int, player_sec: int) -> bool:
         validate = (db.query(self.model).
                     filter(self.model.user_id == user_id,
                            self.model.player_fir == player_fir,

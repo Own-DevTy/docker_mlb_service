@@ -27,7 +27,7 @@ def create_compare_history(*, db: Session = Depends(deps.get_db),
                            player_sec: int = Body(...),
                            player_position: bool = Body(...)
                            ) -> Any:
-    if crud.compare_history.validate_create_favorite(db, user_id=user_id, player_fir=player_fir, player_sec=player_sec):
+    if crud.compare_history.validate_create_history(db, user_id=user_id, player_fir=player_fir, player_sec=player_sec):
         return None
     history_in = schemas.compare_history.CompareHistoryCreate(player_fir=player_fir,
                                                               player_sec=player_sec,
@@ -37,10 +37,10 @@ def create_compare_history(*, db: Session = Depends(deps.get_db),
 
 
 @router.delete("/{id}", response_model=schemas.compare_history.CompareHistory)
-def delete_favorite(*, db: Session = Depends(deps.get_db), id: int) -> CompareHistory:
+def delete_compare_history(*, db: Session = Depends(deps.get_db), id: int) -> CompareHistory:
     history = db.get(CompareHistory, id)
     if not history:
-        raise HTTPException(status_code=404, detail="favorite not found")
+        raise HTTPException(status_code=404, detail="history not found")
     db.delete(history)
     db.commit()
     return history
