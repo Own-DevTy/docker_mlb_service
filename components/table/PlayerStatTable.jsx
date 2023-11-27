@@ -2,11 +2,19 @@ import {Body, Header, HeaderCell, HeaderRow, Row, Cell, Table} from "@table-libr
 import {Fragment} from "react";
 
 const PlayerStatTable = ({data}) => {
-    const tableData = {
-        nodes: [
-            data
-        ]
-    };
+    let tableData;
+    if(Array.isArray(data)){
+        tableData = {
+            nodes: data
+        };
+    }else{
+        tableData = {
+            nodes: [
+                data
+            ]
+        };
+    }
+
     return (
         <Table data={tableData}>
             {(tableList) => (
