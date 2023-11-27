@@ -14,7 +14,7 @@ const items = [
   <div className={styles.h5_box}>
     <div className={styles.up_box}>
       <div className={styles.player_info}>
-        <p>별명 : 없음</p>
+        <p>별명 : none</p>
         <p>출생 : 6/29/2001 in Montgomery, AL</p>
         <p>데뷔 : 8/31/2022</p>
       </div>
@@ -145,8 +145,8 @@ const ItemWrap = styled(motion.li)`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-top: 2px solid #eee;
-  border-bottom: 1.5px solid #eee;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
   margin-top: -1px;
   background: white;
   overflow: hidden;
@@ -188,10 +188,9 @@ const SubWrap = styled(motion.div)`
   background: white;
 
   h5 {
-    padding: 20px 30px;
+    padding: 3% 4%;
     font-size: 100%; 
-    font-weight: 500;
-    line-height: 500%;
+    line-height: 250%;
     text-align: left;
   }
 `;
