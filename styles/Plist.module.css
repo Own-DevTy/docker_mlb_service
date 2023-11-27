@@ -21,3 +21,11 @@
     justify-content: center;
 	border:1px solid black;
 }
+
+.player_graph_size{
+    padding: 10px;
+    margin: auto;
+    width: 64%;
+    text-align: center;
+    justify-content: center;
+}
