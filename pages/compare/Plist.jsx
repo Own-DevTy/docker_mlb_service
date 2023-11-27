@@ -24,9 +24,11 @@ const items = [
                     </div>
                 </div>
                 <div className={styles.player_graph}>
+                    <div className={styles.player_graph_size}>
                     {Chart(true,
                         'Eduardo Escobar', 1, 3, 2, 4, 6,
                         'Gunnar Henderson', 2, 3, 5, 3, 1)}
+                    </div>
                 </div>
             </div>
         ),

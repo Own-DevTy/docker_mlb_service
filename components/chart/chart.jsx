@@ -148,8 +148,8 @@ export default function Chart(
             <Radar
             data={data}
             option={option}
-            height={"30%"}
-            weight={"30%"}
+            height={"100%"}
+            weight={"100%"}
             />
         )
     } else if (nameA!=null) {
@@ -157,8 +157,8 @@ export default function Chart(
             <Radar
             data={data2}
             option={option}
-            height={"30%"}
-            weight={"30%"}
+            height={"100%"}
+            weight={"100%"}
             />
         )
     } else {
@@ -166,8 +166,8 @@ export default function Chart(
             <Radar
             data={data3}
             option={option}
-            height={"30%"}
-            weight={"30%"}
+            height={"100%"}
+            weight={"100%"}
             />
         )
     }

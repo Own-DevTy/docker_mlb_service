@@ -78,6 +78,16 @@
     margin: 10px; 
     padding: 10px; 
     text-align: center; 
+    align-content: center;
+  }
+
+  .left_stats3_1 {
+    flex: 1;
+    width: 65%;
+    padding: 10px;
+    margin: auto;
+    justify-content: center;
+    text-align: center; 
   }
 
 .select {
