@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 //추후 삭제 import
 import Pstats from '@/components/table/Player2Table';
-import Pchart from '@/components/chart/chart';
+import Chart from '@/components/chart/chart';
 
 const items = [
     {
@@ -24,7 +24,9 @@ const items = [
                     </div>
                 </div>
                 <div className={styles.player_graph}>
-                    <Pchart />
+                    {Chart(true,
+                        'Eduardo Escobar', 1, 3, 2, 4, 6,
+                        'Gunnar Henderson', 2, 3, 5, 3, 1)}
                 </div>
             </div>
         ),
