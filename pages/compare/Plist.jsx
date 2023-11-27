@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import styles from '@/styles/newCompare.module.css';
+import styles from '@/styles/Plist.module.css';
 import { motion, AnimatePresence } from 'framer-motion';
 
 //추후 삭제 import
