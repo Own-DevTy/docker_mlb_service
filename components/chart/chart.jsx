@@ -64,7 +64,7 @@ export function setlabels(bool) {
 export default function Chart(
     labelbool,
     nameA, x_data1, x_data2, x_data3, x_data4, x_data5,
-    nameB, y_data1, y_data2, y_data3, y_data4, y_data5,
+    nameB, y_data1, y_data2, y_data3, y_data4, y_data5
 ) {
     // 두 명 스탯 비교 그래프
     const data = {
@@ -146,34 +146,28 @@ export default function Chart(
     if(nameA!=null && nameB!=null) {
         return (
             <Radar
-            title= "Radar Chart"
-            description="Stats"
             data={data}
             option={option}
-            height={"100%"}
-            weight={"100%"}
+            height={"30%"}
+            weight={"30%"}
             />
         )
     } else if (nameA!=null) {
         return (
             <Radar
-            title= "Radar Chart"
-            description="Stats"
             data={data2}
             option={option}
-            height={"100%"}
-            weight={"100%"}
+            height={"30%"}
+            weight={"30%"}
             />
         )
     } else {
         return (
             <Radar
-            title= "Radar Chart"
-            description="Stats"
             data={data3}
             option={option}
-            height={"100%"}
-            weight={"100%"}
+            height={"30%"}
+            weight={"30%"}
             />
         )
     }
