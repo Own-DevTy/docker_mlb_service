@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 //추후 삭제 import
 import Pstats from "@/components/table/Player2Table";
+import Pchart from "@/components/chart/chart";
 
 const items = [
   {
@@ -23,7 +24,7 @@ const items = [
         </div> 
      </div>
           <div className={styles.player_graph}>
-            <p>여기에는 선수의 스탯 그래프</p>
+            <Pchart/>
           </div>
     </div>,
     img: "https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:67:current.png/w_213,q_auto:best/v1/people/683002/headshot/67/current",
