@@ -1,0 +1,51 @@
+.body {
+    font-family: 'Hammersmith One', sans-serif;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    letter-spacing: 2px /*글자 자간*/
+}
+
+.rectOne{
+    display: flex;
+    width : 30%;
+    height: 20%;
+    border: 3px solid rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    margin-left : 15%;
+    margin : 5%;
+}
+
+.rectTwo{
+    display: flex;
+    width : 30%;
+    height: 20%;
+    border: 3px solid rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    margin-right : 15%;
+    margin : 5%;
+}
+.rectThrid{
+    display: flex;
+    width : 30%;
+    height: 20%;
+    border: 3px solid rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    margin-right : 15%;
+    margin : 5%;
+}
+.rectfour{
+    display: flex;
+    width : 30%;
+    height: 20%;
+    border: 3px solid rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    margin-right : 15%;
+    margin : 5%;
+}

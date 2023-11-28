@@ -1,0 +1,31 @@
+.up_box{
+    display:flex;
+    margin-bottom: 1%;
+    width:100%;
+}
+
+.player_info{
+    font-size: 90%;
+    width:45%;
+    margin-right: 2%;
+}
+
+.player_table{
+    width:55%;
+    text-align: center;
+    justify-content: center;
+}
+
+.player_graph{
+    text-align: center;
+    justify-content: center;
+	border:1px solid black;
+}
+
+.player_graph_size{
+    padding: 10px;
+    margin: auto;
+    width: 64%;
+    text-align: center;
+    justify-content: center;
+}

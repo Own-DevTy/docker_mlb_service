@@ -1,5 +1,4 @@
 .service {
-    height: 100%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -8,7 +7,11 @@
     background-color: #45474B;
 }
 
-@media screen and (max-width: 1920px) {
+.contents {
+    height: calc(100% - var(--header-height));
+}
+
+@media screen and (min-width: 1080px) {
     .service {
         width: 80%;
     }
@@ -16,6 +19,6 @@
 
 @media screen and (max-width: 1080px) {
     .service {
-        width: 920px;
+        width: 100%;
     }
 }
