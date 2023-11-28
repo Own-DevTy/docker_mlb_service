@@ -8,7 +8,8 @@
 }
 
 .contents {
-    height: calc(100% - var(--header-height));
+    height: calc(100% - var(--header-height) - 3rem);
+    margin-top: 3rem;
 }
 
 @media screen and (min-width: 1080px) {
