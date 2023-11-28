@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session
 
 import requests
 
-from db.base import Base
+from db.base import Base, UserBase
 from db.session import engine
 from schemas.team import TeamCreate
 from schemas.player import HittingCreate, PitchingCreate
@@ -161,6 +161,7 @@ def load_player_data(db: Session, hitting: dict, pitching: dict) -> None:
 def init_db(db: Session) -> None:
     Base.metadata.drop_all(engine)
     Base.metadata.create_all(engine)
+    UserBase.metadata.create_all(engine)
     data = fetch_mlb_data()
     load_team_data(db, data['teams'])
     load_player_data(db, data['hitting'], data['pitching'])
