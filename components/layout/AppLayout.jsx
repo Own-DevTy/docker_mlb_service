@@ -8,7 +8,7 @@ const AppLayout = ({ children }) => {
             <div className={styles.header}>
                 <Header className={styles.service} />
             </div>
-            <div className={styles.service} style={{ marginTop: '3rem' }}>
+            <div className={`${styles.service} ${styles.contents}`}>
                 {children}
             </div>
         </Fragment>

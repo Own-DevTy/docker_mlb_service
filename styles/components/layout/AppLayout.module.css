@@ -7,6 +7,10 @@
     background-color: #45474B;
 }
 
+.contents {
+    height: calc(100% - var(--header-height));
+}
+
 @media screen and (min-width: 1080px) {
     .service {
         width: 80%;
