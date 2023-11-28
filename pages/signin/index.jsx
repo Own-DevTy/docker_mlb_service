@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import styles from '@/styles/Login.module.css';
+import styles from '@/styles/pages/SignIn.module.css';
 import Link from 'next/link';
 
 const User = {
@@ -8,7 +8,7 @@ const User = {
 };
 // 임시로 만든 로그인 성공 아이디
 
-export default function Login() {
+export default function SignIn() {
     const [id, setId] = useState('');
     const [pw, setPw] = useState('');
 
