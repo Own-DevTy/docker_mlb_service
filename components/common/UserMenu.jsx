@@ -16,7 +16,11 @@ export default function UserMenu() {
             className={styles.userMenuWrapper}
             onClick={() => setOpen(!isOpen)}
         >
-            <FaRegUserCircle color={'white'} fontSize={'1.5rem'} />
+            <FaRegUserCircle
+                color={'white'}
+                fontSize={'1.5rem'}
+                cursor={'pointer'}
+            />
             <div className={styles.userMenu}>
                 {isOpen && (
                     <div className={styles.menu}>
