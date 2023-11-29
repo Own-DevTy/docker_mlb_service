@@ -5,7 +5,8 @@ import SearchBar from './SearchBar';
 import Sidebar from '@/components/common/Sidebar';
 import { FaRegUserCircle } from 'react-icons/fa';
 import { SlLogin } from 'react-icons/sl';
-import { useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
+import UserMenu from '@/components/common/UserMenu';
 
 const Header = ({ className }) => {
     const { data: session, status } = useSession();
@@ -23,11 +24,10 @@ const Header = ({ className }) => {
                 <div className={styles.flexItem}>
                     <SearchBar />
                     {status === 'authenticated' ? (
-                        <FaRegUserCircle
-                            color={'white'}
-                            fontSize={'1.5rem'}
-                            cursor={'pointer'}
-                        />
+                        <Fragment>
+                            <UserMenu />
+                            <button onClick={() => signOut()}></button>
+                        </Fragment>
                     ) : (
                         <Link href={'/signin'}>
                             <SlLogin
