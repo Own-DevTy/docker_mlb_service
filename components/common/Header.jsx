@@ -1,11 +1,9 @@
-import { Fragment, useState } from 'react';
 import styles from '@/styles/components/common/Header.module.css';
 import Link from 'next/link';
 import SearchBar from './SearchBar';
 import Sidebar from '@/components/common/Sidebar';
-import { FaRegUserCircle } from 'react-icons/fa';
 import { SlLogin } from 'react-icons/sl';
-import { signOut, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import UserMenu from '@/components/common/UserMenu';
 
 const Header = ({ className }) => {
@@ -24,10 +22,7 @@ const Header = ({ className }) => {
                 <div className={styles.flexItem}>
                     <SearchBar />
                     {status === 'authenticated' ? (
-                        <Fragment>
-                            <UserMenu />
-                            <button onClick={() => signOut()}></button>
-                        </Fragment>
+                        <UserMenu />
                     ) : (
                         <Link href={'/signin'}>
                             <SlLogin
