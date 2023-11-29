@@ -1,39 +1,36 @@
 import { useEffect, useState } from 'react';
 import styles from '@/styles/pages/SignIn.module.css';
 import Link from 'next/link';
+import { getCsrfToken } from 'next-auth/react';
+import { authOptions } from '@/pages/api/auth/[...nextauth]';
+import { getServerSession } from 'next-auth';
 
-const User = {
-    id: 'lhjjhg',
-    pw: '@@test123',
-};
-// 임시로 만든 로그인 성공 아이디
-
-export default function SignIn() {
+export default function SignIn({ csrfToken }) {
     const [id, setId] = useState('');
     const [pw, setPw] = useState('');
 
     const [validID, setValidID] = useState(false);
     const [validPW, setValidPW] = useState(false);
-    const [notAllow, setNotAllow] = useState(false);
+    const [allow, setAllow] = useState(false);
 
     useEffect(() => {
         if (validID && validPW) {
-            setNotAllow(false);
+            setAllow(false);
             return;
         }
-        setNotAllow(true);
+        setAllow(true);
     }, [validID, validPW]);
 
     const handleId = (e) => {
         setId(e.target.value);
-        const regex = /^[a-z A-Z][a-z A-Z 0-9- _]{3,23}$/;
+        const regex = /^[a-z A-Z][a-z A-Z 0-9- _]{4,23}$/;
         if (regex.test(e.target.value)) {
             setValidID(true);
         } else {
             setValidID(false);
         }
     };
-    // 유효성 검사: 아이디 정규표현식(regex) = 영어(소문자,대문자), 숫자 포함 3> , <23 사이 입력시 true
+
     const handlePw = (e) => {
         setPw(e.target.value);
         const regex =
@@ -44,25 +41,27 @@ export default function SignIn() {
             setValidPW(false);
         }
     };
-    // 비번 유효성 검사: 정규표현식 = 영어(대,소문자), 숫자, 특수문자 포함
-
-    const onClickConfirmButton = () => {
-        if (id === User.id && pw === User.pw) {
-            alert('로그인에 성공했습니다.');
-        } else {
-            alert('등록되지 않은 회원입니다.');
-        }
-    };
 
     return (
         <div className={styles.container}>
-            <div className={styles.contentWrapper}>
+            <form
+                className={styles.contentWrapper}
+                method="post"
+                action="/api/auth/callback/credentials"
+            >
+                <input
+                    name="csrfToken"
+                    type="hidden"
+                    defaultValue={csrfToken}
+                />
                 <div className={styles.contentTitle}>Login</div>
                 <div className={styles.inputWrapper}>
                     <label className={styles.inputTitle}>User ID</label>
                     <div valid={`${validID}`}>
                         <input
                             className={styles.input}
+                            name="username"
+                            type="text"
                             placeholder="아이디"
                             value={id}
                             onChange={handleId}
@@ -79,6 +78,7 @@ export default function SignIn() {
                     <div valid={`${validPW}`}>
                         <input
                             className={styles.input}
+                            name="password"
                             type="password"
                             placeholder="비밀번호"
                             value={pw}
@@ -94,16 +94,33 @@ export default function SignIn() {
                     </span>
                 </div>
                 <button
-                    onClick={onClickConfirmButton}
-                    disabled={notAllow}
-                    className={styles.loginBtn}
+                    type="submit"
+                    disabled={allow}
+                    className={styles.submit}
                 >
                     login
                 </button>
                 <div className={styles.signupButton}>
                     <Link href="/signup">회원가입</Link>
                 </div>
-            </div>
+            </form>
         </div>
     );
+}
+
+export async function getServerSideProps(context) {
+    const session = await getServerSession(
+        context.req,
+        context.res,
+        authOptions
+    );
+    if (session) {
+        return { redirect: { destination: '/' } };
+    }
+
+    return {
+        props: {
+            csrfToken: await getCsrfToken(context),
+        },
+    };
 }

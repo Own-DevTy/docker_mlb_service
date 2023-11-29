@@ -21,7 +21,10 @@
     pointer-events: auto;
 
     align-items: center;
-    margin: 1rem;
+}
+
+.flexItem > *{
+    margin-left: 1rem;
 }
 
 .searchBar {

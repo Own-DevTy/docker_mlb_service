@@ -74,7 +74,7 @@
     color: #dadada;
 }
 
-.loginBtn {
+.submit {
     width: 100%;
     height: 48px;
     border: none;
@@ -87,7 +87,7 @@
     cursor: pointer;
 }
 
-.loginBtn:disabled {
+.submit:disabled {
     background-color: #dadada;
     color: white;
 }
