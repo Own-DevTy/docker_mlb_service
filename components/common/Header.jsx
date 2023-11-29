@@ -5,7 +5,7 @@ import SearchBar from './SearchBar';
 import Sidebar from '@/components/common/Sidebar';
 import { FaRegUserCircle } from 'react-icons/fa';
 import { SlLogin } from 'react-icons/sl';
-import { getSession, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 
 const Header = ({ className }) => {
     const { data: session, status } = useSession();
