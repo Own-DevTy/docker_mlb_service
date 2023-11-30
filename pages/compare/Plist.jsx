@@ -155,6 +155,7 @@ const Item = ({ item }) => {
 
 //선수 목록 뜨는 칸
 const Container = styled(motion.div)`
+    margin-top: 0.5%;
     width: 100%;
     text-align: center;
 
@@ -214,7 +215,7 @@ const SubWrap = styled(motion.div)`
     background: white;
 
     h5 {
-        padding: 3% 4%;
+        padding: 0% 4%;
         font-size: 100%;
         line-height: 250%;
         text-align: left;
