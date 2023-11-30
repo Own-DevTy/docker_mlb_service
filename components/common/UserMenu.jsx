@@ -24,17 +24,24 @@ export default function UserMenu() {
             <div className={styles.userMenu}>
                 {isOpen && (
                     <div className={styles.menu}>
-                        <Link href={'/'} className={styles.menuItem}>
+                        <Link
+                            href={'/user/favorite'}
+                            className={styles.menuItem}
+                        >
                             <MdFavorite />
                             저장한 선수
                         </Link>
-                        <Link href={'/'} className={styles.menuItem}>
+                        <Link href={'/user/info'} className={styles.menuItem}>
                             <PiInfo />
                             개인정보
                         </Link>
                         <div
                             className={styles.menuItem}
-                            onClick={() => signOut()}
+                            onClick={async () => {
+                                await signOut({
+                                    redirectTo: '/',
+                                });
+                            }}
                         >
                             <PiSignOutFill />
                             로그아웃
