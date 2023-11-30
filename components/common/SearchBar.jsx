@@ -2,8 +2,6 @@ import { Fragment, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import styles from '@/styles/components/common/Header.module.css';
 import { TbSearch } from 'react-icons/tb';
-import { MdDensityMedium } from 'react-icons/md';
-import Sidebar from '@/components/common/Sidebar';
 
 export default function SearchBar({ props }) {
     const text = useRef();
