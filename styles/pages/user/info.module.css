@@ -39,9 +39,6 @@
     text-align: center;
 }
 
-.infoTable > tbody {
-}
-
 .infoTable > tbody > tr > td {
     border-top: 1px solid white;
     background-color: #95979B;
