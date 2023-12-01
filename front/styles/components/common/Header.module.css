@@ -21,7 +21,16 @@
     pointer-events: auto;
 
     align-items: center;
-    margin: 1rem;
+}
+
+.flexItem:last-child > * {
+    margin-left: 0.7rem;
+}
+
+.flexItem:last-child > *:first-child{
+    border-right: 1px solid #FFFFFF;
+    padding-right: 1rem;
+    margin-right: 0.3rem;
 }
 
 .searchBar {
