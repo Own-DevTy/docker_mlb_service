@@ -26,7 +26,7 @@ export async function getAuthServerSideProps(context, props) {
  * props: {
  * user=>세션의 유저정보,
  * props=>추가한 props
- * }
+ *        }
  * }
  * */
 export function UseAuth(context, props) {

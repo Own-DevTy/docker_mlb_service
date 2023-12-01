@@ -39,7 +39,7 @@ export default function UserMenu() {
                             className={styles.menuItem}
                             onClick={async () => {
                                 await signOut({
-                                    redirectTo: '/',
+                                    callbackUrl: '/',
                                 });
                             }}
                         >
