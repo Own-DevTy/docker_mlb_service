@@ -28,5 +28,7 @@ def login_access(db: Session = Depends(deps.get_db),
         "id": user.id,
         "username": user.user_id,
         "email": user.email,
-        "full_name": user.full_name
+        "full_name": user.full_name,
+        "sex": user.sex,
+        "created_at": user.created_at
     }
