@@ -16,5 +16,5 @@ class User(UserBase):
     sex = Column(Boolean(), default=False)
     password = Column(String(20), nullable=False)
     email = Column(String(30))
-    favorite = relationship("Favorite", back_populates="user")
-    compare_history = relationship("CompareHistory", back_populates="user")
+    favorite = relationship("Favorite", back_populates="user", cascade='all, delete')
+    compare_history = relationship("CompareHistory", back_populates="user", cascade='all, delete')
