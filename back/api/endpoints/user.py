@@ -37,7 +37,7 @@ def validate_email(*, db: Session = Depends(deps.get_db), email: str):
     return {"email_validate": 1}
 
 
-@router.post("/signin", response_model=schemas.User)
+@router.post("/signup", response_model=schemas.User)
 def create_user(
         *,
         db: Session = Depends(deps.get_db),
