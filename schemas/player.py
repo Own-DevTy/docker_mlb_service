@@ -13,6 +13,7 @@ class PlayerBase(BaseModelEx):
     height: Optional[float] = None
     weight: Optional[float] = None
     team_id: Optional[int] = None
+    team_name: Optional[str] = None
     avg: Optional[str] = None
     obp: Optional[str] = None
     slg: Optional[str] = None
@@ -36,6 +37,7 @@ class HittingCreate(PlayerBase):
     height: float
     weight: float
     team_id: int
+    team_name: str
     avg: str
     obp: str
     slg: str
@@ -53,6 +55,7 @@ class PitchingCreate(PlayerBase):
     height: float
     weight: float
     team_id: int
+    team_name: str
     strikeOuts: int
     era: str
     baseOnBalls: int

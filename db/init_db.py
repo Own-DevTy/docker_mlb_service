@@ -51,7 +51,7 @@ def fetch_player_data(group: str, player_pool='ALL_CURRENT', season=datetime.dat
     fields = ['stats', 'totalSplits', 'splits']
     fields += ['stat', 'avg', 'obp', 'slg', 'ops', 'homeRuns', 'strikeOuts', 'era', 'baseOnBalls', 'whip', 'strikeoutsPer9Inn']
     fields += ['player', 'id', 'fullName', 'firstName', 'lastName', 'link']
-    fields += ['team', 'id']
+    fields += ['team', 'id', 'name']
 
     url = (f"{base_url}/api/v1/stats?playerPool={player_pool}&season={season}&stats=season&sportId=1&group={group}&"
            f"fields={','.join(fields)}&limit={0}")
@@ -131,6 +131,7 @@ def load_player_data(db: Session, hitting: dict, pitching: dict) -> None:
                                   height=hitter['player']['height'],
                                   weight=hitter['player']['weight'],
                                   team_id=hitter['team']['id'],
+                                  team_name=hitter['team']['name'],
                                   avg=hitter['stat']['avg'],
                                   obp=hitter['stat']['obp'],
                                   slg=hitter['stat']['slg'],
@@ -149,6 +150,7 @@ def load_player_data(db: Session, hitting: dict, pitching: dict) -> None:
                                     height=pitcher['player']['height'],
                                     weight=pitcher['player']['weight'],
                                     team_id=pitcher['team']['id'],
+                                    team_name=pitcher['team']['name'],
                                     strikeOuts=pitcher['stat']['strikeOuts'],
                                     era=pitcher['stat']['era'],
                                     baseOnBalls=pitcher['stat']['baseOnBalls'],

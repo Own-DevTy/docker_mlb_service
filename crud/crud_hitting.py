@@ -9,12 +9,12 @@ from schemas.player import HittingCreate, HittingUpdate
 
 class CRUDHitting(CRUDBase[Hitting, HittingCreate, HittingUpdate]):
     def get_multi_by_team_id(
-        self, db: Session, *, team_id: int
+            self, db: Session, *, team_id: int
     ) -> List[Hitting]:
         return db.query(self.model).filter(self.model.team_id == team_id).all()
 
     def get_stat_hitting_by_id(
-        self, db: Session, *, id: int
+            self, db: Session, *, id: int
     ) -> Hitting:
         return db.query(self.model.avg,
                         self.model.obp,
@@ -33,6 +33,7 @@ class CRUDHitting(CRUDBase[Hitting, HittingCreate, HittingUpdate]):
             height=obj_in.height,
             weight=obj_in.weight,
             team_id=obj_in.team_id,
+            team_name=obj_in.team_name,
             avg=obj_in.avg,
             obp=obj_in.obp,
             slg=obj_in.slg,
