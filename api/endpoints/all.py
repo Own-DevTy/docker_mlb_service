@@ -18,7 +18,7 @@ async def search_all_hitting(skip: int = 0, limit: int = 1000, db: Session = Dep
 
 
 @router.get('/pitching', response_model=schemas.base.AllSearchPitching)
-async def search_all_hitting(skip: int = 0, limit: int = 1000, db: Session = Depends(deps.get_db)) -> Any:
+async def search_all_pitching(skip: int = 0, limit: int = 1000, db: Session = Depends(deps.get_db)) -> Any:
     size = crud.pitching.get_rows(db)
     pitching = crud.pitching.get_multi(db, skip=skip, limit=limit)
     return {'size': size, "pitching": pitching}
