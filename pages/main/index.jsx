@@ -95,19 +95,21 @@ export default function House() {
                     </div>
                 </div>
             </div>
-
+        
             <div className={styles.center}>
                     <h4><center>▶▶player stat◀◀</center></h4>
                         <div>
                             <a href="./compare">
                                 <button className={styles.Button1}>Compare</button> </a>
                         <div>
-                            <a href="./compare;">
+                            <a href="#;">  
                                 <button className={styles.Button2}>More</button> </a>
                         </div>
                     </div>    
                 </div>
-
+                {/* more 버튼 누를 시 창 구현 예정 1:n, n:n */}
+                {/* url 쿼리 이용  */}
+                
             <div className={styles.right}>
                 <div className={styles.right_league}>
                     <h1 className={styles.text_choose}>Choose the League</h1>

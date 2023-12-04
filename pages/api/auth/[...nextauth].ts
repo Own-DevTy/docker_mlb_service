@@ -34,31 +34,36 @@ export const authOptions = {
 
                 if (res.ok && user) {
                     return user;
-                } else {
-                    return null;
                 }
+
+                return null;
             },
         }),
     ],
     callbacks: {
         // @ts-ignore
-        async jwt({ token }) {
-            return token;
-        },
-        // @ts-ignore
-        async session({ session }) {
-            console.log(session);
-            return session;
-        },
-        // @ts-ignore
         async redirect({ url, baseUrl }) {
             if (url.startsWith('/')) {
-                return `${baseUrl}{$url}`;
+                return `${baseUrl}${url}`;
             } else if (new URL(url).origin === baseUrl) {
-                return `${baseUrl}`;
+                return url;
             }
             return baseUrl;
         },
+        // @ts-ignore
+        async jwt({ token, user }) {
+            if (user) token.user = user;
+            return token;
+        },
+        // @ts-ignore
+        async session({ session, token }) {
+            session.user = token.user;
+            return session;
+        },
+    },
+    pages: {
+        signIn: '/signin',
+        // error: '/signin',
     },
 };
 

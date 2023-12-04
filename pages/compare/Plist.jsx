@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import styles from '@/styles/Plist.module.css';
 import { motion, AnimatePresence } from 'framer-motion';
 
 //추후 삭제 import
-import Pstats from '@/components/table/Player2Table';
+import Pstats from '@/components/table/CompareTable';
 import Chart from '@/components/chart/chart';
 
 const items = [
@@ -25,9 +25,21 @@ const items = [
                 </div>
                 <div className={styles.player_graph}>
                     <div className={styles.player_graph_size}>
-                    {Chart(true,
-                        'Eduardo Escobar', 1, 3, 2, 4, 6,
-                        'Gunnar Henderson', 2, 3, 5, 3, 1)}
+                        {Chart(
+                            true,
+                            'Eduardo Escobar',
+                            1,
+                            3,
+                            2,
+                            4,
+                            6,
+                            'Gunnar Henderson',
+                            2,
+                            3,
+                            5,
+                            3,
+                            1
+                        )}
                     </div>
                 </div>
             </div>
@@ -143,6 +155,7 @@ const Item = ({ item }) => {
 
 //선수 목록 뜨는 칸
 const Container = styled(motion.div)`
+    margin-top: 0.5%;
     width: 100%;
     text-align: center;
 
@@ -166,7 +179,7 @@ const ItemWrap = styled(motion.li)`
     overflow: hidden;
 
     h1 {
-        padding: 5% 5% 5% 5%;
+        padding: 4% 4% 4% 4%;
         font-size: 150%;
         z-index: 1;
         opacity: 0.9;
@@ -202,7 +215,7 @@ const SubWrap = styled(motion.div)`
     background: white;
 
     h5 {
-        padding: 3% 4%;
+        padding: 0% 4%;
         font-size: 100%;
         line-height: 250%;
         text-align: left;

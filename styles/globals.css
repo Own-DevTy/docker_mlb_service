@@ -8,6 +8,8 @@ body,
 #__next {
     display: block;
     height: 100%;
+    --header-height: 5rem;
+    --contents-margin-top: 1rem;
 }
 
 body {
