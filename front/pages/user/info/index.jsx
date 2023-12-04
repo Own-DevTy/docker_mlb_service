@@ -2,7 +2,6 @@ import { UseAuth } from '@/hooks/useAuth';
 import styles from '@/styles/pages/user/info.module.css';
 
 export default function UserInfo({ user, props }) {
-    console.log(user);
     return (
         <div className={styles.container}>
             <div className={styles.info}>
@@ -24,7 +23,13 @@ export default function UserInfo({ user, props }) {
                             </tr>
                             <tr>
                                 <th>성별</th>
-                                <td>{user.sex}</td>
+                                <td>
+                                    {user.sex == null
+                                        ? '비공개'
+                                        : user.sex
+                                          ? '여성'
+                                          : '남성'}
+                                </td>
                             </tr>
                             <tr>
                                 <th>생성일자</th>

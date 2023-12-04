@@ -1,0 +1,13 @@
+.container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: var(--contents-margin-top) auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.favoriteWrapper {
+
+}
