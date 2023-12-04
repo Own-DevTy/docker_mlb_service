@@ -19,6 +19,7 @@ class SearchHittingData(BaseOut):
     age: int
     height: float
     weight: float
+    team_name: str
     avg: str
     obp: str
     slg: str
@@ -30,6 +31,7 @@ class SearchPitchingData(BaseOut):
     age: int
     height: float
     weight: float
+    team_name: str
     strikeOuts: int
     era: str
     baseOnBalls: int
@@ -42,6 +44,16 @@ class SearchHitting(BaseModelEx):
 
 
 class SearchPitching(BaseModelEx):
+    pitching: List[SearchPitchingData]
+
+
+class AllSearchHitting(BaseModelEx):
+    size: int
+    hitting: List[SearchHittingData]
+
+
+class AllSearchPitching(BaseModelEx):
+    size: int
     pitching: List[SearchPitchingData]
 
 

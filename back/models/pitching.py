@@ -11,6 +11,7 @@ class Pitching(Base):
     height = Column(Float, nullable=False)
     weight = Column(Float, nullable=False)
     team_id = Column(Integer, nullable=False)
+    team_name = Column(String(50), nullable=False)
     avg = Column(String(10))
     obp = Column(String(10))
     slg = Column(String(10))

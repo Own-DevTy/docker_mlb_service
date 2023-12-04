@@ -1,8 +1,9 @@
-from typing import Any, Dict, Union, List
+from typing import Any, Dict, Union, List, Type
 
 from sqlalchemy.orm import Session
 
-from crud.base import CRUDBase
+from crud.base import CRUDBase, ModelType
+from models import Pitching
 from models.pitching import Pitching
 from schemas.player import PitchingCreate, PitchingUpdate
 
@@ -33,6 +34,7 @@ class CRUDPitching(CRUDBase[Pitching, PitchingCreate, PitchingUpdate]):
             height=obj_in.height,
             weight=obj_in.weight,
             team_id=obj_in.team_id,
+            team_name=obj_in.team_name,
             strikeOuts=obj_in.strikeOuts,
             era=obj_in.era,
             baseOnBalls=obj_in.baseOnBalls,
