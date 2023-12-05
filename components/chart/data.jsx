@@ -28,10 +28,10 @@ export const YourComponent = ({ p_json }) => {
     );
 };
 
-export async function getServerSideProps() {
-    const p = await fetch(`${process.env.api}/search/hitting/${team_id}`);
+export async function getServerSideProps(){
+    const p = await fetch(`http://127.0.0.1:8000/api/v1/search/hitting/${team_id}`)
     const p_json = await p.json();
-    return { props: { p_json } };
+    return {props : {p_json}}
 }
 
 export default YourComponent;

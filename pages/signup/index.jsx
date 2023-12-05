@@ -12,9 +12,10 @@ export default function SignUpForm() {
     const [emailExists, setEmailExists] = useState(false); // 이메일 존재 확인 
     const [formError, setFormError] = useState(false); // 폼 에러 상태
     // const [isRegistered, setIsRegistered] = useState(false); // 가입 성공 상태
-    const [passwordMatch, setPasswordMatch] = useState(true); // 비밀번호 일치 여부
+    const [passwordMatch, setPasswordMatch] = useState(false); // 비밀번호 일치 여부
 
     const [idValid, setIdValid] = useState(false);
+    const [nameVaild, setNameValid] = useState(false); //12.5 이름 추가 
     const [passwordValid, setPasswordValid] = useState(false);
     const [confirmPasswordValid, setConfirmPasswordValid] = useState(false);
     const [emailVaild, setEmailVaild] = useState(false); // 이메일 vaild 추가 
@@ -74,7 +75,7 @@ export default function SignUpForm() {
             setEmailExists(true);
         } else {
             setDuplicateEmailMessage('');
-            setEmailExists(false    );
+            setEmailExists(false);
         }
     };
 
@@ -88,6 +89,16 @@ export default function SignUpForm() {
         } else {
             setIdMessage('올바른 아이디 형식입니다.');
             setIdValid(true);
+        }
+    };
+
+    const handleName = (e) => {
+        setName(e.target.value);
+        const regex = /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/;
+        if (!regex.test(e.target.value)) {
+            setNameValid(false);
+        } else {
+            setNameValid(true);
         }
     };
 
@@ -175,7 +186,7 @@ export default function SignUpForm() {
                 <div className={styles.contentWrapper}>
                     <div className={styles.contentTitle}>회원가입</div>
                     <div className={styles.input_field}>
-                        <label className={styles.inputTitle}> * 아이디 </label> 
+                        <label className={styles.inputTitle}> 아이디 </label> 
                         <div valid={idValid ? "true" : "false"}>
                             <input
                                 className={styles.input}
@@ -202,7 +213,7 @@ export default function SignUpForm() {
                         </span>
                     </div>
                     <div className={styles.input_field}>
-                        <label className={styles.inputTitle}>* 이메일</label>
+                        <label className={styles.inputTitle}> 이메일</label>
                         <div valid={emailVaild ? "true" : "false"}>
                             <input
                                 className={styles.input}
@@ -230,19 +241,21 @@ export default function SignUpForm() {
                         </span>
                     </div>
                     <div className={styles.input_field}>
-                        <label className={styles.inputTitle}>* 이름 </label>
+                        <label className={styles.inputTitle}> 이름 </label>
+                        <div valid={nameVaild ? "true" : "false"}>
                             <input
                                 className={styles.input}
                                 type="text"
                                 value={name}
                                 placeholder="이름 입력"
-                                onChange={(e) => setName(e.target.value)}
+                                onChange={handleName}
                                 required
                                 ref={nameInputRef}
                             />
+                        </div>
                     </div>
                     <div className={styles.input_field}>
-                        <label className={styles.inputTitle}>* 비밀번호 </label>
+                        <label className={styles.inputTitle}> 비밀번호 </label>
                         <div valid={passwordValid ? "true" : "false"}>
                             <input
                                 className={styles.input}
@@ -261,7 +274,7 @@ export default function SignUpForm() {
                             </span>
                     </div>
                     <div className={styles.input_field}>
-                        <label className={styles.inputTitle}>* 비밀번호 확인</label>
+                        <label className={styles.inputTitle}> 비밀번호 확인</label>
                         <div valid={confirmPasswordValid ? "true" : "false"}>
                             <input
                                 className={styles.input}
@@ -279,10 +292,11 @@ export default function SignUpForm() {
                             )}
                         </span>
                     </div>
-                    <div className={styles.input_sexfield}>
+                    <div className={styles.input_genderfield}>
                         <label className={styles.inputTitle}>성별</label>
                             <div>
-                                <input
+                                <input 
+                                    className={styles.inputgender}
                                     type="radio"
                                     id="male"
                                     name="gender"
@@ -294,6 +308,7 @@ export default function SignUpForm() {
                             </div>
                         <div>
                             <input
+                                className={styles.inputgender}
                                 type="radio"
                                 id="female"
                                 name="gender"
@@ -305,6 +320,7 @@ export default function SignUpForm() {
                         </div>
                         <div>
                             <input
+                                className={styles.inputgender}        
                                 type="radio"
                                 id="private"
                                 name="gender"

@@ -4,110 +4,23 @@ import styles from '@/styles/Plist.module.css';
 import { motion, AnimatePresence } from 'framer-motion';
 
 //추후 삭제 import
-import Pstats from '@/components/table/CompareTable';
+import PlayerTable from '@/components/table/PlayerTable';
 import Chart from '@/components/chart/chart';
 
-const items = [
-    {
-        id: '1',
-        title: 'Gunnar Henderson',
-        subtitle: (
-            <div className={styles.h5_box}>
-                <div className={styles.up_box}>
-                    <div className={styles.player_info}>
-                        <p>별명 : none</p>
-                        <p>출생 : 6/29/2001 in Montgomery, AL</p>
-                        <p>데뷔 : 8/31/2022</p>
-                    </div>
-                    <div className={styles.player_table}>
-                        <Pstats />
-                    </div>
-                </div>
-                <div className={styles.player_graph}>
-                    <div className={styles.player_graph_size}>
-                        {Chart(
-                            true,
-                            'Eduardo Escobar',
-                            1,
-                            3,
-                            2,
-                            4,
-                            6,
-                            'Gunnar Henderson',
-                            2,
-                            3,
-                            5,
-                            3,
-                            1
-                        )}
-                    </div>
-                </div>
-            </div>
-        ),
-        img: 'https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:67:current.png/w_213,q_auto:best/v1/people/683002/headshot/67/current',
-    },
-    {
-        id: '2',
-        title: 'Shohei Ohtani',
-        subtitle: (
-            <div className={styles.h5_box}>
-                <div className={styles.up_box}>
-                    <div className={styles.player_info}>
-                        <p>별명 : Showtime</p>
-                        <p>출생 : 7/05/1994 in Oshu, Japan</p>
-                        <p>데뷔 : 3/29/2018</p>
-                    </div>
-                    <div className={styles.player_table}>
-                        <p>여기에는 선수의 스탯 테이블</p>
-                    </div>
-                </div>
-                <div className={styles.player_graph}>
-                    <p>여기에는 선수의 스탯 그래프</p>
-                </div>
-            </div>
-        ),
-        img: 'https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:67:current.png/w_213,q_auto:best/v1/people/660271/headshot/67/current',
-    },
-    {
-        id: '3',
-        title: 'Corey Seager',
-        subtitle: (
-            <div className={styles.h5_box}>
-                <div className={styles.up_box}>
-                    <div className={styles.player_info}>
-                        <p>별명 : Seags</p>
-                        <p>출생 : 4/27/1994 in Charlotte, NC</p>
-                        <p>데뷔 : 9/03/2015</p>
-                    </div>
-                    <div className={styles.player_table}>
-                        <p>여기에는 선수의 스탯 테이블</p>
-                    </div>
-                </div>
-                <div className={styles.player_graph}>
-                    <p>여기에는 선수의 스탯 그래프</p>
-                </div>
-            </div>
-        ),
-        img: 'https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:67:current.png/w_213,q_auto:best/v1/people/608369/headshot/67/current',
-    },
-];
-
-const Accordion = () => {
+const Accordion = ({ children }) => {
     return (
         <Container>
             <motion.ul
                 layout
                 transition={{ duration: 0.3, ease: [0.43, 0.13, 0.23, 0.96] }}
             >
-                {items.map((item) => (
-                    <Item key={item.id} item={item} />
-                ))}
+                {children}
             </motion.ul>
         </Container>
     );
 };
 
-const Item = ({ item }) => {
+export const Item = ({ playerData, data, position }) => {
     const [isOpen, setIsOpen] = useState(false);
     const toggleOpen = () => setIsOpen(!isOpen);
 
@@ -118,11 +31,11 @@ const Item = ({ item }) => {
                 layout
                 transition={{ duration: 0.3, ease: [0.43, 0.13, 0.23, 0.96] }}
             >
-                <motion.h1>{item.title}</motion.h1>
+                <motion.h1>{data.name}</motion.h1>
                 <Img>
                     <motion.img
-                        src={item.img}
-                        alt={item.title}
+                        src={`https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:67:current.png/w_213,q_auto:best/v1/people/${data.id}/headshot/67/current`}
+                        alt={data.name}
                         layout
                         transition={{
                             duration: 0.3,
@@ -134,7 +47,7 @@ const Item = ({ item }) => {
             <AnimatePresence>
                 {isOpen && (
                     <SubWrap>
-                        <motion.h5
+                        <motion.div
                             layout
                             initial={{ y: -10, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
@@ -144,8 +57,57 @@ const Item = ({ item }) => {
                                 ease: [0.43, 0.13, 0.23, 0.96],
                             }}
                         >
-                            {item.subtitle}
-                        </motion.h5>
+                            <div className={styles.up_box}>
+                                <div className={styles.player_info}>
+                                    <p>이름 : {data.name}</p>
+                                </div>
+                                <div className={styles.player_info}>
+                                    <p>나이 : {data.age}</p>
+                                    <p>키 : {data.height}</p>
+                                    <p>몸무게 : {data.weight}</p>
+                                </div>
+                                <PlayerTable data={data} position={position} />
+                            </div>
+                            <div className={styles.player_graph}>
+                                <div className={styles.player_graph_size}>
+                                    {Chart(
+                                        position === 'hitting',
+                                        playerData.name,
+                                        position === 'hitting'
+                                            ? playerData.avg
+                                            : playerData.strikeOuts,
+                                        position === 'hitting'
+                                            ? playerData.obp
+                                            : playerData.era,
+                                        position === 'hitting'
+                                            ? playerData.slg
+                                            : playerData.baseOnBalls,
+                                        position === 'hitting'
+                                            ? playerData.ops
+                                            : playerData.whip,
+                                        position === 'hitting'
+                                            ? playerData.homeRuns
+                                            : playerData.strikeoutsPer9Inn,
+                                        data.name,
+                                        position === 'hitting'
+                                            ? data.avg
+                                            : data.strikeOuts,
+                                        position === 'hitting'
+                                            ? data.obp
+                                            : data.era,
+                                        position === 'hitting'
+                                            ? data.slg
+                                            : data.baseOnBalls,
+                                        position === 'hitting'
+                                            ? data.ops
+                                            : data.whip,
+                                        position === 'hitting'
+                                            ? data.homeRuns
+                                            : data.strikeoutsPer9Inn
+                                    )}
+                                </div>
+                            </div>
+                        </motion.div>
                     </SubWrap>
                 )}
             </AnimatePresence>
@@ -177,10 +139,10 @@ const ItemWrap = styled(motion.li)`
     margin-top: -1px;
     background: white;
     overflow: hidden;
+    padding: 3% 3% 3% 3%;
 
     h1 {
-        padding: 4% 4% 4% 4%;
-        font-size: 150%;
+        font-size: 1.5rem;
         z-index: 1;
         opacity: 0.9;
     }
@@ -207,19 +169,11 @@ const Img = styled(motion.div)`
 `;
 
 const SubWrap = styled(motion.div)`
-    font-size: 15px;
     height: auto;
     width: 100%;
     display: flex;
     flex-direction: column;
     background: white;
-
-    h5 {
-        padding: 0% 4%;
-        font-size: 100%;
-        line-height: 250%;
-        text-align: left;
-    }
 `;
 
 export default Accordion;
