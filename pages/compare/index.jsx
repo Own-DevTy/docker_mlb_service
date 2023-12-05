@@ -3,8 +3,10 @@ import Plist, { Item } from '@/pages/compare/Plist';
 import Chart from '@/components/chart/chart';
 import PlayerTable from '@/components/table/PlayerTable';
 import React, { Fragment } from 'react';
+import { useSession } from 'next-auth/react';
 
 export default function CompareResult({ pid, position, playerData, players }) {
+    const { data, status } = useSession();
     const render = () => {
         return (
             <div className={styles.body}>
@@ -104,12 +106,16 @@ export async function getServerSideProps(context) {
                 );
             }
             if (res.status === 400 || res.status === 500)
-                return { notFound: true };
+                throw Error('server error');
             const data = await res.json();
             return data;
         })
-    );
-
+    ).catch(() => {
+        return false;
+    });
+    if (players_data === false) {
+        return { notFound: true };
+    }
     const player_data = await pid_res.json();
 
     return {
