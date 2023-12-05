@@ -16,7 +16,7 @@ export async function getPlayerInfo(position, offset, limit) {
               })
             : [];
 
-        return { nodes: playerInfo, size: data.size };
+        return { nodes: playerInfo, size: Math.floor(data.size) };
     } catch (error) {
         console.error('error:', error);
         throw error;

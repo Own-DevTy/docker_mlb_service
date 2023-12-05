@@ -28,7 +28,7 @@ const Component = () => {
             setData({
                 nodes: playerInfo.nodes,
                 pageInfo: {
-                    totalPages: playerInfo.size / LIMIT,
+                    totalPages: Math.floor(playerInfo.size / LIMIT),
                 },
             });
         } catch (error) {
@@ -86,31 +86,59 @@ const Component = () => {
                 <div
                     style={{
                         display: 'flex',
-                        justifyContent: 'flex-end',
+                        justifyContent: 'space-between',
                     }}
                 >
+                    <span></span>
                     <span>
-                        Page:{' '}
-                        {Array.from(
-                            { length: data.pageInfo.totalPages },
-                            (_, index) => (
-                                <button
-                                    key={index}
-                                    type="button"
-                                    style={{
-                                        fontWeight:
-                                            pagination.state.page === index
-                                                ? 'bold'
-                                                : 'normal',
-                                    }}
-                                    onClick={() =>
-                                        pagination.fns.onSetPage(index)
-                                    }
-                                >
-                                    {index + 1}
-                                </button>
-                            )
-                        )}
+                        페이지 : {pagination.state.page + 1} of{' '}
+                        {data.pageInfo.totalPages}{' '}
+                        <button
+                            type="button"
+                            disabled={pagination.state.page === 0}
+                            onClick={() => pagination.fns.onSetPage(0)}
+                        >
+                            {'|<'}
+                        </button>
+                        <button
+                            type="button"
+                            disabled={pagination.state.page === 0}
+                            onClick={() =>
+                                pagination.fns.onSetPage(
+                                    pagination.state.page - 1
+                                )
+                            }
+                        >
+                            {'<'}
+                        </button>
+                        <button
+                            type="button"
+                            disabled={
+                                pagination.state.page + 1 ===
+                                data.pageInfo.totalPages
+                            }
+                            onClick={() =>
+                                pagination.fns.onSetPage(
+                                    pagination.state.page + 1
+                                )
+                            }
+                        >
+                            {'>'}
+                        </button>
+                        <button
+                            type="button"
+                            disabled={
+                                pagination.state.page + 1 ===
+                                data.pageInfo.totalPages
+                            }
+                            onClick={() =>
+                                pagination.fns.onSetPage(
+                                    data.pageInfo.totalPages - 1
+                                )
+                            }
+                        >
+                            {'>|'}
+                        </button>
                     </span>
                 </div>
             )}
