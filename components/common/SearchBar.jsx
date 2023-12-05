@@ -18,9 +18,7 @@ export default function SearchBar({ props }) {
 
     useEffect(() => {
         async function fetchData() {
-            const res = await fetch(
-                `http://127.0.0.1:8000/api/v1/search/${keyword}`
-            );
+            const res = await fetch(`${process.env.api}/search/${keyword}`);
             const data = await res.json();
             setSearch({
                 searchData: {

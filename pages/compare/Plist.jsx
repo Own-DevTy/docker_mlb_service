@@ -4,7 +4,7 @@ import styles from '@/styles/Plist.module.css';
 import { motion, AnimatePresence } from 'framer-motion';
 
 //추후 삭제 import
-import Pstats from '@/components/table/Player2Table';
+import Pstats from '@/components/table/CompareTable';
 import Chart from '@/components/chart/chart';
 
 const items = [

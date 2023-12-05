@@ -38,5 +38,8 @@ next-env.d.ts
 #ide
 .idea
 
+#env
+.env
+
 # Ignore if files or directories contains test in that.
 *test*
