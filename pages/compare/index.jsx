@@ -1,8 +1,8 @@
 import styles from '@/styles/compare.module.css';
-import Plist from '@/pages/compare/Plist';
-import PlayerComponent from '@/components/table/fetchData';
+import Plist, { Item } from '@/pages/compare/Plist';
 import Chart from '@/components/chart/chart';
-import Player1Data from '@/components/table/Player1Table';
+import PlayerTable from '@/components/table/PlayerTable';
+import React, { Fragment } from 'react';
 
 export default function CompareResult({ pid, position, playerData, players }) {
     const render = () => {
@@ -17,13 +17,19 @@ export default function CompareResult({ pid, position, playerData, players }) {
                                 alt="Player"
                             />
                             <div className={styles.left_stats1}>
-                                <PlayerComponent />
+                                <div>이름 : {playerData.name}</div>
+                                <div>나이 : {playerData.age}</div>
+                                <div>키 : {playerData.height}</div>
+                                <div>몸무게 : {playerData.weight}</div>
                             </div>
                         </div>
                     </div>
                     <div className={styles.left_body}>
                         <div className={styles.left_stats2}>
-                            {Player1Data()}
+                            <PlayerTable
+                                data={playerData}
+                                position={position}
+                            />
                         </div>
                         <div className={styles.left_stats3}>
                             <div className={styles.left_stats3_1}>
@@ -52,7 +58,16 @@ export default function CompareResult({ pid, position, playerData, players }) {
                 </div>
 
                 <div className={styles.right}>
-                    <Plist />
+                    <Plist>
+                        {players.map((data, index) => (
+                            <Item
+                                key={index}
+                                playerData={playerData}
+                                data={data}
+                                position={position}
+                            ></Item>
+                        ))}
+                    </Plist>
                 </div>
             </div>
         );
@@ -63,6 +78,8 @@ export default function CompareResult({ pid, position, playerData, players }) {
 export async function getServerSideProps(context) {
     const pid = context.query?.pid;
     const position = context.query?.position;
+    const pids = context.query?.pids;
+
     if (position !== 'hitting' && position !== 'pitching')
         return { notFound: true };
 
@@ -77,21 +94,30 @@ export async function getServerSideProps(context) {
         return { notFound: true };
 
     let res;
-    if (position === 'hitting') {
-        res = await fetch(`${process.env.api}/all/hitting`);
-    } else {
-        res = await fetch(`${process.env.api}/all/pitching`);
-    }
+    const players_data = await Promise.all(
+        Array.from(JSON.parse(pids)).map(async (value) => {
+            if (position === 'hitting') {
+                res = await fetch(`${process.env.api}/player/${value}/hitting`);
+            } else {
+                res = await fetch(
+                    `${process.env.api}/player/${value}/pitching`
+                );
+            }
+            if (res.status === 400 || res.status === 500)
+                return { notFound: true };
+            const data = await res.json();
+            return data;
+        })
+    );
 
     const player_data = await pid_res.json();
-    const data = await res.json();
 
     return {
         props: {
             pid: pid,
             position: position,
             playerData: player_data,
-            players: data,
+            players: players_data,
         },
     };
 }
