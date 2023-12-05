@@ -64,6 +64,7 @@ class PitchingCreate(PlayerBase):
 
 
 class HittingStat(BaseModelEx):
+    id: int
     name: str
     age: int
     height: float
@@ -77,6 +78,7 @@ class HittingStat(BaseModelEx):
 
 
 class PitchingStat(BaseModelEx):
+    id: int
     name: str
     age: int
     height: float
