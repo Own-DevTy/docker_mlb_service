@@ -11,7 +11,6 @@ export default function SignUpForm() {
     const [idExists, setIdExists] = useState(false);
     const [emailExists, setEmailExists] = useState(false); // 이메일 존재 확인 
     const [formError, setFormError] = useState(false); // 폼 에러 상태
-    // const [isRegistered, setIsRegistered] = useState(false); // 가입 성공 상태
     const [passwordMatch, setPasswordMatch] = useState(false); // 비밀번호 일치 여부
 
     const [idValid, setIdValid] = useState(false);
@@ -19,6 +18,7 @@ export default function SignUpForm() {
     const [passwordValid, setPasswordValid] = useState(false);
     const [confirmPasswordValid, setConfirmPasswordValid] = useState(false);
     const [emailVaild, setEmailVaild] = useState(false); // 이메일 vaild 추가 
+    //오류 메세지 상태 저장 
     const [idMessage, setIdMessage] = useState('');
     const [passwordMessage, setPasswordMessage] = useState('');
     const [confirmPasswordMessage, setConfirmPasswordMessage] = useState('');
@@ -49,35 +49,38 @@ export default function SignUpForm() {
         }
     }, [formError]);
     
-    // 아이디 중복 검사 로직 (우선 임시로 더미 데이터로 검사)
-    const handleCheckId = () => {
-        const existingIds = ['user1', 'user2', 'user3']; // 더미 데이터
+    // 아이디 중복체크 버튼
+    const handleCheckId = async(e) => {
+        e.preventDefault();
+       
+        const response = await fetch(`${process.env.api}/user/validate/id/${id}`);
+        const result = await response.json(); 
+        console.log(result.user_id_validate);
 
-        if (existingIds.includes(id)) {
-            setIdExists(true);
-        } else {
-            setIdExists(false);
-        }
-
-        if (id === 'existingId') {
+        if (result.user_id_validate=="0") {
             setDuplicateIdMessage('이미 사용 중인 아이디입니다.');
             setIdExists(true);
-        } else {    
-            setDuplicateIdMessage('');
+        } else {
+            setDuplicateIdMessage('사용 가능한 아이디입니다.');
             setIdExists(false);
         }
-    };
+    }
 
-    // 이메일 중복 검사 로직 
-    const handleCheckEmail = () => {
-        if (email === 'existingEmail@example.com') {
-            setDuplicateEmailMessage('이미 사용 중인 이메일입니다.');
+    // 이메일 중복체크 버튼 
+    const handleCheckEmail = async(e) => {
+        e.preventDefault();
+
+        const response = await fetch(`${process.env.api}/user/validate/email/${email}`);
+        const result = await response.json(); 
+
+        if(result.email_validate=="1") {
+            setDuplicateEmailMessage('이미 사용중인 이메일입니다.');
             setEmailExists(true);
         } else {
-            setDuplicateEmailMessage('');
+            setDuplicateEmailMessage('사용 가능한 이메일입니다.');
             setEmailExists(false);
         }
-    };
+    }
 
     // 유효성 검사 (아이디)
     const handleId = (e) => {
@@ -87,7 +90,7 @@ export default function SignUpForm() {
             setIdMessage('아이디 형식이 올바르지 않습니다.');
             setIdValid(false);
         } else {
-            setIdMessage('올바른 아이디 형식입니다.');
+            setIdMessage('ID 중복 여부를 확인해주세요.');
             setIdValid(true);
         }
     };
@@ -139,12 +142,13 @@ export default function SignUpForm() {
             setEmailMessage('이메일 형식이 올바르지 않습니다.');
             setEmailVaild(false);
         } else {
-            setEmailMessage('올바른 이메일 형식입니다.');
+            setEmailMessage('이메일 중복 여부를 확인해주세요.');
             setEmailVaild(true);
         }
     }
 
     const handleSubmit = (e) => {
+
         // 필수 입력 칸이 비어 있는지 확인
         if (!id || !name || !password || !email) {
             setFormError(true);
@@ -172,12 +176,16 @@ export default function SignUpForm() {
             confirmPasswordInputRef.current.focus(); // 비밀번호 확인 입력 요소로 focus
             return;
         }
+       // 중복확인 안할 시 나타나는 메세지 추가 
+       if (idExists || emailExists) {
+        setFormError(true);
+        setIdMessage('');
+        setEmailMessage('사용 불가능한 이메일입니다.');
+        return;
+    }
 
         // 여기에 회원가입 처리 로직 추가
         console.log('회원가입 정보:', { id, name, password, gender, email });
-
-        //회원가입 성공 메시지 표시 -> 실제로 회원가입 처리하는 API 호출 등의 로직을 추가 (우선 지움)
-        // setIsRegistered(true);
     };
 
     return (
@@ -235,7 +243,7 @@ export default function SignUpForm() {
                         >
                             중복 확인
                         </button>
-                            {emailExists && (
+                            {!emailExists && (
                             <p> {duplicateEmailMessage} </p>
                             )}
                         </span>
@@ -338,7 +346,6 @@ export default function SignUpForm() {
                     >
                         가입하기
                     </button>
-                    {/* form 태그에 대한 submit 제거 후 버튼 클릭으로 handleSubmit 호출 */}
                     {formError && (
                         <div className={styles.submit_error_message}>
                             필수 입력 칸을 모두 채워주세요.
