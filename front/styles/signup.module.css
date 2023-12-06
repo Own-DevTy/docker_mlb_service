@@ -3,24 +3,21 @@
 .container {
     font-family: 'Noto Sans KR', sans-serif;
     margin: -1rem auto;
-    top: 18%;
-    bottom: 4%;
-    width: 100%;
-    max-width: 450px;
-    padding: 0 10px;
-
-    background-color:#dcdcdc;
-
+    height: 100%;
+    width: 45%;
+  
+    background-color: #DCDCDC;
     overflow: hidden;
     display: flex;
-    flex-direction: column;
+    flex-direction: column;  
 
     justify-content: center;
     align-items: center;
-  }
+}
 
 .contentWrapper {
-  width: 100%;
+  width: 80%;
+
   display: flex;
   flex-direction: column;
 }
@@ -31,17 +28,29 @@
     font-weight: 700;
     color: #262626;
     text-align: center;
-  }
+}
   
 .input_field {
   margin-bottom: 1.5rem;
-  }
+}
 
-.input_field div[valid="true"]:focus-within input {
+.input_field > div {
+    display: flex;
+    border-radius: 8px;
+    padding: 7px;
+    background-color: white;
+    border: 1px solid #e2e0e0;
+}
+
+.input_field > div[vaild="false"] {
+    border: 1px solid #ef0000;
+}
+
+.input_field > div[valid="true"]:focus-within {
     border: 1px solid #00EF00;
 }
 
-.input_field div[valid="false"]:focus-within input {
+.input_field > div[valid="false"]:focus-within {
     border: 1px solid #ef0000;
 }
 
@@ -49,47 +58,41 @@
   font-size: 12px;
   font-weight: 600;
   color: #262626;
-  }
+}
    
 .input { 
-  display: flex;
-  border-radius: 8px;
-  padding: 12px;
-  margin-top: 15px;
-  background-color: white;
-  border: 1px solid #e2e0e0;
   width: 100%;
   outline: none;
   border: none;
-  height: 35px;
-  font-size: 14px;
+  height: 1.6rem;
+  font-size: 15px;
   font-weight: 400;
-  margin-top: 5px;
   }
 
 .input::placeholder {
   color: #dadada;
 }
 
-.input_sexfield {
+.input_genderfield {
     display: flex;
     flex-direction: row; /* 가로 방향으로 배치 */
     align-items: center; /* 세로 가운데 정렬 */
-    margin-right: 56%;
-    margin-bottom: 10px; 
-  }
+    margin-right:50%;
+    margin-bottom: 15px; 
+}
+
 
 .Checkbutton {
     border-radius: 5px;
     background-color: #505050;
     color:#e2e0e0;
-  }
+}
 
 .error_message {
     margin-top: 8px;
     color: #ef0000;
     font-size: 10px;
-  }
+}
 
 .submitbutton {
     width: 100%;
@@ -101,7 +104,7 @@
     color: white;
     margin-bottom: 10px;
     cursor: pointer;
-  }
+}
   
 .submit_error_message {
   color: #ef0000;
