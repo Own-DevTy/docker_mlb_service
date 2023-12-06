@@ -1,19 +1,28 @@
 .up_box{
     display:flex;
+    flex-direction: column;
     margin-bottom: 1%;
     width:100%;
 }
 
-.player_info{
-    font-size: 90%;
-    width:45%;
-    margin-right: 2%;
+.player_info:first-child {
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
-.player_table{
-    width:55%;
-    text-align: center;
-    justify-content: center;
+.player_info{
+    display: flex;
+    flex-direction: row;
+    font-size: 1.2rem;
+
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+
+    width:100%;
+}
+
+.player_info > p{
+    margin-right: 1rem
 }
 
 .player_graph{
