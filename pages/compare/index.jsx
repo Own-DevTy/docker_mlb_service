@@ -1,10 +1,12 @@
 import styles from '@/styles/compare.module.css';
-import Plist from '@/pages/compare/Plist';
-import PlayerComponent from '@/components/table/fetchData';
+import Plist, { Item } from '@/pages/compare/Plist';
 import Chart from '@/components/chart/chart';
-import Player1Data from '@/components/table/Player1Table';
+import PlayerTable from '@/components/table/PlayerTable';
+import React, { Fragment } from 'react';
+import { useSession } from 'next-auth/react';
 
-function App() {
+export default function CompareResult({ pid, position, playerData, players }) {
+    const { data, status } = useSession();
     const render = () => {
         return (
             <div className={styles.body}>
@@ -13,28 +15,61 @@ function App() {
                         <div className={styles.circle_left}>
                             <img
                                 className={styles.thumb}
-                                src="https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:67:current.png/w_213,q_auto:best/v1/people/500871/headshot/67/current"
+                                src={`https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:67:current.png/w_213,q_auto:best/v1/people/${pid}/headshot/67/current`}
                                 alt="Player"
                             />
                             <div className={styles.left_stats1}>
-                                <PlayerComponent />
+                                <div>이름 : {playerData.name}</div>
+                                <div>나이 : {playerData.age}</div>
+                                <div>키 : {playerData.height}</div>
+                                <div>몸무게 : {playerData.weight}</div>
                             </div>
                         </div>
                     </div>
                     <div className={styles.left_body}>
                         <div className={styles.left_stats2}>
-                            {Player1Data()}
+                            <PlayerTable
+                                data={playerData}
+                                position={position}
+                            />
                         </div>
                         <div className={styles.left_stats3}>
                             <div className={styles.left_stats3_1}>
-                                {Chart(true, 'Eduardo Escobar', 1, 3, 2, 4, 6)}
+                                {Chart(
+                                    position === 'hitting',
+                                    playerData.name,
+                                    position === 'hitting'
+                                        ? playerData.avg
+                                        : playerData.strikeOuts,
+                                    position === 'hitting'
+                                        ? playerData.obp
+                                        : playerData.era,
+                                    position === 'hitting'
+                                        ? playerData.slg
+                                        : playerData.baseOnBalls,
+                                    position === 'hitting'
+                                        ? playerData.ops
+                                        : playerData.whip,
+                                    position === 'hitting'
+                                        ? playerData.homeRuns
+                                        : playerData.strikeoutsPer9Inn
+                                )}
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div className={styles.right}>
-                    <Plist />
+                    <Plist>
+                        {players.map((data, index) => (
+                            <Item
+                                key={index}
+                                playerData={playerData}
+                                data={data}
+                                position={position}
+                            ></Item>
+                        ))}
+                    </Plist>
                 </div>
             </div>
         );
@@ -42,4 +77,53 @@ function App() {
     return render();
 }
 
-export default App;
+export async function getServerSideProps(context) {
+    const pid = context.query?.pid;
+    const position = context.query?.position;
+    const pids = context.query?.pids;
+
+    if (position !== 'hitting' && position !== 'pitching')
+        return { notFound: true };
+
+    let pid_res;
+    if (position === 'hitting') {
+        pid_res = await fetch(`${process.env.api}/player/${pid}/hitting`);
+    } else {
+        pid_res = await fetch(`${process.env.api}/player/${pid}/pitching`);
+    }
+
+    if (pid_res.status === 400 || pid_res.status === 500)
+        return { notFound: true };
+
+    let res;
+    const players_data = await Promise.all(
+        Array.from(JSON.parse(pids)).map(async (value) => {
+            if (position === 'hitting') {
+                res = await fetch(`${process.env.api}/player/${value}/hitting`);
+            } else {
+                res = await fetch(
+                    `${process.env.api}/player/${value}/pitching`
+                );
+            }
+            if (res.status === 400 || res.status === 500)
+                throw Error('server error');
+            const data = await res.json();
+            return data;
+        })
+    ).catch(() => {
+        return false;
+    });
+    if (players_data === false) {
+        return { notFound: true };
+    }
+    const player_data = await pid_res.json();
+
+    return {
+        props: {
+            pid: pid,
+            position: position,
+            playerData: player_data,
+            players: players_data,
+        },
+    };
+}
