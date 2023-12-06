@@ -64,6 +64,12 @@ class PitchingCreate(PlayerBase):
 
 
 class HittingStat(BaseModelEx):
+    id: int
+    name: str
+    age: int
+    height: float
+    weight: float
+    team_name: str
     avg: str
     obp: str
     slg: str
@@ -72,6 +78,12 @@ class HittingStat(BaseModelEx):
 
 
 class PitchingStat(BaseModelEx):
+    id: int
+    name: str
+    age: int
+    height: float
+    weight: float
+    team_name: str
     strikeOuts: int
     era: str
     baseOnBalls: int
