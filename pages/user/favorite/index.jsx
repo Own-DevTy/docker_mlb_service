@@ -34,13 +34,13 @@ export default function UserFavorite({ user, props }) {
             <div className={styles.favoriteWrapper}>
                 {render && favorites.length !== 0 ? (
                     <div className={styles.table_title}>
-                        <h3>Data Table</h3>
+                        <h3>선수 즐겨찾기</h3>
                         <table className={styles.table_}>
                             <thead>
                                 <tr>
-                                    <th>Created_at</th>
-                                    <th>Player_Id</th>
-                                    <th>Position</th>
+                                    <th>생성 날짜</th>
+                                    <th>선수 ID</th>
+                                    <th>포지션</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -57,7 +57,7 @@ export default function UserFavorite({ user, props }) {
                                                 <td>{created_at}</td>
                                                 <td>{player_id}</td>
                                                 <td>{player_position ? '투수' : '타자'}</td>
-                                                <td>삭제 버튼 예정</td>
+                                                <td><button>Delete</button></td>
                                             </tr>
                                     </tbody>
                                 )
