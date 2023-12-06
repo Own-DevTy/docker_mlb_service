@@ -33,23 +33,36 @@ export default function UserFavorite({ user, props }) {
         <div className={styles.container}>
             <div className={styles.favoriteWrapper}>
                 {render && favorites.length !== 0 ? (
-                    <div>
-                        {favorites.map(
-                            ({
-                                id,
-                                user_id,
-                                created_at,
-                                player_id,
-                                player_position,
-                            }) => (
-                                <div key={id}>
-                                    <p>{user_id}</p>
-                                    <p>{created_at}</p>
-                                    <p>{player_id}</p>
-                                    <p>{player_position ? '투수' : '타자'}</p>
-                                </div>
-                            )
-                        )}
+                    <div className={styles.table_title}>
+                        <h3>Data Table</h3>
+                        <table className={styles.table_}>
+                            <thead>
+                                <tr>
+                                    <th>Created_at</th>
+                                    <th>Player_Id</th>
+                                    <th>Position</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            {favorites.map(
+                                ({
+                                    id,
+                                    user_id,
+                                    created_at,
+                                    player_id,
+                                    player_position,
+                                }) => (
+                                    <tbody key={id}>
+                                            <tr>
+                                                <td>{created_at}</td>
+                                                <td>{player_id}</td>
+                                                <td>{player_position ? '투수' : '타자'}</td>
+                                                <td>삭제 버튼 예정</td>
+                                            </tr>
+                                    </tbody>
+                                )
+                            )}
+                        </table>
                     </div>
                 ) : (
                     <Fragment>검색결과가 없습니다.</Fragment>
