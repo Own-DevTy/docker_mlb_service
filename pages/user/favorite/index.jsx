@@ -54,10 +54,20 @@ export default function UserFavorite({ user, props }) {
                                 }) => (
                                     <tbody key={id}>
                                             <tr>
-                                                <td>{created_at}</td>
+                                                <td>
+                                                {created_at.substr(0, 4)}년&nbsp;
+                                                {created_at.substr(5, 2)}월&nbsp;
+                                                {created_at.substr(8, 2)}일
+                                                </td>
                                                 <td>{player_id}</td>
                                                 <td>{player_position ? '투수' : '타자'}</td>
-                                                <td><button>Delete</button></td>
+                                                <td>
+                                                    <button onClick={
+                                                        () => buttonClickEvent(id)
+                                                    }>
+                                                        Delete
+                                                    </button>
+                                                </td>
                                             </tr>
                                     </tbody>
                                 )
@@ -70,6 +80,13 @@ export default function UserFavorite({ user, props }) {
             </div>
         </div>
     );
+}
+
+export async function buttonClickEvent(id) {
+    await fetch(`${process.env.api}/favorite/${id}`, {
+        method: "DELETE",
+    });
+    location.reload();
 }
 
 export async function getServerSideProps(context) {
