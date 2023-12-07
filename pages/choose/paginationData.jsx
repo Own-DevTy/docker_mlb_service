@@ -9,10 +9,27 @@ export async function getPlayerInfo(position, offset, limit) {
 
         const playerInfo = data[position]
             ? data[position].map((player) => {
-                  return {
-                      team_name: player.team_name,
-                      name: player.name,
-                  };
+                  if (position == 'pitching') {
+                      return {
+                          team_name: player.team_name,
+                          name: player.name,
+                          strikeOuts: player.strikeOuts,
+                          era: player.era,
+                          baseOnBalls: player.baseOnBalls,
+                          whip: player.whip,
+                          strikeoutsPer9Inn: player.strikeoutsPer9Inn,
+                      };
+                  } else if (position == 'hitting') {
+                      return {
+                          team_name: player.team_name,
+                          name: player.name,
+                          avg: player.avg,
+                          obp: player.obp,
+                          slg: player.slg,
+                          ops: player.ops,
+                          homeRuns: player.homeRuns,
+                      };
+                  }
               })
             : [];
 
