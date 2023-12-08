@@ -11,7 +11,7 @@ import {
     Cell,
 } from '@table-library/react-table-library/table';
 import { usePagination } from '@table-library/react-table-library/pagination';
-import { getPlayerInfo } from '@/pages/choose/paginationData.jsx';
+import getPlayerInfo from '@/pages/choose/paginationData.jsx';
 import { useTheme } from '@table-library/react-table-library/theme';
 
 const Component = () => {
@@ -54,7 +54,7 @@ const Component = () => {
                 },
             });
         } catch (error) {
-            console.error('Error fetching data:', error);
+            console.error('fetching data error:', error);
         }
     }, []);
 
@@ -76,7 +76,7 @@ const Component = () => {
         }
     );
     function handleCellClick(item, index) {
-        console.log(`Cell clicked for item at index ${index + 1}:`, item);
+        console.log(`셀 클릭! index ${index + 1}:`, item);
     }
 
     function onPaginationChange(action, state) {
@@ -98,6 +98,26 @@ const Component = () => {
                                     <HeaderRow>
                                         <HeaderCell>팀 이름</HeaderCell>
                                         <HeaderCell>선수 이름</HeaderCell>
+                                        <HeaderCell>
+                                            {position === 'hitting'
+                                                ? '타율'
+                                                : '삼진아웃'}
+                                        </HeaderCell>
+                                        <HeaderCell>
+                                            {position === 'hitting'
+                                                ? '타율'
+                                                : '삼진아웃'}
+                                        </HeaderCell>
+                                        <HeaderCell>
+                                            {position === 'hitting'
+                                                ? '타율'
+                                                : '삼진아웃'}
+                                        </HeaderCell>
+                                        <HeaderCell>
+                                            {position === 'hitting'
+                                                ? '타율'
+                                                : '삼진아웃'}
+                                        </HeaderCell>
                                     </HeaderRow>
                                 </Header>
 
