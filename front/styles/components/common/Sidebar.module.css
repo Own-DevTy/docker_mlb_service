@@ -4,9 +4,10 @@
 
     border-radius: 1.5rem 0 0 1.5rem;
 
-    max-width: 32rem;
+    max-width: 38rem;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
 
     background-color: #45474B;
 
@@ -14,8 +15,12 @@
     top: 0;
     right: 0;
 
+    z-index: 999;
+
     border-left: 1px solid black;
-    padding: 1rem;
+    padding: 3rem;
+
+    overflow-y: hidden;
 }
 
 .sidebar .exit {
@@ -35,6 +40,54 @@
     background-color: #FFFFFF;
 }
 
-.sidebar h2 {
+.sidebar h1 {
     color: #FFFFFF;
+    letter-spacing: 1rem;
+}
+
+.history::-webkit-scrollbar {
+    display: none;
+}
+
+.history {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-y: auto;
+}
+
+.historyItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    color: #FFFFFF;
+    border-radius: 1rem;
+    border: 1px solid #FFFFFF;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.historyItem > a:hover {
+    color: #54a3f7;
+}
+
+.historyItem > div {
+    display: flex;
+    align-items: center;
+}
+
+.historyItem > div > * {
+    margin-left: 1rem;
+}
+
+.historyItem > div > *:last-of-type:hover {
+    cursor: pointer;
+    color: indianred;
+}
+
+.warnMessage {
+    padding-left: 0.5rem;
+    color: #54a3f7;
+
 }
