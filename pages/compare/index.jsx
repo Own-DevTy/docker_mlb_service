@@ -2,11 +2,54 @@ import styles from '@/styles/compare.module.css';
 import Plist, { Item } from '@/pages/compare/Plist';
 import Chart from '@/components/chart/chart';
 import PlayerTable from '@/components/table/PlayerTable';
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
+import { useHistoryCookies } from '@/cookie/useHistoryCookies';
 
 export default function CompareResult({ pid, position, playerData, players }) {
-    const { data, status } = useSession();
+    const { data: session, status } = useSession();
+    const { historyCookies, setHistoryCookie, removeHistoryCookie } =
+        useHistoryCookies();
+
+    useEffect(() => {
+        if (status === 'loading') {
+        } else if (status === 'authenticated') {
+            async function postHistory() {
+                await players.map(async (data) => {
+                    const res = await fetch(
+                        `${process.env.api}/compare_history/${session.user.id}`,
+                        {
+                            method: 'post',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                player_fir: pid,
+                                player_sec: data.id,
+                                player_position: position !== 'hitting',
+                            }),
+                        }
+                    );
+                });
+            }
+
+            postHistory();
+        } else if (status === 'unauthenticated') {
+            players.map((value) => {
+                if (historyCookies[`${pid} ${value.id}`] === undefined) {
+                    setHistoryCookie(
+                        `${pid} ${value.id}`,
+                        `{"key": "${pid} ${value.id}",
+                        "player1":${JSON.stringify(
+                            playerData
+                        )},"player2":${JSON.stringify(value)},
+                        "position":"${position}"}`
+                    );
+                }
+            });
+        }
+    }, [status]);
+
     const render = () => {
         return (
             <div className={styles.body}>
