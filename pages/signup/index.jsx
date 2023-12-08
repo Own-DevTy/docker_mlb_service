@@ -22,8 +22,8 @@ export default function SignUpForm() {
     const [passwordMessage, setPasswordMessage] = useState('');
     const [confirmPasswordMessage, setConfirmPasswordMessage] = useState('');
     const [emailMessage, setEmailMessage] = useState(''); 
-    const [duplicateIdMessage, setDuplicateIdMessage] = useState(''); // 아이디 체크 메세지 
-    const [duplicateEmailMessage, setDuplicateEmailMessage] = useState('');// 이메일 체크 메세지 
+    const [duplicateIdMessage, setDuplicateIdMessage] = useState(''); // 아이디 중복 체크 메세지 
+    const [duplicateEmailMessage, setDuplicateEmailMessage] = useState('');// 이메일 중복 체크 메세지 
     //필수 입력 요소 Ref
     const idInputRef = useRef(null);
     const nameInputRef = useRef(null); 
@@ -62,7 +62,7 @@ export default function SignUpForm() {
         const result = await response.json(); 
         console.log(result.user_id_validate);
 
-        if (result.user_id_validate==0) {
+        if (result.user_id_validate==0) { 
             setDuplicateIdMessage('이미 사용 중인 아이디입니다.');
             setIdExists(true);
         } else {
@@ -88,7 +88,7 @@ export default function SignUpForm() {
         }
     };
 
-    // 유효성 검사 (아이디)
+    // 유효성 검사 (정규식 표현)
     const handleId = (e) => {
         setId(e.target.value);
         const regex = /^[a-zA-Z0-9]{3,12}$/;
@@ -97,7 +97,6 @@ export default function SignUpForm() {
             setIdValid(false);
             setDuplicateIdMessage(''); // 아이디 유효성 검사 후 중복 메시지 초기화
         } else {
-            setIdMessage('ID 중복 여부 확인해주세요');
             setIdValid(true);
         }
     };
@@ -150,7 +149,6 @@ export default function SignUpForm() {
             setEmailValid(false);
             setDuplicateEmailMessage(''); // 유효성 검사 후 중복 메세지 초기화 
         } else {
-            setEmailMessage('이메일 중복 여부 확인해주세요.');
             setEmailValid(true);
         }
     }
@@ -188,7 +186,7 @@ export default function SignUpForm() {
         if (idValid && emailValid && nameVaild && passwordValid && confirmPasswordValid) {
             setFormError(false);
         }
-
+        // 중복버튼을 클릭 안할시(중복에 관한 메세지가 안나올 시) alert형태 메세지 출력
         if(duplicateIdMessage.length == 0){
             let message = '';
             if(idValid) {
