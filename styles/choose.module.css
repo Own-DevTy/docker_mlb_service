@@ -1,0 +1,48 @@
+.main_box{
+    overflow: hidden;
+}
+.intro_player{
+    border-radius: 5px;
+    border: 2px solid black;  
+    justify-content: center;
+    margin-bottom: 1%;
+}
+
+.player_table{
+    width: auto;
+    height: auto;
+    border-radius: 5px;
+    border: 2px solid black;  
+    justify-content: left;
+    padding: 1%;
+}
+
+.compare_btn{
+    margin-top:1%;
+    text-align: center;
+}
+
+.Button1 {
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 25%;
+    height: 10%;
+    color: #444444;
+    background: #F3F3F3;
+    border: 1px #DADADA solid;
+    padding: 5px 10px;
+    border-radius: 2px;
+    font-weight: bold;
+    outline: none;
+}
+
+.Button1:hover {
+    border: 1px #C6C6C6 solid;
+    box-shadow: 1px 1px 1px #EAEAEA;
+    color: #333333;
+    background: #F7F7F7;
+}
+
+.Button1:active {
+    box-shadow: inset 1px 1px 1px #DFDFDF;   
+}
