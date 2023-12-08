@@ -44,18 +44,19 @@ const Component = () => {
         `,
     });
 
-    const fetchData = React.useCallback(async (offset, limit) => {
-        try {
-            const playerInfo = await getPlayerInfo('hitting', offset, limit);
-            setData({
-                nodes: playerInfo.nodes,
-                pageInfo: {
-                    totalPages: Math.floor(playerInfo.size / LIMIT),
-                },
+    const fetchData = React.useCallback((offset, limit) => {
+        getPlayerInfo('hitting', offset, limit)
+            .then((playerInfo) => {
+                setData({
+                    nodes: playerInfo.nodes,
+                    pageInfo: {
+                        totalPages: Math.floor(playerInfo.size / LIMIT),
+                    },
+                });
+            })
+            .catch((error) => {
+                console.error('fetching data error:', error);
             });
-        } catch (error) {
-            console.error('fetching data error:', error);
-        }
     }, []);
 
     React.useEffect(() => {
@@ -98,26 +99,6 @@ const Component = () => {
                                     <HeaderRow>
                                         <HeaderCell>팀 이름</HeaderCell>
                                         <HeaderCell>선수 이름</HeaderCell>
-                                        <HeaderCell>
-                                            {position === 'hitting'
-                                                ? '타율'
-                                                : '삼진아웃'}
-                                        </HeaderCell>
-                                        <HeaderCell>
-                                            {position === 'hitting'
-                                                ? '타율'
-                                                : '삼진아웃'}
-                                        </HeaderCell>
-                                        <HeaderCell>
-                                            {position === 'hitting'
-                                                ? '타율'
-                                                : '삼진아웃'}
-                                        </HeaderCell>
-                                        <HeaderCell>
-                                            {position === 'hitting'
-                                                ? '타율'
-                                                : '삼진아웃'}
-                                        </HeaderCell>
                                     </HeaderRow>
                                 </Header>
 
