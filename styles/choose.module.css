@@ -1,24 +1,32 @@
-.main_box{
+.main_box {
     overflow: hidden;
+    height: 100%;
 }
-.intro_player{
+
+.intro_player {
+    max-height: 40%;
+    min-height: 30%;
     border-radius: 5px;
-    border: 2px solid black;  
+    border: 2px solid black;
     justify-content: center;
     margin-bottom: 1%;
 }
 
-.player_table{
+.player_table {
     width: auto;
     height: auto;
     border-radius: 5px;
-    border: 2px solid black;  
+    border: 2px solid black;
     justify-content: left;
     padding: 1%;
 }
 
-.compare_btn{
-    margin-top:1%;
+.compare_btn {
+    display: flex;
+
+    justify-content: right;
+    margin-top: 1rem;
+    margin-right: 0.5rem;
     text-align: center;
 }
 
@@ -44,5 +52,5 @@
 }
 
 .Button1:active {
-    box-shadow: inset 1px 1px 1px #DFDFDF;   
+    box-shadow: inset 1px 1px 1px #DFDFDF;
 }
