@@ -143,7 +143,6 @@ const ItemWrap = styled(motion.li)`
 
     h1 {
         font-size: 1.5rem;
-        z-index: 1;
         opacity: 0.9;
     }
 `;
