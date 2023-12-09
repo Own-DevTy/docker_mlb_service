@@ -90,7 +90,6 @@ export default function UserFavorite({ user, props }) {
                                                 </td>
                                                 <td>{player_id}
                                                     {`${showName(player_id, player_position)}`}
-                                                    {`${async() => await showName(player_id, player_bool)}`}
                                                 </td>
                                                 <td>{player_position ? '투수' : '타자'}</td>
                                                 <td>

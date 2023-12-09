@@ -61,10 +61,10 @@ export const Item = ({ playerData, data, position }) => {
                                 <div className={styles.player_info}>
                                     <p>이름 : {data.name}</p>
                                 </div>
-                                <div className={styles.player_info}>
+                                <div className={styles.player_info_}>
                                     <p>나이 : {data.age}</p>
-                                    <p>키 : {data.height}</p>
-                                    <p>몸무게 : {data.weight}</p>
+                                    <p>&nbsp;&nbsp;키 : {data.height}</p>
+                                    <p>&nbsp;&nbsp;몸무게 : {data.weight}</p>
                                 </div>
                                 <PlayerTable data={data} position={position} />
                             </div>
@@ -74,32 +74,32 @@ export const Item = ({ playerData, data, position }) => {
                                         position === 'hitting',
                                         playerData.name,
                                         position === 'hitting'
-                                            ? playerData.avg
+                                            ? playerData.avg * 100
                                             : playerData.strikeOuts,
                                         position === 'hitting'
-                                            ? playerData.obp
+                                            ? playerData.obp * 100
                                             : playerData.era,
                                         position === 'hitting'
-                                            ? playerData.slg
+                                            ? playerData.slg * 100
                                             : playerData.baseOnBalls,
                                         position === 'hitting'
-                                            ? playerData.ops
+                                            ? playerData.ops * 100
                                             : playerData.whip,
                                         position === 'hitting'
                                             ? playerData.homeRuns
                                             : playerData.strikeoutsPer9Inn,
                                         data.name,
                                         position === 'hitting'
-                                            ? data.avg
+                                            ? data.avg * 100
                                             : data.strikeOuts,
                                         position === 'hitting'
-                                            ? data.obp
+                                            ? data.obp * 100
                                             : data.era,
                                         position === 'hitting'
-                                            ? data.slg
+                                            ? data.slg * 100
                                             : data.baseOnBalls,
                                         position === 'hitting'
-                                            ? data.ops
+                                            ? data.ops * 100
                                             : data.whip,
                                         position === 'hitting'
                                             ? data.homeRuns
