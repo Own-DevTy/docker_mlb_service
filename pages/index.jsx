@@ -3,12 +3,82 @@ import Image from 'next/image';
 import styles from '@/styles/pages/Home.module.css';
 import SelectButton from '@/components/common/SelectButton';
 import { useState } from 'react';
+import {
+    Table,
+    Header,
+    HeaderRow,
+    Body,
+    Row,
+    HeaderCell,
+    Cell,
+} from '@table-library/react-table-library/table';
+import { useTheme } from '@table-library/react-table-library/theme';
 
 export default function Home(props) {
     const [position, setPosition] = useState(true);
+    const theme = useTheme({
+        Row: `
+            cursor: pointer;
+            &:hover .td {
+                color: #007FFF;
+            }
+          `,
+        BaseCell: `
+            width: 80%;
+            text-align: left;
+            padding: 1%;
+            &:nth-child(-n+2) {
+                width: 150%;
+            }
+            &:nth-child(2) {
+                margin-left: 50%;
+            }
+            &:nth-child(3) {
+                margin-left: 100%;
+            }
+            &:nth-child(n+4):nth-child(-n+7) {
+                margin-left: 100%;
+            }
+          `,
+    });
+
     return (
         <div>
             <SelectButton selectPosition={setPosition} position={position} />
+            <div className={styles.main} position={position}>
+                {position === 'hitting'
+                    ? '나이가 많은 타자 Top3'
+                    : '나이가 많은 투수 Top3'}
+                (console.log{props.hit_age})
+                <div className={styles.table_age}>
+                    <Table data={props.hit_age} theme={theme}>
+                        {(tableList) => (
+                            <>
+                                <Header>
+                                    <HeaderRow>
+                                        <HeaderCell>팀 이름</HeaderCell>
+                                        <HeaderCell>선수 이름</HeaderCell>
+                                        <HeaderCell>나이</HeaderCell>
+                                        <HeaderCell>키</HeaderCell>
+                                        <HeaderCell>몸무게</HeaderCell>
+                                    </HeaderRow>
+                                </Header>
+                                <Body>
+                                    {tableList.map((item, index) => (
+                                        <Row key={index}>
+                                            <Cell>{item.team_name}</Cell>
+                                            <Cell>{item.name}</Cell>
+                                            <Cell>{item.age}</Cell>
+                                            <Cell>{item.height}</Cell>
+                                            <Cell>{item.weight}</Cell>
+                                        </Row>
+                                    ))}
+                                </Body>
+                            </>
+                        )}
+                    </Table>
+                </div>
+            </div>
         </div>
     );
 }
