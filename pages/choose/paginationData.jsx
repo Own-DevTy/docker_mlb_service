@@ -16,6 +16,7 @@ export default function getPlayerInfo(position, offset, limit) {
                         baseOnBalls: player.baseOnBalls,
                         whip: player.whip,
                         strikeoutsPer9Inn: player.strikeoutsPer9Inn,
+                        id: player.id,
                     };
                 } else if (position === 'hitting') {
                     return {
@@ -26,6 +27,7 @@ export default function getPlayerInfo(position, offset, limit) {
                         slg: player.slg,
                         ops: player.ops,
                         homeRuns: player.homeRuns,
+                        id: player.id,
                     };
                 }
             });
