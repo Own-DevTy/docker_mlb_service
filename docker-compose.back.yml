@@ -11,6 +11,8 @@ services:
       dockerfile: back.Dockerfile
     ports:
       - 8000:8000
+    networks:
+      - service
 
   db:
     image: mysql
@@ -23,4 +25,11 @@ services:
       - --collation-server=utf8mb4_unicode_ci
     ports:
       - 3306:3306
-    
+    networks:
+      - service
+
+networks:
+  service:
+    driver: bridge
+    external: true
+    internal: true

@@ -6,6 +6,11 @@ services:
       context: ./
       dockerfile: front.Dockerfile
     env_file:
-      - .env
+      - .env.front
     ports:
       - 3000:3000
+
+networks:
+  service:
+    external: true
+      
