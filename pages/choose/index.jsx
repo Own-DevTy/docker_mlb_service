@@ -10,12 +10,52 @@ import {
     Cell,
 } from '@table-library/react-table-library/table';
 import { usePagination } from '@table-library/react-table-library/pagination';
-import getPlayerInfo from '@/pages/choose/paginationData.jsx';
 import { useTheme } from '@table-library/react-table-library/theme';
 import { Fragment, useCallback, useEffect, useState } from 'react';
 import PlayerTable from '@/components/table/PlayerTableForChoose';
 import { BiBaseball } from 'react-icons/bi';
 import { FaBaseballBatBall } from 'react-icons/fa6';
+
+function getPlayerInfo(pid, position, offset, limit) {
+    return fetch(
+        `${process.env.api}/all/${position}?skip=${offset}&limit=${limit}`
+    )
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            const playerInfo = data[position].map((player) => {
+                if (position === 'pitching') {
+                    return {
+                        team_name: player.team_name,
+                        name: player.name,
+                        strikeOuts: player.strikeOuts,
+                        era: player.era,
+                        baseOnBalls: player.baseOnBalls,
+                        whip: player.whip,
+                        strikeoutsPer9Inn: player.strikeoutsPer9Inn,
+                        id: player.id,
+                    };
+                } else if (position === 'hitting') {
+                    return {
+                        team_name: player.team_name,
+                        name: player.name,
+                        avg: player.avg,
+                        obp: player.obp,
+                        slg: player.slg,
+                        ops: player.ops,
+                        homeRuns: player.homeRuns,
+                        id: player.id,
+                    };
+                }
+            });
+
+            return {
+                nodes: playerInfo.filter((player) => player.id !== pid),
+                size: Math.floor(data.size - 1),
+            };
+        });
+}
 
 const Component = ({ pid, position, player }) => {
     const LIMIT = 10;
@@ -55,7 +95,7 @@ const Component = ({ pid, position, player }) => {
     });
 
     const fetchData = useCallback((offset, limit) => {
-        getPlayerInfo(position, offset, limit)
+        getPlayerInfo(pid, position, offset, limit)
             .then((playerInfo) => {
                 setData({
                     nodes: playerInfo.nodes,
@@ -86,29 +126,34 @@ const Component = ({ pid, position, player }) => {
             isServer: true,
         }
     );
-    const [selectedItemIds, setSelectedItemIds] = useState([]);
+    const [selectedItem, setSelectedItem] = useState([]);
 
     //리스트에서 항목 제거
     const handleRemoveItem = (index) => {
-        const newSelectedItemIds = [...selectedItemIds];
+        const newSelectedItemIds = [...selectedItem];
         newSelectedItemIds.splice(index, 1);
-        setSelectedItemIds(newSelectedItemIds);
+        setSelectedItem(newSelectedItemIds);
     };
 
     function handleCellClick(item, index) {
         const itemId = item.id;
         const itemName = item.name;
 
-        if (selectedItemIds.length < 5) {
-            if (!selectedItemIds.includes(itemId)) {
-                setSelectedItemIds([...selectedItemIds, itemId]);
+        if (selectedItem.length < 5) {
+            if (!selectedItem.some((item) => item.id === itemId)) {
+                setSelectedItem([
+                    ...selectedItem,
+                    { id: itemId, name: itemName },
+                ]);
 
+                // 아이템을 클릭할 때 URL을 직접 조작하여 변경
                 const queryParams = new URLSearchParams({
                     pid,
                     position,
-                    pids: [...selectedItemIds, itemId].join(','),
+                    pids: [...selectedItem, itemId].join(','),
                 });
 
+                // 새로운 URL을 만들어서 비교 시작 버튼의 href로 설정
                 const newUrl = `/compare?${queryParams.toString()}`;
                 const compareButton = document.getElementById('compareButton');
                 compareButton.href = newUrl;
@@ -116,6 +161,12 @@ const Component = ({ pid, position, player }) => {
         } else {
             alert('최대 5명까지만 선택할 수 있습니다.');
         }
+    }
+
+    function ClickCell({ item, index, children }) {
+        return (
+            <Cell onClick={() => handleCellClick(item, index)}>{children}</Cell>
+        );
     }
 
     function onPaginationChange(action, state) {
@@ -188,65 +239,58 @@ const Component = ({ pid, position, player }) => {
                                 <Body>
                                     {tableList.map((item, index) => (
                                         <Row key={index}>
-                                            <Cell
-                                                onClick={() =>
-                                                    handleCellClick(item, index)
-                                                }
+                                            <ClickCell
+                                                item={item}
+                                                index={index}
                                             >
                                                 {item.team_name}
-                                            </Cell>
-                                            <Cell
-                                                onClick={() =>
-                                                    handleCellClick(item, index)
-                                                }
+                                            </ClickCell>
+                                            <ClickCell
+                                                item={item}
+                                                index={index}
                                             >
                                                 {item.name}
-                                            </Cell>
-                                            <Cell
-                                                onClick={() =>
-                                                    handleCellClick(item, index)
-                                                }
+                                            </ClickCell>
+                                            <ClickCell
+                                                item={item}
+                                                index={index}
                                             >
                                                 {position === 'hitting'
                                                     ? item.avg
                                                     : item.strikeOuts}
-                                            </Cell>
-                                            <Cell
-                                                onClick={() =>
-                                                    handleCellClick(item, index)
-                                                }
+                                            </ClickCell>
+                                            <ClickCell
+                                                item={item}
+                                                index={index}
                                             >
                                                 {position === 'hitting'
                                                     ? item.obp
                                                     : item.era}
-                                            </Cell>
-                                            <Cell
-                                                onClick={() =>
-                                                    handleCellClick(item, index)
-                                                }
+                                            </ClickCell>
+                                            <ClickCell
+                                                item={item}
+                                                index={index}
                                             >
                                                 {position === 'hitting'
                                                     ? item.slg
                                                     : item.baseOnBalls}
-                                            </Cell>
-                                            <Cell
-                                                onClick={() =>
-                                                    handleCellClick(item, index)
-                                                }
+                                            </ClickCell>
+                                            <ClickCell
+                                                item={item}
+                                                index={index}
                                             >
                                                 {position === 'hitting'
                                                     ? item.ops
                                                     : item.whip}
-                                            </Cell>
-                                            <Cell
-                                                onClick={() =>
-                                                    handleCellClick(item, index)
-                                                }
+                                            </ClickCell>
+                                            <ClickCell
+                                                item={item}
+                                                index={index}
                                             >
                                                 {position === 'hitting'
                                                     ? item.homeRuns
                                                     : item.strikeoutsPer9Inn}
-                                            </Cell>
+                                            </ClickCell>
                                         </Row>
                                     ))}
                                 </Body>
@@ -316,9 +360,9 @@ const Component = ({ pid, position, player }) => {
             <div className={styles.right_box}>
                 <p className={styles.list_text}>[선택 목록]</p>
                 <div className={styles.list}>
-                    {selectedItemIds.map((id, index) => (
+                    {selectedItem.map((item, index) => (
                         <div key={index}>
-                            <span>{`${index + 1}.${player.name}`}</span>
+                            <span>{`${index + 1}. ${item.name}`}</span>
                             <button
                                 onClick={() => handleRemoveItem(index)}
                                 className={styles.Button2}
@@ -329,10 +373,11 @@ const Component = ({ pid, position, player }) => {
                     ))}
                 </div>
                 <div className={styles.compare_btn}>
+                    {/* id를 추가하고 비교 시작 버튼의 href를 동적으로 설정 */}
                     <a
                         id="compareButton"
-                        href={`/compare?pid=${pid}&position=${position}&pids=[${selectedItemIds.join(
-                            ','
+                        href={`/compare?pid=${pid}&position=${position}&pids=[${selectedItem.map(
+                            (item) => item.id
                         )}]`}
                     >
                         <button className={styles.Button1}>비교 시작</button>

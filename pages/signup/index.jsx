@@ -8,41 +8,41 @@ export default function SignUpForm() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [gender, setGender] = useState('');
     const [email, setEmail] = useState('');
-    const [idExists, setIdExists] = useState(false); // 아이디 존재 확인 
-    const [emailExists, setEmailExists] = useState(false); // 이메일 존재 확인 
-    const [formError, setFormError] = useState(false); // 폼 에러 상태 
-    //유효성 검사 
+    const [idExists, setIdExists] = useState(false); // 아이디 존재 확인
+    const [emailExists, setEmailExists] = useState(false); // 이메일 존재 확인
+    const [formError, setFormError] = useState(false); // 폼 에러 상태
+    //유효성 검사
     const [idValid, setIdValid] = useState(false);
-    const [nameVaild, setNameValid] = useState(false); 
+    const [nameVaild, setNameValid] = useState(false);
     const [passwordValid, setPasswordValid] = useState(false);
     const [confirmPasswordValid, setConfirmPasswordValid] = useState(false);
     const [emailValid, setEmailValid] = useState(false);
-    //오류 메세지 상태 저장 
+    //오류 메세지 상태 저장
     const [idMessage, setIdMessage] = useState('');
     const [passwordMessage, setPasswordMessage] = useState('');
     const [confirmPasswordMessage, setConfirmPasswordMessage] = useState('');
-    const [emailMessage, setEmailMessage] = useState(''); 
-    const [duplicateIdMessage, setDuplicateIdMessage] = useState(''); // 아이디 중복 체크 메세지 
-    const [duplicateEmailMessage, setDuplicateEmailMessage] = useState('');// 이메일 중복 체크 메세지 
+    const [emailMessage, setEmailMessage] = useState('');
+    const [duplicateIdMessage, setDuplicateIdMessage] = useState(''); // 아이디 중복 체크 메세지
+    const [duplicateEmailMessage, setDuplicateEmailMessage] = useState(''); // 이메일 중복 체크 메세지
     //필수 입력 요소 Ref
     const idInputRef = useRef(null);
-    const nameInputRef = useRef(null); 
-    const emailInputRef = useRef(null); 
-    const passwordInputRef = useRef(null); 
-    const confirmPasswordInputRef = useRef(null); 
+    const nameInputRef = useRef(null);
+    const emailInputRef = useRef(null);
+    const passwordInputRef = useRef(null);
+    const confirmPasswordInputRef = useRef(null);
 
     useEffect(() => {
         if (
             (idInputRef.current ||
-            nameInputRef.current ||
-            emailInputRef.current ||
-            passwordInputRef.current ||
-            confirmPassword.current) &&
+                nameInputRef.current ||
+                emailInputRef.current ||
+                passwordInputRef.current ||
+                confirmPassword.current) &&
             formError
         ) {
-            if(!id){
+            if (!id) {
                 idInputRef.current.focus();
-            } else if(!name) {
+            } else if (!name) {
                 nameInputRef.current.focus();
             } else if (!email) {
                 emailInputRef.current.focus();
@@ -53,16 +53,17 @@ export default function SignUpForm() {
             }
         }
     }, [formError]);
-    
-    // 아이디 중복체크 버튼 
-    const handleCheckId = async(e) => {
-        e.preventDefault();
-       
-        const response = await fetch(`${process.env.api}/user/validate/id/${id}`);
-        const result = await response.json(); 
-        console.log(result.user_id_validate);
 
-        if (result.user_id_validate==0) { 
+    // 아이디 중복체크 버튼
+    const handleCheckId = async (e) => {
+        e.preventDefault();
+
+        const response = await fetch(
+            `${process.env.api}/user/validate/id/${id}`
+        );
+        const result = await response.json();
+
+        if (result.user_id_validate == 0) {
             setDuplicateIdMessage('이미 사용 중인 아이디입니다.');
             setIdExists(true);
         } else {
@@ -71,15 +72,16 @@ export default function SignUpForm() {
         }
     };
 
-    // 이메일 중복체크 버튼 
-    const handleCheckEmail = async(e) => {
+    // 이메일 중복체크 버튼
+    const handleCheckEmail = async (e) => {
         e.preventDefault();
 
-        const response = await fetch(`${process.env.api}/user/validate/email/${email}`);
+        const response = await fetch(
+            `${process.env.api}/user/validate/email/${email}`
+        );
         const result = await response.json();
-        console.log(result.email_validate); 
 
-        if(result.email_validate==0) {
+        if (result.email_validate == 0) {
             setDuplicateEmailMessage('이미 사용중인 이메일입니다.');
             setEmailExists(true);
         } else {
@@ -111,7 +113,7 @@ export default function SignUpForm() {
         }
     };
 
-    // 비번 
+    // 비번
     const handlePassword = (e) => {
         setPassword(e.target.value);
         const regex =
@@ -127,7 +129,7 @@ export default function SignUpForm() {
         }
     };
 
-    //비번 확인 
+    //비번 확인
     const handleConfirmPassword = (e) => {
         setConfirmPassword(e.target.value);
         if (e.target.value !== password) {
@@ -139,26 +141,26 @@ export default function SignUpForm() {
         }
     };
 
-    // 이메일 유효성 검사 추가 
+    // 이메일 유효성 검사 추가
     const handleEmail = (e) => {
         setEmail(e.target.value);
-        const regex = 
-        /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
+        const regex =
+            /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
         if (!regex.test(e.target.value)) {
             setEmailMessage('이메일 형식이 올바르지 않습니다.');
             setEmailValid(false);
-            setDuplicateEmailMessage(''); // 유효성 검사 후 중복 메세지 초기화 
+            setDuplicateEmailMessage(''); // 유효성 검사 후 중복 메세지 초기화
         } else {
             setEmailValid(true);
         }
-    }
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-     
+
         // 필수 입력 칸이 비어 있는지 확인 (빈 필수 입력칸으로 focus)
         if (!id || !email || !name || !password) {
-            setFormError(true);  
+            setFormError(true);
 
             if (!id) {
                 idInputRef.current.focus();
@@ -175,31 +177,37 @@ export default function SignUpForm() {
             }
         }
 
-         // 비번 확인 (비번이랑 맞지 않을 시 focus)
-         if (password !== confirmPassword) {
-            confirmPasswordInputRef.current.focus(); 
+        // 비번 확인 (비번이랑 맞지 않을 시 focus)
+        if (password !== confirmPassword) {
+            confirmPasswordInputRef.current.focus();
             setFormError(true);
             return;
         }
 
-         // 필수 입력 칸이 모두 채워졌을 때 메시지 숨기기
-        if (idValid && emailValid && nameVaild && passwordValid && confirmPasswordValid) {
+        // 필수 입력 칸이 모두 채워졌을 때 메시지 숨기기
+        if (
+            idValid &&
+            emailValid &&
+            nameVaild &&
+            passwordValid &&
+            confirmPasswordValid
+        ) {
             setFormError(false);
         }
         // 중복버튼을 클릭 안할시(중복에 관한 메세지가 안나올 시) alert형태 메세지 출력
-        if(duplicateIdMessage.length == 0){
+        if (duplicateIdMessage.length == 0) {
             let message = '';
-            if(idValid) {
-                message += '아이디 중복여부를 확인해주세요.\n'
+            if (idValid) {
+                message += '아이디 중복여부를 확인해주세요.\n';
             }
             alert(message);
             return;
         }
 
-        if(duplicateEmailMessage.length == 0){
+        if (duplicateEmailMessage.length == 0) {
             let message = '';
-            if(emailValid) {
-                message += '이메일 중복여부를 확인해주세요.\n'
+            if (emailValid) {
+                message += '이메일 중복여부를 확인해주세요.\n';
             }
             alert(message);
             return;
@@ -208,17 +216,36 @@ export default function SignUpForm() {
         if (idExists || emailExists) {
             let message = '';
             if (idExists) {
-                message += '사용할 수 없는 아이디로 입력해주세요.\n';
+                message += '아이디의 중복 여부를 확인해주세요.\n';
             }
             if (emailExists) {
-                message += '사용할 수 없는 이메일로 입력해주세요.\n';
+                message += '이메일의 중복 여부를 확인해주세요.\n';
             }
             alert(message);
             return;
         }
 
-        // 여기에 회원가입 처리 로직 추가
-        console.log('회원가입 정보:', { id, name, password, gender, email });
+        fetch(`${process.env.api}/user/signup`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                user_id: id,
+                password: password,
+                email: email,
+                full_name: name,
+                sex: gender !== 'male',
+            }),
+        })
+            .catch((value) => {
+                alert('오류가 발생했습니다.');
+                location.reload();
+            })
+            .then((value) => {
+                alert('로그인에 성공하였습니다.');
+                window.location.replace('/signin');
+            });
     };
 
     return (
@@ -227,8 +254,8 @@ export default function SignUpForm() {
                 <div className={styles.contentWrapper}>
                     <div className={styles.contentTitle}>회원가입</div>
                     <div className={styles.input_field}>
-                        <label className={styles.inputTitle}> 아이디 </label> 
-                        <div valid={idValid ? "true" : "false"}>
+                        <label className={styles.inputTitle}> 아이디 </label>
+                        <div valid={idValid ? 'true' : 'false'}>
                             <input
                                 className={styles.input}
                                 type="text"
@@ -236,27 +263,24 @@ export default function SignUpForm() {
                                 placeholder="아이디 입력"
                                 onChange={handleId}
                                 required
-                                ref ={idInputRef}
-                                >
-                            </input>
+                                ref={idInputRef}
+                            ></input>
                             <button
-                            onClick={handleCheckId}
-                            className={styles.Checkbutton}
-                            disabled={!idValid || !id} // 아이디가 유효하고 입력되었을 때만 버튼 활성화
-                        >
-                            중복 확인
+                                onClick={handleCheckId}
+                                className={styles.Checkbutton}
+                                disabled={!idValid || !id} // 아이디가 유효하고 입력되었을 때만 버튼 활성화
+                            >
+                                중복 확인
                             </button>
                         </div>
-                        <span className = {styles.error_message}> 
+                        <span className={styles.error_message}>
                             <p>{duplicateIdMessage}</p>
-                            {!idValid && id.length > 0 && (
-                                <p> {idMessage} </p>
-                            )}
+                            {!idValid && id.length > 0 && <p> {idMessage} </p>}
                         </span>
                     </div>
                     <div className={styles.input_field}>
                         <label className={styles.inputTitle}> 이메일</label>
-                        <div valid={emailValid ? "true" : "false"}>
+                        <div valid={emailValid ? 'true' : 'false'}>
                             <input
                                 className={styles.input}
                                 type="email"
@@ -264,26 +288,26 @@ export default function SignUpForm() {
                                 placeholder="이메일 입력"
                                 onChange={handleEmail}
                                 required
-                                ref={emailInputRef}> 
-                                </input>
-                            <button 
-                            onClick={handleCheckEmail} 
-                            className={styles.Checkbutton}
-                            disabled={!emailValid || !email} // 이메일이 유효하고 입력된 경우에만 버튼 활성화
-                        >
-                            중복 확인
+                                ref={emailInputRef}
+                            ></input>
+                            <button
+                                onClick={handleCheckEmail}
+                                className={styles.Checkbutton}
+                                disabled={!emailValid || !email} // 이메일이 유효하고 입력된 경우에만 버튼 활성화
+                            >
+                                중복 확인
                             </button>
                         </div>
                         <span className={styles.error_message}>
                             <p>{duplicateEmailMessage}</p>
-                            {!emailValid && email.length > 0 && ( 
+                            {!emailValid && email.length > 0 && (
                                 <p> {emailMessage} </p>
                             )}
                         </span>
                     </div>
                     <div className={styles.input_field}>
                         <label className={styles.inputTitle}> 이름 </label>
-                        <div valid={nameVaild ? "true" : "false"}>
+                        <div valid={nameVaild ? 'true' : 'false'}>
                             <input
                                 className={styles.input}
                                 type="text"
@@ -297,7 +321,7 @@ export default function SignUpForm() {
                     </div>
                     <div className={styles.input_field}>
                         <label className={styles.inputTitle}> 비밀번호 </label>
-                        <div valid={passwordValid ? "true" : "false"}>
+                        <div valid={passwordValid ? 'true' : 'false'}>
                             <input
                                 className={styles.input}
                                 type="password"
@@ -308,18 +332,21 @@ export default function SignUpForm() {
                                 ref={passwordInputRef}
                             />
                         </div>
-                            <span className={styles.error_message}>
-                                {!passwordValid && password.length > 0 && (
-                                    <p> {passwordMessage} </p>
-                                )}
-                                {passwordValid && password.length > 0 && (
-                                    <p> {passwordMessage} </p>
-                                )}
-                            </span>
+                        <span className={styles.error_message}>
+                            {!passwordValid && password.length > 0 && (
+                                <p> {passwordMessage} </p>
+                            )}
+                            {passwordValid && password.length > 0 && (
+                                <p> {passwordMessage} </p>
+                            )}
+                        </span>
                     </div>
                     <div className={styles.input_field}>
-                        <label className={styles.inputTitle}> 비밀번호 확인</label>
-                        <div valid={confirmPasswordValid ? "true" : "false"}>
+                        <label className={styles.inputTitle}>
+                            {' '}
+                            비밀번호 확인
+                        </label>
+                        <div valid={confirmPasswordValid ? 'true' : 'false'}>
                             <input
                                 className={styles.input}
                                 type="password"
@@ -331,28 +358,30 @@ export default function SignUpForm() {
                             />
                         </div>
                         <span className={styles.error_message}>
-                            {!confirmPasswordValid && confirmPassword.length > 0 && (
-                                <p> {confirmPasswordMessage} </p>
-                            )}
-                            {confirmPasswordValid && confirmPassword.length > 0 && (
-                                <p> {confirmPasswordMessage} </p>
-                            )}
+                            {!confirmPasswordValid &&
+                                confirmPassword.length > 0 && (
+                                    <p> {confirmPasswordMessage} </p>
+                                )}
+                            {confirmPasswordValid &&
+                                confirmPassword.length > 0 && (
+                                    <p> {confirmPasswordMessage} </p>
+                                )}
                         </span>
                     </div>
                     <div className={styles.input_genderfield}>
                         <label className={styles.inputTitle}>성별</label>
-                            <div>
-                                <input 
-                                    className={styles.inputgender}
-                                    type="radio"
-                                    id="male"
-                                    name="gender"
-                                    value="male"
-                                    checked={gender === 'male'}
-                                    onChange={(e) => setGender(e.target.value)}
-                                />
-                                <label htmlFor="male">남자</label>
-                            </div>
+                        <div>
+                            <input
+                                className={styles.inputgender}
+                                type="radio"
+                                id="male"
+                                name="gender"
+                                value="male"
+                                checked={gender === 'male'}
+                                onChange={(e) => setGender(e.target.value)}
+                            />
+                            <label htmlFor="male">남자</label>
+                        </div>
                         <div>
                             <input
                                 className={styles.inputgender}
@@ -364,18 +393,6 @@ export default function SignUpForm() {
                                 onChange={(e) => setGender(e.target.value)}
                             />
                             <label htmlFor="female">여자</label>
-                        </div>
-                        <div>
-                            <input
-                                className={styles.inputgender}        
-                                type="radio"
-                                id="private"
-                                name="gender"
-                                value=""
-                                checked={gender === ''}
-                                onChange={(e) => setGender(e.target.value)}
-                            />
-                            <label htmlFor="private">비공개</label>
                         </div>
                     </div>
                     <button
@@ -389,11 +406,9 @@ export default function SignUpForm() {
                         <div className={styles.submit_error_message}>
                             필수 입력 칸을 모두 채워주세요.
                         </div>
-                    )}    
+                    )}
                 </div>
             </form>
         </div>
     );
 }
-
-
