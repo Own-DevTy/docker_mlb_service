@@ -100,15 +100,18 @@ const Component = ({ pid, position, player }) => {
         const itemName = item.name;
 
         if (selectedItemIds.length < 5) {
+            // 중복된 id는 허용하지 않음
             if (!selectedItemIds.includes(itemId)) {
                 setSelectedItemIds([...selectedItemIds, itemId]);
 
+                // 아이템을 클릭할 때 URL을 직접 조작하여 변경
                 const queryParams = new URLSearchParams({
                     pid,
                     position,
                     pids: [...selectedItemIds, itemId].join(','),
                 });
 
+                // 새로운 URL을 만들어서 비교 시작 버튼의 href로 설정
                 const newUrl = `/compare?${queryParams.toString()}`;
                 const compareButton = document.getElementById('compareButton');
                 compareButton.href = newUrl;
@@ -318,7 +321,8 @@ const Component = ({ pid, position, player }) => {
                 <div className={styles.list}>
                     {selectedItemIds.map((id, index) => (
                         <div key={index}>
-                            <span>{`${index + 1}.${player.name}`}</span>
+                            {/* 여기서 id를 name으로 변경 */}
+                            <span>{`${index + 1}.${item.name}`}</span>
                             <button
                                 onClick={() => handleRemoveItem(index)}
                                 className={styles.Button2}
@@ -329,11 +333,12 @@ const Component = ({ pid, position, player }) => {
                     ))}
                 </div>
                 <div className={styles.compare_btn}>
+                    {/* id를 추가하고 비교 시작 버튼의 href를 동적으로 설정 */}
                     <a
                         id="compareButton"
-                        href={`/compare?pid=${pid}&position=${position}&pids=[${selectedItemIds.join(
+                        href={`/compare?pid=${pid}&position=${position}&pids=${selectedItemIds.join(
                             ','
-                        )}]`}
+                        )}`}
                     >
                         <button className={styles.Button1}>비교 시작</button>
                     </a>
