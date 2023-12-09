@@ -62,7 +62,6 @@ export default function SignUpForm() {
             `${process.env.api}/user/validate/id/${id}`
         );
         const result = await response.json();
-        console.log(result.user_id_validate);
 
         if (result.user_id_validate == 0) {
             setDuplicateIdMessage('이미 사용 중인 아이디입니다.');
@@ -81,7 +80,6 @@ export default function SignUpForm() {
             `${process.env.api}/user/validate/email/${email}`
         );
         const result = await response.json();
-        console.log(result.email_validate);
 
         if (result.email_validate == 0) {
             setDuplicateEmailMessage('이미 사용중인 이메일입니다.');
@@ -246,7 +244,6 @@ export default function SignUpForm() {
             })
             .then((value) => {
                 alert('로그인에 성공하였습니다.');
-                console.log(value);
                 window.location.replace('/signin');
             });
     };
