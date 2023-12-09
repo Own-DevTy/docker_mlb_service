@@ -106,7 +106,9 @@ export default function UserFavorite({ user, props }) {
                         </table>
                     </div>
                 ) : (
-                    <Fragment>검색결과가 없습니다.</Fragment>
+                    <div className={styles.error}>
+                        검색결과가 없습니다.
+                    </div>
                 )}
             </div>
         </div>

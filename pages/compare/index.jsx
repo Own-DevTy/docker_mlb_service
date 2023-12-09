@@ -82,7 +82,7 @@ export default function CompareResult({ pid, position, playerData, players }) {
                                     position === 'hitting',
                                     playerData.name,
                                     position === 'hitting'
-                                        ? Number(playerData.avg) * 100
+                                        ? playerData.avg * 100
                                         : playerData.strikeOuts,
                                     position === 'hitting'
                                         ? playerData.obp * 100
