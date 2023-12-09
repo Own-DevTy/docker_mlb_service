@@ -96,7 +96,7 @@ export default function SearchBar({ props }) {
                                 {search.searchData?.hitting?.map(
                                     ({ name, id }) => (
                                         <Link
-                                            href={'/' + id}
+                                            href={`/choose?pid=${id}&position=hitting`}
                                             key={id}
                                             className={styles.searchItem}
                                         >
@@ -110,7 +110,7 @@ export default function SearchBar({ props }) {
                                 {search.searchData?.pitching?.map(
                                     ({ name, id }) => (
                                         <Link
-                                            href={'/' + id}
+                                            href={`/choose?pid=${id}&position=hitting`}
                                             key={id}
                                             className={styles.searchItem}
                                         >
@@ -118,20 +118,20 @@ export default function SearchBar({ props }) {
                                         </Link>
                                     )
                                 )}
-                                {search.searchData?.team?.length !== 0 && (
-                                    <div>팀</div>
-                                )}
-                                {search.searchData?.team?.map(
-                                    ({ name, id }) => (
-                                        <Link
-                                            href={'/' + id}
-                                            key={id}
-                                            className={styles.searchItem}
-                                        >
-                                            <small>{name}</small>
-                                        </Link>
-                                    )
-                                )}
+                                {/*{search.searchData?.team?.length !== 0 && (*/}
+                                {/*    <div>팀</div>*/}
+                                {/*)}*/}
+                                {/*{search.searchData?.team?.map(*/}
+                                {/*    ({ name, id }) => (*/}
+                                {/*        <Link*/}
+                                {/*            href={'/' + id}*/}
+                                {/*            key={id}*/}
+                                {/*            className={styles.searchItem}*/}
+                                {/*        >*/}
+                                {/*            <small>{name}</small>*/}
+                                {/*        </Link>*/}
+                                {/*    )*/}
+                                {/*)}*/}
                             </Fragment>
                         )}
                     </div>
