@@ -4,13 +4,7 @@ import styles from '@/styles/pages/Home.module.css';
 import SelectButton from '@/components/common/SelectButton';
 import { useState } from 'react';
 
-/**
- * @param AL
- * @param NL
- * @param AL.teams[]
- * @param NL.teams[]
- */
-export default function Home({ AL, NL }) {
+export default function Home(props) {
     const [position, setPosition] = useState(true);
     return (
         <div>
