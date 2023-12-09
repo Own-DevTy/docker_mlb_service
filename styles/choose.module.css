@@ -5,10 +5,53 @@
 }
 
 .intro_player {
+    padding: 1rem;
     border-radius: 5px;
     border: 2px solid black;
+
+    display: flex;
+    flex-direction: row;
+
     justify-content: center;
     margin-bottom: 1%;
+}
+
+
+.thumb {
+    width: 200px;
+    height: 200px;
+    border-radius: 3px;
+    margin: 0 2rem 0 0;
+    border: 1px solid #000000;
+    object-fit: cover;
+}
+
+.statWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.statWrapper > div:first-child {
+    margin-top: 2rem;
+}
+
+.statWrapper > *:last-child {
+    margin-bottom: 2rem;
+}
+
+.statWrapper > div {
+    margin-bottom: 1rem;
+
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+}
+
+.statWrapper > div > div{
+    margin-right: 1.5rem;
 }
 
 .player_table {

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import styles from '@/styles/choose.module.css';
 
 import {
@@ -13,12 +12,15 @@ import {
 import { usePagination } from '@table-library/react-table-library/pagination';
 import getPlayerInfo from '@/pages/choose/paginationData.jsx';
 import { useTheme } from '@table-library/react-table-library/theme';
-import { Fragment } from 'react';
+import { Fragment, useCallback, useEffect, useState } from 'react';
+import PlayerTable from '@/components/table/PlayerTableForChoose';
+import { BiBaseball } from 'react-icons/bi';
+import { FaBaseballBatBall } from 'react-icons/fa6';
 
-const Component = () => {
+const Component = ({ pid, position, player }) => {
     const LIMIT = 10;
 
-    const [data, setData] = React.useState({
+    const [data, setData] = useState({
         nodes: [],
         pageInfo: {
             totalPages: 0,
@@ -52,9 +54,7 @@ const Component = () => {
       `,
     });
 
-    const position = 'hitting';
-
-    const fetchData = React.useCallback((offset, limit) => {
+    const fetchData = useCallback((offset, limit) => {
         getPlayerInfo(position, offset, limit)
             .then((playerInfo) => {
                 setData({
@@ -69,7 +69,7 @@ const Component = () => {
             });
     }, []);
 
-    React.useEffect(() => {
+    useEffect(() => {
         fetchData(0, LIMIT);
     }, [fetchData]);
 
@@ -86,7 +86,7 @@ const Component = () => {
             isServer: true,
         }
     );
-    const [selectedItemIds, setSelectedItemIds] = React.useState([]);
+    const [selectedItemIds, setSelectedItemIds] = useState([]);
 
     //리스트에서 항목 제거
     const handleRemoveItem = (index) => {
@@ -117,7 +117,28 @@ const Component = () => {
         <div className={styles.main_box}>
             <div className={styles.left_box}>
                 <div className={styles.intro_player}>
-                    <p>인트로 선수</p>{' '}
+                    <img
+                        className={styles.thumb}
+                        src={`https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:67:current.png/w_213,q_auto:best/v1/people/${pid}/headshot/67/current`}
+                        alt="Player"
+                    />
+
+                    <div className={styles.statWrapper}>
+                        <div className={styles}>
+                            <div>이름: {player.name}</div>
+                            <div>나이: {player.age}</div>
+                            <div>키: {player.height}</div>
+                            <div>몸무게: {player.weight}</div>
+                        </div>
+                        <div>
+                            {position !== 'hitting' ? (
+                                <BiBaseball fontSize={'2rem'} />
+                            ) : (
+                                <FaBaseballBatBall fontSize={'2rem'} />
+                            )}
+                        </div>
+                        <PlayerTable data={player} position={position} />
+                    </div>
                 </div>
                 <div className={styles.player_table}>
                     <Table data={data} pagination={pagination} theme={theme}>
@@ -309,3 +330,31 @@ const Component = () => {
 };
 
 export default Component;
+
+export async function getServerSideProps(context) {
+    const pid = context.query?.pid;
+    const position = context.query?.position;
+
+    if (position !== 'hitting' && position !== 'pitching')
+        return { notFound: true };
+
+    let pid_res;
+    if (position === 'hitting') {
+        pid_res = await fetch(`${process.env.api}/player/${pid}/hitting`);
+    } else {
+        pid_res = await fetch(`${process.env.api}/player/${pid}/pitching`);
+    }
+
+    if (pid_res.status === 400 || pid_res.status === 500)
+        return { notFound: true };
+
+    const player_data = await pid_res.json();
+
+    return {
+        props: {
+            pid: pid,
+            position: position,
+            player: player_data,
+        },
+    };
+}
