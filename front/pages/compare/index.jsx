@@ -64,7 +64,7 @@ export default function CompareResult({ pid, position, playerData, players }) {
                             <div className={styles.left_stats1}>
                                 <div>이름 : {playerData.name}</div>
                                 <div>나이 : {playerData.age}</div>
-                                <div>키 : {playerData.height}</div>
+                                <div>키&nbsp;&nbsp;&nbsp; : {playerData.height}</div>
                                 <div>몸무게 : {playerData.weight}</div>
                             </div>
                         </div>
@@ -82,16 +82,16 @@ export default function CompareResult({ pid, position, playerData, players }) {
                                     position === 'hitting',
                                     playerData.name,
                                     position === 'hitting'
-                                        ? playerData.avg
+                                        ? Number(playerData.avg) * 100
                                         : playerData.strikeOuts,
                                     position === 'hitting'
-                                        ? playerData.obp
+                                        ? playerData.obp * 100
                                         : playerData.era,
                                     position === 'hitting'
-                                        ? playerData.slg
+                                        ? playerData.slg * 100
                                         : playerData.baseOnBalls,
                                     position === 'hitting'
-                                        ? playerData.ops
+                                        ? playerData.ops * 100
                                         : playerData.whip,
                                     position === 'hitting'
                                         ? playerData.homeRuns

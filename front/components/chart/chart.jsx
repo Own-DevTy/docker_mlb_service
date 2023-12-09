@@ -79,7 +79,7 @@ export default function Chart(
                     x_data4,
                     x_data5
                 ],
-                backgroundColor: 'rgba(223, 53, 58, 0.3)',
+                backgroundColor: 'rgba(223, 53, 58, 0.4)',
                 borderColor: 'rgba(223, 53, 18, 0.4)',
                 borderWidth: 2,
                 pointBorderColor: 'rgba(223, 53, 18, 0.5)',
@@ -93,7 +93,7 @@ export default function Chart(
                     y_data4,
                     y_data5
                 ],
-                backgroundColor: 'rgba(14, 51, 101, 0.3)',
+                backgroundColor: 'rgba(14, 51, 101, 0.2)',
                 borderColor: 'rgba(14, 51, 101, 0.4)',
                 borderWidth: 2,
                 pointBorderColor: 'rgba(14, 51, 101, 0.5)',
