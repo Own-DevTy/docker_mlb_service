@@ -1,0 +1,109 @@
+.main_box {
+    display: flex;
+    overflow: hidden;
+    height: auto;
+}
+
+.intro_player {
+    padding: 1rem;
+    border-radius: 5px;
+    border: 2px solid black;
+
+    display: flex;
+    flex-direction: row;
+
+    justify-content: center;
+    margin-bottom: 1%;
+}
+
+
+.thumb {
+    width: 200px;
+    height: 200px;
+    border-radius: 3px;
+    margin: 0 2rem 0 0;
+    border: 1px solid #000000;
+    object-fit: cover;
+}
+
+.statWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.statWrapper > div:first-child {
+    margin-top: 2rem;
+}
+
+.statWrapper > *:last-child {
+    margin-bottom: 2rem;
+}
+
+.statWrapper > div {
+    margin-bottom: 1rem;
+
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+}
+
+.statWrapper > div > div{
+    margin-right: 1.5rem;
+}
+
+.player_table {
+    width: auto;
+    height: auto;
+    border-radius: 5px;
+    border: 2px solid black;
+    justify-content: left;
+    padding: 1%;
+}
+
+.compare_btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    margin: 0.5rem;
+    text-align: center;
+}
+
+.Button1 {
+    font-size: 1.1rem;
+    cursor: pointer;
+    color: #444444;
+    background: #F3F3F3;
+    border: 1px #DADADA solid;
+    padding: 5px 10px;
+    border-radius: 2px;
+    font-weight: bold;
+    outline: none;
+}
+
+.Button1:hover {
+    border: 1px #C6C6C6 solid;
+    box-shadow: 1px 1px 1px #EAEAEA;
+    color: #333333;
+    background: #F7F7F7;
+}
+
+.Button1:active {
+    box-shadow: inset 1px 1px 1px #DFDFDF;
+}
+
+.right_box{
+    width: 15%;
+    height:100%;
+    text-align: center;
+    border-radius: 5px;
+    border: 2px solid #000000;
+}
+
+.left_box{
+    width: 100%;
+    flex-direction: column;
+    margin-right: 1rem;
+}
