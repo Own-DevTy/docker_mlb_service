@@ -96,13 +96,22 @@ const Component = ({ pid, position, player }) => {
     };
 
     function handleCellClick(item, index) {
-        console.log(`셀 클릭! index ${index + 1}:`, item);
         const itemId = item.id;
+        const itemName = item.name;
 
         if (selectedItemIds.length < 5) {
-            // 중복된 id는 허용하지 않음
             if (!selectedItemIds.includes(itemId)) {
                 setSelectedItemIds([...selectedItemIds, itemId]);
+
+                const queryParams = new URLSearchParams({
+                    pid,
+                    position,
+                    pids: [...selectedItemIds, itemId].join(','),
+                });
+
+                const newUrl = `/compare?${queryParams.toString()}`;
+                const compareButton = document.getElementById('compareButton');
+                compareButton.href = newUrl;
             }
         } else {
             alert('최대 5명까지만 선택할 수 있습니다.');
@@ -124,7 +133,7 @@ const Component = ({ pid, position, player }) => {
                     />
 
                     <div className={styles.statWrapper}>
-                        <div className={styles}>
+                        <div>
                             <div>이름: {player.name}</div>
                             <div>나이: {player.age}</div>
                             <div>키: {player.height}</div>
@@ -165,7 +174,7 @@ const Component = ({ pid, position, player }) => {
                                         </HeaderCell>
                                         <HeaderCell>
                                             {position === 'hitting'
-                                                ? '총루율'
+                                                ? '출루율+장타율'
                                                 : '출루 허용'}
                                         </HeaderCell>
                                         <HeaderCell>
@@ -305,11 +314,11 @@ const Component = ({ pid, position, player }) => {
                 </div>
             </div>
             <div className={styles.right_box}>
-                <p>선택 목록</p>
+                <p className={styles.list_text}>[선택 목록]</p>
                 <div className={styles.list}>
                     {selectedItemIds.map((id, index) => (
                         <div key={index}>
-                            <span>{`${index + 1}: ${id}`}</span>
+                            <span>{`${index + 1}.${player.name}`}</span>
                             <button
                                 onClick={() => handleRemoveItem(index)}
                                 className={styles.Button2}
@@ -320,7 +329,12 @@ const Component = ({ pid, position, player }) => {
                     ))}
                 </div>
                 <div className={styles.compare_btn}>
-                    <a href="./compare">
+                    <a
+                        id="compareButton"
+                        href={`/compare?pid=${pid}&position=${position}&pids=[${selectedItemIds.join(
+                            ','
+                        )}]`}
+                    >
                         <button className={styles.Button1}>비교 시작</button>
                     </a>
                 </div>
