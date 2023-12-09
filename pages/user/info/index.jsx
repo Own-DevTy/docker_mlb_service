@@ -33,7 +33,11 @@ export default function UserInfo({ user, props }) {
                             </tr>
                             <tr>
                                 <th>생성일자</th>
-                                <td>{user.created_at}</td>
+                                <td>
+                                    {user.created_at.substr(0, 4)}년&nbsp;
+                                    {user.created_at.substr(5, 2)}월&nbsp;
+                                    {user.created_at.substr(8, 2)}일
+                                </td>
                             </tr>
                         </tbody>
                     </table>
