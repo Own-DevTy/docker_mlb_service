@@ -14,6 +14,20 @@ import {
 } from '@table-library/react-table-library/table';
 import { useTheme } from '@table-library/react-table-library/theme';
 
+function ClickCell({ children, pid, position }) {
+    return (
+        <Cell>
+            <Link
+                href={`/choose?pid=${pid}&position=${
+                    position ? 'pitching' : 'hitting'
+                }`}
+            >
+                {children}
+            </Link>
+        </Cell>
+    );
+}
+
 export default function Home(props) {
     const [position, setPosition] = useState(true);
     const theme = useTheme({
@@ -27,31 +41,19 @@ export default function Home(props) {
             width: 80%;
             text-align: left;
             padding: 1%;
-            &:nth-child(-n+2) {
-                width: 150%;
-            }
-            &:nth-child(2) {
-                margin-left: 50%;
-            }
-            &:nth-child(3) {
-                margin-left: 100%;
-            }
-            &:nth-child(n+4):nth-child(-n+7) {
-                margin-left: 100%;
-            }
           `,
     });
 
     return (
         <div>
             <SelectButton selectPosition={setPosition} position={position} />
-            <div className={styles.main} position={position}>
-                {position === 'hitting'
-                    ? '나이가 많은 타자 Top3'
-                    : '나이가 많은 투수 Top3'}
-                (console.log{props.hit_age})
+            <div className={styles.main}>
+                {position ? '나이가 많은 타자 Top3' : '나이가 많은 투수 Top3'}
                 <div className={styles.table_age}>
-                    <Table data={props.hit_age} theme={theme}>
+                    <Table
+                        data={position ? props.hit_age : props.pit_age}
+                        theme={theme}
+                    >
                         {(tableList) => (
                             <>
                                 <Header>
@@ -66,11 +68,21 @@ export default function Home(props) {
                                 <Body>
                                     {tableList.map((item, index) => (
                                         <Row key={index}>
-                                            <Cell>{item.team_name}</Cell>
-                                            <Cell>{item.name}</Cell>
-                                            <Cell>{item.age}</Cell>
-                                            <Cell>{item.height}</Cell>
-                                            <Cell>{item.weight}</Cell>
+                                            <ClickCell pid={item.id}>
+                                                {item.team_name}
+                                            </ClickCell>
+                                            <ClickCell pid={item.id}>
+                                                {item.name}
+                                            </ClickCell>
+                                            <ClickCell pid={item.id}>
+                                                {item.age}
+                                            </ClickCell>
+                                            <ClickCell pid={item.id}>
+                                                {item.height}
+                                            </ClickCell>
+                                            <ClickCell pid={item.id}>
+                                                {item.weight}
+                                            </ClickCell>
                                         </Row>
                                     ))}
                                 </Body>
@@ -130,16 +142,16 @@ export async function getServerSideProps() {
 
     return {
         props: {
-            hit_like,
-            hit_age,
-            hit_length,
-            hit_height,
-            hit_weight,
-            pit_like,
-            pit_age,
-            pit_length,
-            pit_height,
-            pit_weight,
+            hit_like: { nodes: hit_like },
+            hit_age: { nodes: hit_age },
+            hit_length: { nodes: hit_length },
+            hit_height: { nodes: hit_height },
+            hit_weight: { nodes: hit_weight },
+            pit_lie: { nodes: pit_like },
+            pit_age: { nodes: pit_age },
+            pit_length: { nodes: pit_length },
+            pit_height: { nodes: pit_height },
+            pit_weight: { nodes: pit_weight },
         },
     };
 }
