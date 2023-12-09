@@ -89,7 +89,7 @@ export default function UserFavorite({ user, props }) {
                                                 {created_at.substr(8, 2)}일
                                                 </td>
                                                 <td>{player_id}
-                                                    {`${showName(player_id, player_position)}`}
+                                                    {/* {`${showName(player_id, player_position)}`} */}
                                                 </td>
                                                 <td>{player_position ? '투수' : '타자'}</td>
                                                 <td>
@@ -106,7 +106,9 @@ export default function UserFavorite({ user, props }) {
                         </table>
                     </div>
                 ) : (
-                    <Fragment>검색결과가 없습니다.</Fragment>
+                    <div className={styles.error}>
+                        검색결과가 없습니다.
+                    </div>
                 )}
             </div>
         </div>
