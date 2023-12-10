@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import styles from '@/styles/Signup.module.css';
 
-export default async function SignUpForm() {
+export default function SignUpForm() {
     const [id, setId] = useState('');
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
