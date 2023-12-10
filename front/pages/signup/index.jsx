@@ -224,7 +224,7 @@ export default function SignUpForm() {
             return;
         }
 
-        fetch(`http://0.0.0.0:8000/user/signup`, {
+        fetch(`http://0.0.0.0:8000/api/v1/user/signup`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
