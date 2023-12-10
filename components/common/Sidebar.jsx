@@ -103,13 +103,13 @@ function HistoryInDB({ setOpen, id }) {
                 data.histories.map(
                     async ({ id, player_fir, player_sec, player_position }) => {
                         const fir = await fetch(
-                            `${process.env.api}/player/${player_fir}/${
+                            `http://0.0.0.0:8000/api/v1/player/${player_fir}/${
                                 player_position ? 'pitching' : 'hitting'
                             }`
                         );
 
                         const sec = await fetch(
-                            `${process.env.api}/player/${player_sec}/${
+                            `http://0.0.0.0:8000/api/v1/player/${player_sec}/${
                                 player_position ? 'pitching' : 'hitting'
                             }`
                         );
