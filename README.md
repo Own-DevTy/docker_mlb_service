@@ -42,5 +42,5 @@ MYSQL_PASSWORD=serverTeam5 // default user pw
 ## Run Docker-Compose FE&BE Server
 
 ```
-docker-compose -f docker-compose.back.yml up -d
+docker-compose up -d
 ```
