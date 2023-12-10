@@ -17,7 +17,7 @@ export default function CompareResult({ pid, position, playerData, players }) {
             async function postHistory() {
                 await players.map(async (data) => {
                     const res = await fetch(
-                        `${process.env.api}/compare_history/${session.user.id}`,
+                        `http://0.0.0.0:8000/api/v1/compare_history/${session.user.id}`,
                         {
                             method: 'post',
                             headers: {
@@ -64,7 +64,9 @@ export default function CompareResult({ pid, position, playerData, players }) {
                             <div className={styles.left_stats1}>
                                 <div>이름 : {playerData.name}</div>
                                 <div>나이 : {playerData.age}</div>
-                                <div>키&nbsp;&nbsp;&nbsp; : {playerData.height}</div>
+                                <div>
+                                    키&nbsp;&nbsp;&nbsp; : {playerData.height}
+                                </div>
                                 <div>몸무게 : {playerData.weight}</div>
                             </div>
                         </div>
