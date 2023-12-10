@@ -1,4 +1,3 @@
-'use server';
 import { useEffect, useState, useRef } from 'react';
 import styles from '@/styles/Signup.module.css';
 
