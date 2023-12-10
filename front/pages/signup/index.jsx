@@ -1,7 +1,8 @@
+'use server';
 import { useEffect, useState, useRef } from 'react';
 import styles from '@/styles/Signup.module.css';
 
-export default function SignUpForm() {
+export default async function SignUpForm() {
     const [id, setId] = useState('');
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
@@ -75,9 +76,8 @@ export default function SignUpForm() {
     // 이메일 중복체크 버튼
     const handleCheckEmail = async (e) => {
         e.preventDefault();
-
         const response = await fetch(
-            `${process.env.api}/user/validate/email/${email}`
+            `http://0.0.0.0:8000/user/validate/email/${email}`
         );
         const result = await response.json();
 
@@ -225,7 +225,7 @@ export default function SignUpForm() {
             return;
         }
 
-        fetch(`${process.env.api}/user/signup`, {
+        fetch(`http://0.0.0.0:8000/user/signup`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
