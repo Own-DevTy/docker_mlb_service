@@ -59,7 +59,7 @@ export default function SignUpForm() {
         e.preventDefault();
 
         const response = await fetch(
-            `${process.env.api}/user/validate/id/${id}`
+            `http://0.0.0.0:8000/api/v1/user/validate/id/${id}`
         );
         const result = await response.json();
 
@@ -76,7 +76,7 @@ export default function SignUpForm() {
     const handleCheckEmail = async (e) => {
         e.preventDefault();
         const response = await fetch(
-            `http://0.0.0.0:8000/user/validate/email/${email}`
+            `http://0.0.0.0:8000/api/v1/user/validate/email/${email}`
         );
         const result = await response.json();
 
