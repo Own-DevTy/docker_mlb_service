@@ -18,7 +18,7 @@ import { FaBaseballBatBall } from 'react-icons/fa6';
 
 function getPlayerInfo(pid, position, offset, limit) {
     return fetch(
-        `${process.env.api}/all/${position}?skip=${offset}&limit=${limit}`
+        `http://0.0.0.0:8000/api/v1/all/${position}?skip=${offset}&limit=${limit}`
     )
         .then((response) => {
             return response.json();
