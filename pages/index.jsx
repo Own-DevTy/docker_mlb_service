@@ -132,19 +132,34 @@ export default function Home(props) {
                                     <Body>
                                         {tableList.map((item, index) => (
                                             <Row key={index}>
-                                                <ClickCell pid={item.id}>
+                                                <ClickCell
+                                                    pid={item.id}
+                                                    position={position}
+                                                >
                                                     {item.team_name}
                                                 </ClickCell>
-                                                <ClickCell pid={item.id}>
+                                                <ClickCell
+                                                    pid={item.id}
+                                                    position={position}
+                                                >
                                                     {item.name}
                                                 </ClickCell>
-                                                <ClickCell pid={item.id}>
+                                                <ClickCell
+                                                    pid={item.id}
+                                                    position={position}
+                                                >
                                                     {item.age}
                                                 </ClickCell>
-                                                <ClickCell pid={item.id}>
+                                                <ClickCell
+                                                    pid={item.id}
+                                                    position={position}
+                                                >
                                                     {item.height}
                                                 </ClickCell>
-                                                <ClickCell pid={item.id}>
+                                                <ClickCell
+                                                    pid={item.id}
+                                                    position={position}
+                                                >
                                                     {item.weight}
                                                 </ClickCell>
                                             </Row>
@@ -176,19 +191,34 @@ export default function Home(props) {
                                     <Body>
                                         {tableList.map((item, index) => (
                                             <Row key={index}>
-                                                <ClickCell pid={item.id}>
+                                                <ClickCell
+                                                    pid={item.id}
+                                                    position={position}
+                                                >
                                                     {item.team_name}
                                                 </ClickCell>
-                                                <ClickCell pid={item.id}>
+                                                <ClickCell
+                                                    pid={item.id}
+                                                    position={position}
+                                                >
                                                     {item.name}
                                                 </ClickCell>
-                                                <ClickCell pid={item.id}>
+                                                <ClickCell
+                                                    pid={item.id}
+                                                    position={position}
+                                                >
                                                     {item.age}
                                                 </ClickCell>
-                                                <ClickCell pid={item.id}>
+                                                <ClickCell
+                                                    pid={item.id}
+                                                    position={position}
+                                                >
                                                     {item.height}
                                                 </ClickCell>
-                                                <ClickCell pid={item.id}>
+                                                <ClickCell
+                                                    pid={item.id}
+                                                    position={position}
+                                                >
                                                     {item.weight}
                                                 </ClickCell>
                                             </Row>
@@ -222,19 +252,34 @@ export default function Home(props) {
                                     <Body>
                                         {tableList.map((item, index) => (
                                             <Row key={index}>
-                                                <ClickCell pid={item.id}>
+                                                <ClickCell
+                                                    pid={item.id}
+                                                    position={position}
+                                                >
                                                     {item.team_name}
                                                 </ClickCell>
-                                                <ClickCell pid={item.id}>
+                                                <ClickCell
+                                                    pid={item.id}
+                                                    position={position}
+                                                >
                                                     {item.name}
                                                 </ClickCell>
-                                                <ClickCell pid={item.id}>
+                                                <ClickCell
+                                                    pid={item.id}
+                                                    position={position}
+                                                >
                                                     {item.age}
                                                 </ClickCell>
-                                                <ClickCell pid={item.id}>
+                                                <ClickCell
+                                                    pid={item.id}
+                                                    position={position}
+                                                >
                                                     {item.height}
                                                 </ClickCell>
-                                                <ClickCell pid={item.id}>
+                                                <ClickCell
+                                                    pid={item.id}
+                                                    position={position}
+                                                >
                                                     {item.weight}
                                                 </ClickCell>
                                             </Row>
@@ -268,19 +313,34 @@ export default function Home(props) {
                                     <Body>
                                         {tableList.map((item, index) => (
                                             <Row key={index}>
-                                                <ClickCell pid={item.id}>
+                                                <ClickCell
+                                                    pid={item.id}
+                                                    position={position}
+                                                >
                                                     {item.team_name}
                                                 </ClickCell>
-                                                <ClickCell pid={item.id}>
+                                                <ClickCell
+                                                    pid={item.id}
+                                                    position={position}
+                                                >
                                                     {item.name}
                                                 </ClickCell>
-                                                <ClickCell pid={item.id}>
+                                                <ClickCell
+                                                    pid={item.id}
+                                                    position={position}
+                                                >
                                                     {item.age}
                                                 </ClickCell>
-                                                <ClickCell pid={item.id}>
+                                                <ClickCell
+                                                    pid={item.id}
+                                                    position={position}
+                                                >
                                                     {item.height}
                                                 </ClickCell>
-                                                <ClickCell pid={item.id}>
+                                                <ClickCell
+                                                    pid={item.id}
+                                                    position={position}
+                                                >
                                                     {item.weight}
                                                 </ClickCell>
                                             </Row>
