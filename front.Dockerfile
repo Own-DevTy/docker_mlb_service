@@ -27,6 +27,11 @@ COPY ./front .
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED 1
 
+COPY ./.env.front ./.env
+
+COPY ./wait-for-it.sh ./
+RUN chmod +x wait-for-it.sh
+
 RUN yarn build
 
 # If using npm comment out above and use below instead
