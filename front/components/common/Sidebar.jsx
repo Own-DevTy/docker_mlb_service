@@ -86,7 +86,7 @@ function HistoryInDB({ setOpen, id }) {
     const [state, updateState] = useState(false);
 
     function deleteHistory(hist_id) {
-        fetch(`${process.env.api}/compare_history/${hist_id}`, {
+        fetch(`http://0.0.0.0:8000/api/v1/compare_history/${hist_id}`, {
             method: 'delete',
         }).then(() => {
             updateState(!state);
@@ -95,7 +95,9 @@ function HistoryInDB({ setOpen, id }) {
 
     useEffect(() => {
         async function getHistory() {
-            const res = await fetch(`${process.env.api}/compare_history/${id}`);
+            const res = await fetch(
+                `http://0.0.0.0:8000/api/v1/compare_history/${id}`
+            );
             const data = await res.json();
             const history = await Promise.all(
                 data.histories.map(
